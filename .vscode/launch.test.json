@@ -1,0 +1,28 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "ispapi-lib-java",
+                "projectName": "ispapi-lib-java",
+                "workingDirectory": "/home/kai/git/ispapi-lib-java",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "ispapi-lib-java",
+                "projectName": "ispapi-lib-java",
+                "workingDirectory": "/home/kai/git/ispapi-lib-java",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
