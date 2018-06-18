@@ -44,13 +44,13 @@ If this runs still in an error, well rollback and set a new version manually by 
 
 Sounds weird, but issues only happened while we were setting up the pom.xml accordingly, we shouldn't have to get in contact with further issues from now on.
 
-Packages can be found in the appropriate version subfolder in "/tmp/net/ispapi/apiconnector/" or in project's subfolder "target".
+Packages can be found in the appropriate version subfolder in "/tmp/net/hexonet/apiconnector/" or in project's subfolder "target".
 This includes JAR and md5/sha1 files for compiled files, source files, javadoc in the tmp folder.
 
 ### Snapshot Release
 
 Nothing special. Use `mvn deploy` to get a development / snapshot version build.
-Packages can be found in the appropriate version subfolder in "/tmp/net/ispapi/apiconnector/" or in project's subfolder "target".
+Packages can be found in the appropriate version subfolder in "/tmp/net/hexonet/apiconnector/" or in project's subfolder "target".
 This includes JAR and md5/sha1 files for compiled files, source files, javadoc in the tmp folder.
 
 ## Built With
@@ -81,7 +81,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Session based API Communication
 
 ```java
-    import net.ispapi.apiconnector.*;
+    import net.hexonet.apiconnector.*;
 
     // perform an api login and create an api session
     Map<String, String> cfg = new HashMap<String, String>();
@@ -124,7 +124,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Sessionless API Communication
 
 ```java
-    import net.ispapi.apiconnector.*;
+    import net.hexonet.apiconnector.*;
 
     // perform an api login and create an api session
     Map<String, String> cfg = new HashMap<String, String>();

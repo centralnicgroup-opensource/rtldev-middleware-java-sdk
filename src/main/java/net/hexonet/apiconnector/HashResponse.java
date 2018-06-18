@@ -1,4 +1,4 @@
-package net.ispapi.apiconnector;
+package net.hexonet.apiconnector;
 
 import java.util.Map;
 import java.util.HashMap;

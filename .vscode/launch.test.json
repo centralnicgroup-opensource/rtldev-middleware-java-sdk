@@ -3,9 +3,9 @@
         "default": "",
         "items": [
             {
-                "name": "ispapi-lib-java",
-                "projectName": "ispapi-lib-java",
-                "workingDirectory": "/home/kai/git/ispapi-lib-java",
+                "name": "java-sdk",
+                "projectName": "java-sdk",
+                "workingDirectory": "/home/kai/git/java-sdk",
                 "args": [],
                 "vmargs": [],
                 "preLaunchTask": ""
@@ -16,9 +16,9 @@
         "default": "",
         "items": [
             {
-                "name": "ispapi-lib-java",
-                "projectName": "ispapi-lib-java",
-                "workingDirectory": "/home/kai/git/ispapi-lib-java",
+                "name": "java-sdk",
+                "projectName": "java-sdk",
+                "workingDirectory": "/home/kai/git/java-sdk",
                 "args": [],
                 "vmargs": [],
                 "preLaunchTask": ""

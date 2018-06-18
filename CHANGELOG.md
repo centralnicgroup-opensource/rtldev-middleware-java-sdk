@@ -1,6 +1,7 @@
 # Change Log
 
 ## 1.3.12-SNAPSHOT
+
 * HM-265 fix README [07c5be4](null/commit/07c5be4e2d1388149fe3825011e38df428693734)
 * HM-265 reviewed README [a63d5c3](null/commit/a63d5c38770c7dbd9dd56637bad22f9880885de4)
 * HM-265 fixed issue in constructor [5c290e0](null/commit/5c290e02efe3047e0d70b76d7ed2e9c42fcfc248)
@@ -27,4 +28,3 @@
 * HM-265 set socketcfg to null after logout [13ac504](null/commit/13ac504ac75f5913d7fd6bb5d68b694776f3f25d)
 * HM-265 updated launch file [15ab70f](null/commit/15ab70fc562640b0c07a320f83ce4bf4334e69bc)
 * HM-265 RC1 of java SDK [cfb7d33](null/commit/cfb7d33fda92efcc5fd0afdd422374effaa6b567)
-

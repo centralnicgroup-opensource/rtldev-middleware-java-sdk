@@ -1,4 +1,4 @@
-package net.ispapi.apiconnector;
+package net.hexonet.apiconnector;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 /**
  * Client is the entry point class for communicating with the
- * insanely fast 1API backend api.
+ * insanely fast HEXONET backend api.
  * It allows two ways of communication:
  * <ul>
  * <li>session based communication</li>

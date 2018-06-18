@@ -6,13 +6,13 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch)-Client<ispapi-lib-java>",
+            "name": "Debug (Launch)-Client<java-sdk>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
-            "mainClass": "net.ispapi.apiconnector.Client",
-            "projectName": "ispapi-lib-java",
+            "mainClass": "net.hexonet.apiconnector.Client",
+            "projectName": "java-sdk",
             "args": ""
         },
         {

@@ -3,15 +3,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.ispapi.apiconnector</groupId>
-  <artifactId>ispapi-lib-java</artifactId>
+  <groupId>net.hexonet.apiconnector</groupId>
+  <artifactId>java-sdk</artifactId>
   <version>1.3.12-SNAPSHOT</version>
 
-  <name>ispapi-lib-java</name>
-  <url>http://1api.de</url>
+  <name>java-sdk</name>
+  <url>http://hexonet.net</url>
   <scm>
-    <connection>scm:git:ssh://git@gitlab.hexonet.net:44447/hexonet-middleware/ispapi-lib-java.git</connection>
-    <developerConnection>scm:git:ssh://git@gitlab.hexonet.net:44447/hexonet-middleware/ispapi-lib-java.git</developerConnection>
+    <connection>scm:git:https://github.com/hexonet/java-sdk</connection>
+    <developerConnection>scm:git:https://github.com/hexonet/java-sdk</developerConnection>
     <tag>v1.1</tag>
   </scm>
 
@@ -31,15 +31,15 @@
   <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
-      <id>ispapi-lib-java-releases</id>
-      <name>ispapi-lib-java releases</name>
+      <id>java-sdk-releases</id>
+      <name>java-sdk releases</name>
       <url>file:///tmp</url>
       <layout>default</layout>
     </repository>
     <snapshotRepository>
       <uniqueVersion>true</uniqueVersion>
-      <id>ispapi-lib-java-snapshots</id>
-      <name>ispapi-lib-java snapshots</name>
+      <id>java-sdk-snapshots</id>
+      <name>java-sdk snapshots</name>
       <url>file:///tmp</url>
       <layout>default</layout>
     </snapshotRepository>
