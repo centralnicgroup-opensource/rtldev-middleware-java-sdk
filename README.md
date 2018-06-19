@@ -20,6 +20,32 @@ Now you can already start working on the project.
 Build the current stable JAR archive by executing `mvn package`. The archive can be found in subfolder "target".
 Import the archive in your project as shown in the examples below.
 
+*Standard way based on [jitpack.io](http://jitpack.io)*:
+
+Add the following lines to your maven project's pom.xml:
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+```xml
+  <dependencies>
+    <dependency>
+        <groupId>com.github.hexonet</groupId>
+        <artifactId>java-sdk</artifactId>
+        <version>v1.3.12</version>
+      </dependency>
+  </dependencies>
+```
+
+Now `mvn install` will produce that package version and will make it available within your project.
+See our demonstration app which you can find [here](https://github.com/hexonet/java-sdk-demo).
+
 ## Development
 
 ### Build current release
