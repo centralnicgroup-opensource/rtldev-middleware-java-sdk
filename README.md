@@ -5,6 +5,7 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 ## Requirements
 
 Installed Maven on OS-side.
+
 For developers: Visual Studio Code with installed plugins for Java Development described [here](https://code.visualstudio.com/docs/languages/java).
 
 ## Getting Started
