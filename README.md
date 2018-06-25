@@ -35,27 +35,7 @@ Add the following lines to your maven project's pom.xml:
 Now `mvn install` will produce that package version and will make it available within your project.
 See our demonstration app which you can find [here](https://github.com/hexonet/java-sdk-demo).
 
-## Contributing
-
-Please read [our development guide](https://github.com/hexonet/java-sdk/wiki/Development-Guide) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Built With
-
-* [Maven](https://maven.apache.org/) - Dependency Management
-
-## Authors
-
-* **Kai Schwarz** - *lead development* - [PapaKai](https://github.com/papakai)
-
-See also the list of [contributors](https://github.com/hexonet/java-sdk/graphs/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
-## How-to-use Examples
-
-### Session based API Communication
+### Example: Session based API Communication
 
 ```java
     import net.hexonet.apiconnector.Client;
@@ -103,7 +83,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     }
 ```
 
-### Sessionless API Communication
+### Example: Sessionless API Communication
 
 ```java
     import net.hexonet.apiconnector.Client;
@@ -131,3 +111,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
         }
     }
 ```
+
+## Contributing
+
+Please read [our development guide](https://github.com/hexonet/java-sdk/wiki/Development-Guide) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Built With
+
+* [Maven](https://maven.apache.org/) - Dependency Management
+
+## Authors
+
+* **Kai Schwarz** - *lead development* - [PapaKai](https://github.com/papakai)
+
+See also the list of [contributors](https://github.com/hexonet/java-sdk/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
