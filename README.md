@@ -2,27 +2,15 @@
 
 This module is a connector library for the insanely fast HEXONET Backend API. For further informations visit our [homepage](http://hexonet.net) and do not hesitate to contact us.
 
-## Requirements
+## How to use this module in your project
 
-Installed Maven on OS-side.
+### Requirements
+Having [Maven](https://maven.apache.org) installed on operating system side.
+Feel free to let [us](https://github.com/hexonet/java-sdk/wiki/Help) know if there are further ways to integrate or if you have any trouble.
 
-For developers: Visual Studio Code with installed plugins for Java Development described [here](https://code.visualstudio.com/docs/languages/java).
+### Using Maven / jitpack.io
 
-## Getting Started
-
-Clone the git repository by `git clone https://github.com/hexonet/java-sdk`.
-
-### For development purposes
-
-Now you can already start working on the project.
-
-### How to use this module in your project
-
-Build the current stable JAR archive by executing `mvn package`. The archive can be found in subfolder "target".
-Import the archive in your project as shown in the examples below.
-
-*Standard way based on [jitpack.io](http://jitpack.io)*:
-
+Standard way based on [jitpack.io](http://jitpack.io).
 Add the following lines to your maven project's pom.xml:
 
 ```xml
@@ -49,36 +37,7 @@ See our demonstration app which you can find [here](https://github.com/hexonet/j
 
 ## Development
 
-### Build current release
-
-Build the JAR package of the current version by `mvn package`. Import that jar file into your project.
-To only build the sources, use `mvn compile`.
-
-You'll find anything you need in subfolder "target". Read [Maven - Getting started](https://maven.apache.org/guides/getting-started/index.html) for more details.
-
-This does not generated things under deploy target path!
-
-### Release a new Version and Deploy
-
-In case your development has reached a status that can be released under a new version (SNAPSHOT or stable), merge your changes and then run the following steps:
-`mvn release:prepare`
-`mvn release:perform`
-
-NOTE:
-Run goal `release:perform` only in case goal `release:prepare` succeeds. If not you need to fix the issue and restart by `mvn release:prepare -Dresume=false` or `mvn release:clean release:prepare` instead.
-In some cases this won't help and you need first to trigger goal `release:rollback`, then to fix the issue and then to start from scratch with the above goals.
-If this runs still in an error, well rollback and set a new version manually by e.g. `mvn versions:set -DnewVersion=1.2.0-SNAPSHOT` and to commit that change before restarting the above goals.
-
-Sounds weird, but issues only happened while we were setting up the pom.xml accordingly, we shouldn't have to get in contact with further issues from now on.
-
-Packages can be found in the appropriate version subfolder in "/tmp/net/hexonet/apiconnector/" or in project's subfolder "target".
-This includes JAR and md5/sha1 files for compiled files, source files, javadoc in the tmp folder.
-
-### Snapshot Release
-
-Nothing special. Use `mvn deploy` to get a development / snapshot version build.
-Packages can be found in the appropriate version subfolder in "/tmp/net/hexonet/apiconnector/" or in project's subfolder "target".
-This includes JAR and md5/sha1 files for compiled files, source files, javadoc in the tmp folder.
+Have an eye on the [development guide](https://github.com/hexonet/java-sdk/wiki/Development-Guide) in our wiki documentation.
 
 ## Built With
 
@@ -87,11 +46,6 @@ This includes JAR and md5/sha1 files for compiled files, source files, javadoc i
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://github.com/hexonet/java-sdk/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://gihub.com/hexonet/java-sdk/tags).
-Prepare and Release a new version can be done as described [here in the maven documentation](http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html).
 
 ## Authors
 
