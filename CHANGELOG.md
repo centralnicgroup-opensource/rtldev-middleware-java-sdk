@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.3.13
+## 1.3.14-SNAPSHOT
 * added maven-central OSSRH integration [efdf5eb](null/commit/efdf5ebeb1adf700de85bb46bebde8e499920276)
 * preparations for maven central repository [5482390](null/commit/54823905f09857f61a0c9c24d9057bbacd7f3ad7)
 * Update README.md [51abe79](null/commit/51abe791cd983846ffd6a7ae3a899f604a112538)
