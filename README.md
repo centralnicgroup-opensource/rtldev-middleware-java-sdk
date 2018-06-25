@@ -35,17 +35,13 @@ Add the following lines to your maven project's pom.xml:
 Now `mvn install` will produce that package version and will make it available within your project.
 See our demonstration app which you can find [here](https://github.com/hexonet/java-sdk-demo).
 
-## Development
+## Contributing
 
-Have an eye on the [development guide](https://github.com/hexonet/java-sdk/wiki/Development-Guide) in our wiki documentation.
+Please read [our development guide](https://github.com/hexonet/java-sdk/wiki/Development-Guide) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/hexonet/java-sdk/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
