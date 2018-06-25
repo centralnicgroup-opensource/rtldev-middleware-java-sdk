@@ -41,7 +41,7 @@ Import the archive manually in your project.
 
 ### Usage Examples
 
-Find source code examples [here](https://github.com/hexonet/java-sdk/wiki/Usage-Guide).
+Find source code examples [here](https://github.com/hexonet/java-sdk/wiki/Usage-Guide#examples).
 
 ## Contributing
 
