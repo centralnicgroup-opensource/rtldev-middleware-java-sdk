@@ -1,6 +1,22 @@
 # Change Log
 
-## 1.3.15-SNAPSHOT
+## 1.3.15
+* lint readme [8a40ea0](null/commit/8a40ea0fc19cd68424d918d797c347a6203eaf31)
+* updated site/apidocs [599129a](null/commit/599129a86506ef745595ab15e6d68bdc699e395f)
+* Merge branch &#39;master&#39; of https://github.com/hexonet/java-sdk [5cf737a](null/commit/5cf737abcfc7bddc0a97de19bd47d7c37a3d655b)
+    * Update README.md [7520bb6](null/commit/7520bb6528f8d39032611e779401c48ca755c6b8)
+    * Update README.md [df25f7c](null/commit/df25f7cd5c54d4d0c25f1d664aceaf06c3fc36ed)
+    * Update README.md [cee1b99](null/commit/cee1b9967296cbd910902a974b7c6ab4c039f9ab)
+    * Update README.md [93f6531](null/commit/93f6531497e29de56f3f5ccfe8e2bed80082aa5c)
+    * Update README.md [1d358be](null/commit/1d358beadb59fba5804abf684b6b7bf52fe9c579)
+    * Update README.md [27a83b4](null/commit/27a83b4d8a3547c01ae1fcb73c35b914abeb7a4d)
+    * Update README.md [b885d4e](null/commit/b885d4e7c84064dea80f0b4d500530e600b867f1)
+    * Update README.md [3856701](null/commit/3856701ac7851f7a61853d595a90adad3575311a)
+    * Update README.md [7c8b1e7](null/commit/7c8b1e72e795f169278e934d4d9a24e49b815c7a)
+    * Update README.md [8445deb](null/commit/8445debe439d2323cfdd7c1420b7682705ff7834)
+* maven-deploy-plugin: updateReleaseInfo -&gt; true [228aa01](null/commit/228aa01a58d18fec70f245374231ecef151344ba)
+* Update README.md [2cb7263](null/commit/2cb7263f9b1f66e1077f85c207792b642caa9d8c)
+* updated docs [e2cfc45](null/commit/e2cfc45d51223ebfe2723cb876d43531354ab694)
 * OSSRH-40778 fix malformed pom.xml [98cf091](null/commit/98cf091a62e3efa25d7fcbe3a5210aee06c553cb)
 * fix readme [19e4e53](null/commit/19e4e537aa710a1bd30db1532443097d561f7238)
 * OSSRH-40778 try to fix by updated pom.xml [9b26eb9](null/commit/9b26eb9e01e376ce438c61029fbc93385e8a5def)
