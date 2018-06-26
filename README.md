@@ -4,11 +4,18 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 
 ## How to use this module in your project
 
-### Requirements
+### Download from OSSRH
+
+This module is available on the Maven Central Registry (OSSRH).
+
+### Using Maven
+
+#### Requirements
+
 Having [Maven](https://maven.apache.org) installed on operating system side.
 Feel free to let [us](https://github.com/hexonet/java-sdk/wiki/Help) know if there are further ways to integrate or if you have any trouble.
 
-### Using Maven / jitpack.io
+#### Using Maven w/ jitpack.io
 
 Standard way based on [jitpack.io](http://jitpack.io).
 Add the following lines to your maven project's pom.xml:
@@ -35,7 +42,8 @@ Add the following lines to your maven project's pom.xml:
 Now `mvn install` will produce that package version and will make it available within your project.
 See our demonstration app which you can find [here](https://github.com/hexonet/java-sdk-demo).
 
-### Using Maven
+#### Using Maven standalone
+
 Build the current stable JAR archive by executing `mvn package`. The archive can be found in subfolder "target".	
 Import the archive manually in your project.
 
