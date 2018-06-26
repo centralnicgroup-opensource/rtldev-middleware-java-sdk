@@ -1,6 +1,7 @@
 ![Maven Central](https://img.shields.io/maven-central/v/net.hexonet.apiconnector/java-sdk.svg)
 [![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#hexonet/java-sdk)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/hexonet/java-sdk/issues)
 
 
 
