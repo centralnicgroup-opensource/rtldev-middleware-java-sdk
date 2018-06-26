@@ -1,6 +1,10 @@
 # Change Log
 
-## 1.3.14-SNAPSHOT
+## 1.3.14
+* OSSRH-40778 fix malformed pom.xml [98cf091](null/commit/98cf091a62e3efa25d7fcbe3a5210aee06c553cb)
+* fix readme [19e4e53](null/commit/19e4e537aa710a1bd30db1532443097d561f7238)
+* OSSRH-40778 try to fix by updated pom.xml [9b26eb9](null/commit/9b26eb9e01e376ce438c61029fbc93385e8a5def)
+* updated site and api docs [98d2112](null/commit/98d211287ee1c9c68cc3e63c6b95e358aeb3c236)
 * added maven-central OSSRH integration [efdf5eb](null/commit/efdf5ebeb1adf700de85bb46bebde8e499920276)
 * preparations for maven central repository [5482390](null/commit/54823905f09857f61a0c9c24d9057bbacd7f3ad7)
 * Update README.md [51abe79](null/commit/51abe791cd983846ffd6a7ae3a899f604a112538)
