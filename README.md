@@ -1,6 +1,8 @@
 # java-sdk
 
 ![Maven Central](https://img.shields.io/maven-central/v/net.hexonet.apiconnector/java-sdk.svg)
+![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/net/hexonet/apiconnector/maven-metadata.xml.svg)
+
 [![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#hexonet/java-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/hexonet/java-sdk/issues)
