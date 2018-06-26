@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.3.14
+## 1.3.15-SNAPSHOT
 * OSSRH-40778 fix malformed pom.xml [98cf091](null/commit/98cf091a62e3efa25d7fcbe3a5210aee06c553cb)
 * fix readme [19e4e53](null/commit/19e4e537aa710a1bd30db1532443097d561f7238)
 * OSSRH-40778 try to fix by updated pom.xml [9b26eb9](null/commit/9b26eb9e01e376ce438c61029fbc93385e8a5def)
