@@ -44,7 +44,7 @@ See our demonstration app which you can find [here](https://github.com/hexonet/j
 
 #### Using Maven standalone
 
-Build the current stable JAR archive by executing `mvn package`. The archive can be found in subfolder "target".	
+Build the current stable JAR archive by executing `mvn package`. The archive can be found in subfolder "target".
 Import the archive manually in your project.
 
 ### Usage Examples
