@@ -1,6 +1,5 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.hexonet.apiconnector/java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.hexonet.apiconnector/java-sdk)
-
-[![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#User/Repo)
+![Maven Central](https://img.shields.io/maven-central/v/net.hexonet.apiconnector/java-sdk.svg)
+![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#User/Repo)
 
 
 # java-sdk
