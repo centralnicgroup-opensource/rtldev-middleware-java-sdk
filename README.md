@@ -6,7 +6,7 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 
 ### Download from OSSRH
 
-This module is available on the Maven Central Registry (OSSRH).
+This module is available on the [Maven Central Registry](https://github.com/hexonet/java-sdk/wiki/Development-Guide#ossrh-paths) (OSSRH).
 
 ### Using Maven
 
