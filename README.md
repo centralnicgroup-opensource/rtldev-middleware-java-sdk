@@ -1,5 +1,5 @@
 ![Maven Central](https://img.shields.io/maven-central/v/net.hexonet.apiconnector/java-sdk.svg)
-![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#User/Repo)
+[![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#hexonet/java-sdk)
 
 
 # java-sdk
