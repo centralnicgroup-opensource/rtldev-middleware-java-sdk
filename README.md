@@ -1,3 +1,5 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.hexonet.apiconnector/java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.hexonet.apiconnector/java-sdk)
+
 # java-sdk
 
 This module is a connector library for the insanely fast HEXONET Backend API. For further informations visit our [homepage](http://hexonet.net) and do not hesitate to contact us.
