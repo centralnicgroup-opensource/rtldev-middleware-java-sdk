@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.3.15
+## 1.3.16-SNAPSHOT
 * lint readme [8a40ea0](null/commit/8a40ea0fc19cd68424d918d797c347a6203eaf31)
 * updated site/apidocs [599129a](null/commit/599129a86506ef745595ab15e6d68bdc699e395f)
 * Merge branch &#39;master&#39; of https://github.com/hexonet/java-sdk [5cf737a](null/commit/5cf737abcfc7bddc0a97de19bd47d7c37a3d655b)
