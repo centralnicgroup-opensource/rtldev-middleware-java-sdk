@@ -2,10 +2,6 @@
 [![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#hexonet/java-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/hexonet/java-sdk/issues)
-![Github All Releases](https://img.shields.io/github/downloads/hexonet/java-sdk/total.svg)
-
-
-
 
 # java-sdk
 
