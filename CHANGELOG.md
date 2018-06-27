@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.3.16
+## 1.3.17-SNAPSHOT
 * test removal maven-deploy-plugin in favor of nexus-staging-maven-plugin [88ddad0](null/commit/88ddad0160b141a003d000a0468e8fc7fb8ad893)
 * Update README.md [c3fa9e6](null/commit/c3fa9e68a7e4573d4f0962b4adebe9c300b9d51c)
 * Update README.md [ea60a4f](null/commit/ea60a4f4ddb556eef16966674184eef3e617cf2d)
