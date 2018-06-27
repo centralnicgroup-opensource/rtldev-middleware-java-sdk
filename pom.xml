@@ -178,8 +178,8 @@
           <version>2.5.3</version>
           <configuration>
             <tagNameFormat>v@{project.version}</tagNameFormat>
-            <preparationGoals>clean git-changelog:git-changelog scm:checkin -DpushChanges=false -Dincludes=CHANGELOG.md -Dmessage="[maven-release-plugin] Update CHANGELOG.md" verify</preparationGoals>
-            <completionGoals>git-changelog:git-changelog scm:checkin -DpushChanges=false -Dincludes=CHANGELOG.md -Dmessage="[maven-release-plugin] Update CHANGELOG.md"</completionGoals>
+            <preparationGoals>clean git-changelog:git-changelog scm:checkin -DpushChanges=false -Dincludes=HISTORY.md -Dmessage="[maven-release-plugin] Update HISTORY.md" verify</preparationGoals>
+            <completionGoals>git-changelog:git-changelog scm:checkin -DpushChanges=false -Dincludes=HISTORY.md -Dmessage="[maven-release-plugin] Update HISTORY.md"</completionGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
@@ -189,7 +189,12 @@
         <plugin>
           <groupId>info.plichta.maven.plugins</groupId>
           <artifactId>git-changelog-maven-plugin</artifactId>
-          <version>0.3.0</version>
+          <version>0.4.0</version>
+          <configuration>
+           <outputFile>HISTORY.md</outputFile>
+           <reportTitle>Changelog</reportTitle>
+           <gitHubUrl>https://github.com/hexonet/java-sdk</gitHubUrl>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
