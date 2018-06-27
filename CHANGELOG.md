@@ -1,6 +1,10 @@
 # Change Log
 
-## 1.3.16-SNAPSHOT
+## 1.3.16
+* test removal maven-deploy-plugin in favor of nexus-staging-maven-plugin [88ddad0](null/commit/88ddad0160b141a003d000a0468e8fc7fb8ad893)
+* Update README.md [c3fa9e6](null/commit/c3fa9e68a7e4573d4f0962b4adebe9c300b9d51c)
+* Update README.md [ea60a4f](null/commit/ea60a4f4ddb556eef16966674184eef3e617cf2d)
+* Update README.md [278fb3b](null/commit/278fb3b932ee51285af9ee78ab3237336b0ba344)
 * lint readme [8a40ea0](null/commit/8a40ea0fc19cd68424d918d797c347a6203eaf31)
 * updated site/apidocs [599129a](null/commit/599129a86506ef745595ab15e6d68bdc699e395f)
 * Merge branch &#39;master&#39; of https://github.com/hexonet/java-sdk [5cf737a](null/commit/5cf737abcfc7bddc0a97de19bd47d7c37a3d655b)
