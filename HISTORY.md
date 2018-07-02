@@ -1,7 +1,14 @@
 # Changelog
 
-## 1.3.17-SNAPSHOT
-* updated site &amp; apidocs folder [ba67d79](https://github.com/hexonet/java-sdk/commit/ba67d79892f744cde906b52f0ff5ee0c93c38027)
+## 1.3.17
+* Merge branch &#39;master&#39; of https://github.com/hexonet/java-sdk [e598188](https://github.com/hexonet/java-sdk/commit/e5981883f1b055741b4f860c15c6977862e093d9)
+    * readme: update contribute badge [e7a6c1d](https://github.com/hexonet/java-sdk/commit/e7a6c1d3c9e718d1a393117071dab1eed7823c87)
+    * readme: udpate license badge [fd9cd05](https://github.com/hexonet/java-sdk/commit/fd9cd05fa6e782eb7327855171835af48e821656)
+    * readme: add slack badge [7f9d8c6](https://github.com/hexonet/java-sdk/commit/7f9d8c6dff4f4a06aa7f481d0f9f7bf936c907ea)
+    * Update README.md [2668ed5](https://github.com/hexonet/java-sdk/commit/2668ed53cbd686887c69560805fe68ee105e75d4)
+    * Update README.md [870031a](https://github.com/hexonet/java-sdk/commit/870031a76538d3901a7f0506d548054ac66c6d24)
+    * updated site &amp; apidocs folder [ba67d79](https://github.com/hexonet/java-sdk/commit/ba67d79892f744cde906b52f0ff5ee0c93c38027)
+* updated changelog plugin configuration [3d9ec31](https://github.com/hexonet/java-sdk/commit/3d9ec31774ad43c672de8eb1934b43abf00548ea)
 * upgrade maven-changelog-plugin to 0.3.0 [6ee3bea](https://github.com/hexonet/java-sdk/commit/6ee3beab7b10a567982194af3106c23c91049692)
 * test removal maven-deploy-plugin in favor of nexus-staging-maven-plugin [88ddad0](https://github.com/hexonet/java-sdk/commit/88ddad0160b141a003d000a0468e8fc7fb8ad893)
 * Update README.md [c3fa9e6](https://github.com/hexonet/java-sdk/commit/c3fa9e68a7e4573d4f0962b4adebe9c300b9d51c)
