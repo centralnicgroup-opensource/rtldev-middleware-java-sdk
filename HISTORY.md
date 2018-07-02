@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.17
+## 1.3.18-SNAPSHOT
 * Merge branch &#39;master&#39; of https://github.com/hexonet/java-sdk [e598188](https://github.com/hexonet/java-sdk/commit/e5981883f1b055741b4f860c15c6977862e093d9)
     * readme: update contribute badge [e7a6c1d](https://github.com/hexonet/java-sdk/commit/e7a6c1d3c9e718d1a393117071dab1eed7823c87)
     * readme: udpate license badge [fd9cd05](https://github.com/hexonet/java-sdk/commit/fd9cd05fa6e782eb7327855171835af48e821656)
