@@ -8,6 +8,13 @@
 
 This module is a connector library for the insanely fast HEXONET Backend API. For further informations visit our [homepage](http://hexonet.net) and do not hesitate to [contact us](https://www.hexonet.net/contact).
 
+## Resources
+
+* [Development Guide](https://github.com/hexonet/java-sdk/wiki/Development-Guide)
+* [Usage Guide](https://github.com/hexonet/java-sdk/blob/master/README.md)
+* [SDK Documenation](https://github.com/hexonet/java-sdk/wiki/SDK-Documenation)
+* [Release Notes](https://github.com/hexonet/java-sdk/wiki/Release-Notes)
+
 ## How to use this module in your project
 
 ### Download from OSSRH
