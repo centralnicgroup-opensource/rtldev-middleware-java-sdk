@@ -56,7 +56,84 @@ See our demonstration app which you can find [here](https://github.com/hexonet/j
 
 ### Usage Examples
 
-Find source code examples [here](https://github.com/hexonet/java-sdk/wiki/Usage-Guide#examples).
+Please have an eye on our [official backend API documentation](https://github.com/hexonet/hexonet-api-documentation/tree/master/API). Here you can find information on available Commands and their response data.
+
+#### Session based API Communication
+
+```java
+    import net.hexonet.apiconnector.Client;
+    import net.hexonet.apiconnector.ListResponse;
+    import java.util.HashMap;
+    import java.util.Map;
+
+    public static void main(String[] args) {
+        // perform an api login and create an api session
+        Map<String, String> cfg = new HashMap<String, String>();
+        cfg.put("login", "test.user");
+        cfg.put("pw", "test.passw0rd");
+        cfg.put("entity", "1234");
+        // --- use this for 2-Factor Auth ---
+        // cfg.put("otp", "my_otp_code");
+        // --- use this if you have active ip filter settings ---
+        // cfg.put("remoteaddr", "client's remote ip address");
+        Client cl = new Client();
+        ListResponse r = cl.login(cfg);
+
+        if (r.isSuccess()){
+            System.out.println("Login succeeded.");
+            // perform further api request reusing the generated api session
+            Map<String, String> cmd = new HashMap<String, String>();
+            cmd.put("COMMAND", "StatusAccount");
+            r = cl.request(cmd);
+            if (r.isSuccess()){
+                System.out.println("Command succeeded.");
+            }
+            else {
+                System.out.println("Command failed.");
+            }
+            // perform api logout and destroy api session
+            r = cl.logout();
+            if (r.isSuccess()){
+                System.out.println("Logout succeeded.");
+            }
+            else {
+                System.out.println("Logout failed.");
+            }
+        }
+        else {
+            System.out.println("Login failed.");
+        }
+    }
+```
+
+#### Sessionless API Communication
+
+```java
+    import net.hexonet.apiconnector.Client;
+    import net.hexonet.apiconnector.ListResponse;
+    import java.util.HashMap;
+    import java.util.Map;
+
+    public static void main(String[] args) {
+        // perform an api login and create an api session
+        Map<String, String> cfg = new HashMap<String, String>();
+        cfg.put("login", "test.user");
+        cfg.put("pw", "test.passw0rd");
+        cfg.put("entity", "1234");
+        // --- use this if you have active ip filter settings ---
+        // cfg.put("remoteaddr", "client's remote ip address");
+        Client cl = new Client();
+        Map<String, String> cmd = new HashMap<String, String>();
+        cmd.put("COMMAND", "StatusAccount");
+        ListResponse r = cl.request(cmd, cfg);
+        if (r.isSuccess()){
+            System.out.println("Command succeeded.");
+        }
+        else {
+            System.out.println("Command failed.");
+        }
+    }
+```
 
 ## Contributing
 
