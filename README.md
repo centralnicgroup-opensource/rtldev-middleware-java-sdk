@@ -64,7 +64,7 @@ See our demonstration app which you can find [here](https://github.com/hexonet/j
 
 ### Usage Examples
 
-Please have an eye on our [official backend API documentation](https://github.com/hexonet/hexonet-api-documentation/tree/master/API). Here you can find information on available Commands and their response data.
+Please have an eye on our [HEXONET Backend API documentation](https://github.com/hexonet/hexonet-api-documentation/tree/master/API). Here you can find information on available Commands and their response data.
 
 #### Session based API Communication
 
