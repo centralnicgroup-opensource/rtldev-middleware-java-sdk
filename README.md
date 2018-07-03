@@ -11,7 +11,7 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 ## Resources
 
 * [Usage Guide](https://github.com/hexonet/java-sdk/blob/master/README.md#how-to-use-this-module-in-your-project)
-* [SDK Documenation](https://github.com/hexonet/java-sdk/wiki/SDK-Documenation)
+* [SDK Documenation](https://rawgit.com/hexonet/java-sdk/master/target/site/apidocs/net/hexonet/apiconnector/package-summary.html)
 * [Release Notes](https://github.com/hexonet/java-sdk/wiki/Release-Notes)
 * [Development Guide](https://github.com/hexonet/java-sdk/wiki/Development-Guide)
 
