@@ -2,9 +2,7 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v1.3.18](https://github.com/hexonet/java-sdk/compare/v1.3.17...v1.3.18)
-
-> 2 July 2018
+#### [v1.3.18](https://github.com/hexonet/java-sdk/compare/v1.3.17...v1.3.18) (2 July 2018)
 
 - [maven-release-plugin] Update HISTORY.md [`51443c8`](https://github.com/hexonet/java-sdk/commit/51443c83d77a671470669a2c76197dc3853b5420)
 - added nodejs changelog generator [`a74a0f7`](https://github.com/hexonet/java-sdk/commit/a74a0f7cf8090023329dde832697d1576572c96a)
@@ -12,9 +10,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - [maven-release-plugin] prepare for next development iteration [`fc2ca2e`](https://github.com/hexonet/java-sdk/commit/fc2ca2e16a862666d3fae6ca40a6ac2d19399f6c)
 - [maven-release-plugin] Update HISTORY.md [`430b27e`](https://github.com/hexonet/java-sdk/commit/430b27ec443cfdc2aae740c136302ea33f34f165)
 
-#### [v1.3.17](https://github.com/hexonet/java-sdk/compare/v1.3.16...v1.3.17)
-
-> 2 July 2018
+#### [v1.3.17](https://github.com/hexonet/java-sdk/compare/v1.3.16...v1.3.17) (2 July 2018)
 
 - updated changelog plugin configuration [`3d9ec31`](https://github.com/hexonet/java-sdk/commit/3d9ec31774ad43c672de8eb1934b43abf00548ea)
 - updated site & apidocs folder [`ba67d79`](https://github.com/hexonet/java-sdk/commit/ba67d79892f744cde906b52f0ff5ee0c93c38027)
@@ -29,9 +25,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - [maven-release-plugin] Update CHANGELOG.md [`54980fe`](https://github.com/hexonet/java-sdk/commit/54980fef6695e4d712638605af0105f7a23ad8ce)
 - readme: add slack badge [`7f9d8c6`](https://github.com/hexonet/java-sdk/commit/7f9d8c6dff4f4a06aa7f481d0f9f7bf936c907ea)
 
-#### [v1.3.16](https://github.com/hexonet/java-sdk/compare/v1.3.15...v1.3.16)
-
-> 27 June 2018
+#### [v1.3.16](https://github.com/hexonet/java-sdk/compare/v1.3.15...v1.3.16) (27 June 2018)
 
 - test removal maven-deploy-plugin in favor of nexus-staging-maven-plugin [`88ddad0`](https://github.com/hexonet/java-sdk/commit/88ddad0160b141a003d000a0468e8fc7fb8ad893)
 - [maven-release-plugin] Update CHANGELOG.md [`370b95c`](https://github.com/hexonet/java-sdk/commit/370b95c4d9ebe118244a6ae853cb8d7d9aedf87b)
@@ -42,9 +36,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - Update README.md [`278fb3b`](https://github.com/hexonet/java-sdk/commit/278fb3b932ee51285af9ee78ab3237336b0ba344)
 - [maven-release-plugin] Update CHANGELOG.md [`524b902`](https://github.com/hexonet/java-sdk/commit/524b9022ba3aa5847525bbe009d8f72fca5537b3)
 
-#### [v1.3.15](https://github.com/hexonet/java-sdk/compare/v1.3.14...v1.3.15)
-
-> 26 June 2018
+#### [v1.3.15](https://github.com/hexonet/java-sdk/compare/v1.3.14...v1.3.15) (26 June 2018)
 
 - updated docs [`e2cfc45`](https://github.com/hexonet/java-sdk/commit/e2cfc45d51223ebfe2723cb876d43531354ab694)
 - updated site/apidocs [`599129a`](https://github.com/hexonet/java-sdk/commit/599129a86506ef745595ab15e6d68bdc699e395f)
@@ -66,9 +58,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - Update README.md [`1d358be`](https://github.com/hexonet/java-sdk/commit/1d358beadb59fba5804abf684b6b7bf52fe9c579)
 - Update README.md [`93f6531`](https://github.com/hexonet/java-sdk/commit/93f6531497e29de56f3f5ccfe8e2bed80082aa5c)
 
-#### [v1.3.14](https://github.com/hexonet/java-sdk/compare/v1.3.13...v1.3.14)
-
-> 26 June 2018
+#### [v1.3.14](https://github.com/hexonet/java-sdk/compare/v1.3.13...v1.3.14) (26 June 2018)
 
 - updated site and api docs [`98d2112`](https://github.com/hexonet/java-sdk/commit/98d211287ee1c9c68cc3e63c6b95e358aeb3c236)
 - OSSRH-40778 try to fix by updated pom.xml [`9b26eb9`](https://github.com/hexonet/java-sdk/commit/9b26eb9e01e376ce438c61029fbc93385e8a5def)
@@ -79,9 +69,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - fix readme [`19e4e53`](https://github.com/hexonet/java-sdk/commit/19e4e537aa710a1bd30db1532443097d561f7238)
 - [maven-release-plugin] Update CHANGELOG.md [`f024541`](https://github.com/hexonet/java-sdk/commit/f024541213e660995270e907c0f282c01c291a64)
 
-#### [v1.3.13](https://github.com/hexonet/java-sdk/compare/v1.3.12...v1.3.13)
-
-> 25 June 2018
+#### [v1.3.13](https://github.com/hexonet/java-sdk/compare/v1.3.12...v1.3.13) (25 June 2018)
 
 - added apidocs [`43cdae3`](https://github.com/hexonet/java-sdk/commit/43cdae3fe0bfbef66c8690c4c96deada1d8ca723)
 - updated readme [`de973ce`](https://github.com/hexonet/java-sdk/commit/de973cee32fc08c05af19a2ddfc8d1f5cec434be)
@@ -100,9 +88,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - [maven-release-plugin] Update CHANGELOG.md [`b0ae12a`](https://github.com/hexonet/java-sdk/commit/b0ae12ac7bec42e179b41f48f317a51e63499bd6)
 - Update README.md [`0754762`](https://github.com/hexonet/java-sdk/commit/075476233654852d3deb88f4694f1ba0c675933a)
 
-#### v1.3.12
-
-> 18 June 2018
+#### v1.3.12 (18 June 2018)
 
 - [maven-release-plugin] prepare release v1.3.12 [`b676a56`](https://github.com/hexonet/java-sdk/commit/b676a56995061c15bab74e02a2f6eb6095f42903)
 - [maven-release-plugin] Update CHANGELOG.md [`83dc492`](https://github.com/hexonet/java-sdk/commit/83dc49219a238b7a6741439562e8e9c97e600909)
