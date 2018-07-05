@@ -18,6 +18,8 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 
 ## How to use this module in your project
 
+We have also a demo app available showing how to integrate and use our SDK. See [here](https://github.com/hexonet/java-sdk-demo).
+
 ### Download from OSSRH
 
 This module is available on the [Maven Central Registry](https://github.com/hexonet/java-sdk/wiki/Development-Guide#ossrh-paths) (OSSRH).
@@ -60,7 +62,6 @@ Add the following lines to your maven project's pom.xml:
 ... and also include the above xml part of the `Using Maven standalone` chapter.
 
 Now `mvn install` will produce that package version and will make it available within your project.
-See our demonstration app which you can find [here](https://github.com/hexonet/java-sdk-demo).
 
 ### Usage Examples
 
