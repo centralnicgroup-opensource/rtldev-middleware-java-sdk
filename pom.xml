@@ -200,6 +200,8 @@
           <configuration>
             <executable>auto-changelog</executable>
             <arguments>
+	      <argument>--template</argument>
+	      <argument>https://raw.githubusercontent.com/hexonet/auto-changelog-templates/master/compact.hts</argument>
               <argument>--commit-limit</argument>
               <argument>false</argument>
               <argument>--output</argument>
