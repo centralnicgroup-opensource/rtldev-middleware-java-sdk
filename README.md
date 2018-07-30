@@ -38,11 +38,11 @@ As our package is available on the OSSRH as mentioned above, simply use:
 ```xml
 <dependencies>
   <dependency>
-	    <groupId>net.hexonet.apiconnector</groupId>
-	    <artifactId>java-sdk</artifactId>
-	    <version>1.3.18</version>
-	</dependency>
-</<dependencies>
+    <groupId>net.hexonet.apiconnector</groupId>
+    <artifactId>java-sdk</artifactId>
+    <version>1.3.18</version>
+  </dependency>
+</dependencies>
 ```
 
 #### Using Maven w/ jitpack.io
