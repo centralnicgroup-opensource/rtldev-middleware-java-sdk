@@ -36,13 +36,13 @@ Feel free to let [us](https://github.com/hexonet/java-sdk/wiki/Help) know if the
 As our package is available on the OSSRH as mentioned above, simply use:
 
 ```xml
-  <dependencies>
-    <dependency>
-        <groupId>com.github.hexonet</groupId>
-        <artifactId>java-sdk</artifactId>
-        <version>v1.3.16</version>
-      </dependency>
-  </dependencies>
+<dependencies>
+  <dependency>
+	    <groupId>net.hexonet.apiconnector</groupId>
+	    <artifactId>java-sdk</artifactId>
+	    <version>1.3.18</version>
+	</dependency>
+</<dependencies>
 ```
 
 #### Using Maven w/ jitpack.io
@@ -57,6 +57,14 @@ Add the following lines to your maven project's pom.xml:
         <url>https://jitpack.io</url>
     </repository>
 </repositories>
+
+ <dependencies>
+    <dependency>
+        <groupId>com.github.hexonet</groupId>
+        <artifactId>java-sdk</artifactId>
+        <version>v1.3.18</version>
+      </dependency>
+  </dependencies>
 ```
 
 ... and also include the above xml part of the `Using Maven standalone` chapter.
