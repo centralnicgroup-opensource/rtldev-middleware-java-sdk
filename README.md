@@ -76,8 +76,6 @@ Add the following lines to your maven project's pom.xml:
   </dependencies>
 ```
 
-... and also include the above xml part of the `Using Maven standalone` chapter.
-
 Now `mvn install` will produce that package version and will make it available within your project.
 
 ### Usage Examples
