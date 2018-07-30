@@ -28,7 +28,10 @@ This module is available on the [Maven Central Registry](https://github.com/hexo
 
 #### Requirements
 
-Having [Maven](https://maven.apache.org) installed on operating system side.
+Having [Maven](https://maven.apache.org) installed on operating system side. For ubuntu this can be achieved in ease by
+```bash
+sudo apt install maven
+```
 Feel free to let [us](https://github.com/hexonet/java-sdk/wiki/Help) know if there are further ways to integrate or if you have any trouble.
 
 #### Using Maven standalone
