@@ -37,7 +37,7 @@ public class ListResponse extends HashResponse {
         for (int c = 0; c < cols.size(); c++) {
           String colkey = (String) cols.get(c);
           ArrayList<?> values = (ArrayList<?>) properties.get(colkey);
-          if (values != null) {
+          if (values != null && values.size() > i) {
             row.add((String) values.get(i));
           }
         }

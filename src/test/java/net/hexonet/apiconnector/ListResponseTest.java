@@ -24,6 +24,24 @@ public class ListResponseTest {
     }
 
     /**
+     * Test API Response with different column size
+     * e.g. QueryAccountingList with LIMIT > 1
+     */
+    @Test
+    public void testListDifferentColLength() {
+        String raw = "[RESPONSE]\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nPROPERTY[FIRST][0]=30850\r\nPROPERTY[LAST][0]=30851\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[TOTAL][0]=30852\r\nPROPERTY[LIMIT][0]=2\r\nPROPERTY[ACCOUNTINGAMOUNT][0]=1\r\nPROPERTY[ACCOUNTINGAMOUNT][1]=1\r\nPROPERTY[ACCOUNTINGCURRENCY][0]=eur\r\nPROPERTY[ACCOUNTINGCURRENCY][1]=eur\r\nPROPERTY[ACCOUNTINGDATE][0]=2018-08-20 13:48:04\r\nPROPERTY[ACCOUNTINGDATE][1]=2018-08-21 12:48:03\r\nPROPERTY[ACCOUNTINGDESCRIPTION][0]=anthon234yyyy.com\r\nPROPERTY[ACCOUNTINGDESCRIPTION][1]=0000000000001.com\r\nPROPERTY[ACCOUNTINGINVOICEID][0]=-\r\nPROPERTY[ACCOUNTINGINVOICEID][1]=-\r\nPROPERTY[ACCOUNTINGPRICE][0]=0.00\r\nPROPERTY[ACCOUNTINGPRICE][1]=0.00\r\nPROPERTY[ACCOUNTINGREFERENCE][0]=\r\nPROPERTY[ACCOUNTINGREFERENCE][1]=\r\nPROPERTY[ACCOUNTINGTYPE][0]=TRADE_DOMAIN_FAILED\r\nPROPERTY[ACCOUNTINGTYPE][1]=TRADE_DOMAIN_FAILED\r\nPROPERTY[ACCOUNTINGVAT][0]=19.00\r\nPROPERTY[ACCOUNTINGVAT][1]=19.00\r\nPROPERTY[ACCOUNTINGVATPRICE][0]=0.00\r\nPROPERTY[ACCOUNTINGVATPRICE][1]=0.00\r\nPROPERTY[OPENINGBALANCE][0]=136476.95\r\nPROPERTY[OPENINGBALANCEPRICE][0]=112568.55\r\nPROPERTY[OPENINGBALANCEVATPRICE][0]=23908.40\r\nPROPERTY[SUM][0]=136476.95\r\nPROPERTY[SUMPRICE][0]=112568.55\r\nPROPERTY[SUMVATPRICE][0]=23908.40\r\nQUEUETIME=0\r\nRUNTIME=0.12\r\nEOF\r\n";
+        ListResponse r = new ListResponse(raw);
+        ArrayList<ArrayList<String>> list = r.list();
+        assertEquals(2, list.size());
+        String tmp = r.getColumnIndex("SUM", 1);
+        assertEquals(null, tmp);
+        tmp = r.getColumnIndex("ACCOUNTINGVATPRICE", 0);
+        assertEquals("0.00", tmp);
+        tmp = r.getColumnIndex("ACCOUNTINGVATPRICE", 1);
+        assertEquals("0.00", tmp);
+    }
+
+    /**
      * Test iterator quick access methods
      */
     @Test
