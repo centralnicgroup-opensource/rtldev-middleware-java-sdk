@@ -28,21 +28,30 @@ This module is available on the [Maven Central Registry](https://github.com/hexo
 
 #### Requirements
 
-Having [Maven](https://maven.apache.org) installed on operating system side.
+Having [Maven](https://maven.apache.org) installed on operating system side. For ubuntu this can be achieved in ease by
+```bash
+sudo apt install maven
+```
 Feel free to let [us](https://github.com/hexonet/java-sdk/wiki/Help) know if there are further ways to integrate or if you have any trouble.
+If you have trouble with JAVA_HOME variable when using Maven, create ~/.mavenrc with the following contents:
+
+```bash
+export JAVA_HOME=<path to your java installation>
+#e.g. export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+```
 
 #### Using Maven standalone
 
 As our package is available on the OSSRH as mentioned above, simply use:
 
 ```xml
-  <dependencies>
-    <dependency>
-        <groupId>com.github.hexonet</groupId>
-        <artifactId>java-sdk</artifactId>
-        <version>v1.3.16</version>
-      </dependency>
-  </dependencies>
+<dependencies>
+  <dependency>
+    <groupId>net.hexonet.apiconnector</groupId>
+    <artifactId>java-sdk</artifactId>
+    <version>1.3.18</version>
+  </dependency>
+</dependencies>
 ```
 
 #### Using Maven w/ jitpack.io
@@ -57,9 +66,15 @@ Add the following lines to your maven project's pom.xml:
         <url>https://jitpack.io</url>
     </repository>
 </repositories>
-```
 
-... and also include the above xml part of the `Using Maven standalone` chapter.
+ <dependencies>
+    <dependency>
+        <groupId>com.github.hexonet</groupId>
+        <artifactId>java-sdk</artifactId>
+        <version>v1.3.18</version>
+      </dependency>
+  </dependencies>
+```
 
 Now `mvn install` will produce that package version and will make it available within your project.
 
