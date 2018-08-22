@@ -13,7 +13,7 @@
   <scm>
     <connection>scm:git:https://github.com/hexonet/java-sdk</connection>
     <developerConnection>scm:git:https://github.com/hexonet/java-sdk</developerConnection>
-    <url>http://github.com/hexonet/java-sdk/tree/master</url>
+    <url>https://github.com/hexonet/java-sdk/tree/master</url>
     <tag>HEAD</tag>
   </scm>
 
