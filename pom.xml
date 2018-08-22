@@ -5,7 +5,7 @@
 
   <groupId>net.hexonet.apiconnector</groupId>
   <artifactId>java-sdk</artifactId>
-  <version>1.3.21-SNAPSHOT</version>
+  <version>1.3.20-SNAPSHOT</version>
 
   <name>java-sdk</name>
   <description>A connector library for the insanely fast HEXONET backend API.</description>
