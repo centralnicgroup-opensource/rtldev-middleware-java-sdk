@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [v1.3.20](https://github.com/hexonet/java-sdk/compare/v1.3.19...v1.3.20) (22 August 2018)
+
+- [maven-release-plugin] Update HISTORY.md [`f2ac337`](https://github.com/hexonet/java-sdk/commit/f2ac337d7b7850c1ab8d37dd4fbf30c2772760d7)
+- [maven-release-plugin] Update HISTORY.md [`d5a687c`](https://github.com/hexonet/java-sdk/commit/d5a687c49d5df4cfbfbabac24af273465c162fbe)
+- [maven-release-plugin] prepare for next development iteration [`572d7bc`](https://github.com/hexonet/java-sdk/commit/572d7bcead850e910ecb24ec6f6d7deb97022572)
+
 #### [v1.3.19](https://github.com/hexonet/java-sdk/compare/v1.3.18...v1.3.19) (22 August 2018)
 
 - Update README.md [`aba2bf4`](https://github.com/hexonet/java-sdk/commit/aba2bf4bd07a339c48f3dc8895a55ae858bc0dac)
