@@ -45,7 +45,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13-beta-1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -115,9 +115,14 @@
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
+            <groupId>org.haakma.maven.plugins</groupId>
+            <artifactId>semver-maven-plugin</artifactId>
+            <version>3.3.1</version>
+        </plugin>
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
-          <version>2.5</version>
+          <version>2.7</version>
           <configuration>
             <reportSets>
               <reportSet>
@@ -154,7 +159,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.7.0</version>
+          <version>3.8.0</version>
           <configuration>
             <source>1.8</source>
             <target>1.8</target>
@@ -162,7 +167,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.0</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
@@ -170,7 +175,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -178,35 +183,10 @@
           <version>2.5.3</version>
           <configuration>
             <tagNameFormat>v@{project.version}</tagNameFormat>
-            <preparationGoals>clean exec:exec scm:checkin -DpushChanges=false -Dincludes=HISTORY.md -Dmessage="[maven-release-plugin] Update HISTORY.md" verify</preparationGoals>
-            <completionGoals>exec:exec scm:checkin -DpushChanges=false -Dincludes=HISTORY.md -Dmessage="[maven-release-plugin] Update HISTORY.md"</completionGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
             <goals>deploy</goals>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <version>1.6.0</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>exec</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <executable>auto-changelog</executable>
-            <arguments>
-	      <argument>--template</argument>
-	      <argument>https://raw.githubusercontent.com/hexonet/auto-changelog-templates/master/compact.hts</argument>
-              <argument>--commit-limit</argument>
-              <argument>false</argument>
-              <argument>--output</argument>
-              <argument>HISTORY.md</argument>
-            </arguments>
           </configuration>
         </plugin>
         <plugin>
