@@ -115,11 +115,6 @@
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
-            <groupId>org.haakma.maven.plugins</groupId>
-            <artifactId>semver-maven-plugin</artifactId>
-            <version>3.3.1</version>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.7</version>
