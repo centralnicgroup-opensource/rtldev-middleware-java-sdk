@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/hexonet/java-sdk/compare/v2.1.1...v2.1.2) (2018-11-29)
+
+
+### Bug Fixes
+
+* **pom.xml:** review config + test packaging/releasing ([3cbfed9](https://github.com/hexonet/java-sdk/commit/3cbfed9))
+
 ## [2.1.1](https://github.com/hexonet/java-sdk/compare/v2.1.0...v2.1.1) (2018-11-29)
 
 
