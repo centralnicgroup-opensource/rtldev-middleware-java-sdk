@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/hexonet/java-sdk/compare/v2.1.0...v2.1.1) (2018-11-29)
+
+
+### Bug Fixes
+
+* **mvn:** review deployment ([bc21eed](https://github.com/hexonet/java-sdk/commit/bc21eed))
+
 # [2.1.0](https://github.com/hexonet/java-sdk/compare/v2.0.2...v2.1.0) (2018-11-29)
 
 
