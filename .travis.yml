@@ -23,7 +23,7 @@ after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
       git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/* &&
       git fetch --tags &&
-      semantic-release --prepare @conveyal/maven-semantic-release --publish @semantic-release/github,@conveyal/maven-semantic-release --verify-conditions @semantic-release/github --verify-release @conveyal/maven-semantic-release --use-conveyal-workflow --dev-branch=dev ; fi
+      semantic-release --prepare @conveyal/maven-semantic-release --publish @semantic-release/github,@conveyal/maven-semantic-release --verify-conditions @semantic-release/github --verify-release @conveyal/maven-semantic-release ; fi
 branches:
   except:
   - "/^v\\d+\\.\\d+\\.\\d+$/"
