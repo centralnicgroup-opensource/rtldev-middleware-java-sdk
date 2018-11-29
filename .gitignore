@@ -30,3 +30,7 @@ pom.xml.versionsBackup
 pom.xml.releaseBackup
 release.properties%  
 settings.xml
+
+.vscode
+.settings
+.sts4-cache
