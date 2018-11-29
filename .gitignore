@@ -34,3 +34,4 @@ settings.xml
 .vscode
 .settings
 .sts4-cache
+node_modules

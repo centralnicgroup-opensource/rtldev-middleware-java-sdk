@@ -1,0 +1,92 @@
+{
+    "name": "java-sdk",
+    "description": "JAVA SDK for the insanely fast HEXONET API",
+    "version": "0.0.0-development",
+    "private": true,
+    "author": {
+        "name": "Kai Schwarz",
+        "email": "kschwarz@hexonet.net"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=8.3.0"
+    },
+    "homepage": "https://github.com/hexonet/java-sdk",
+    "repository": "github:hexonet/java-sdk",
+    "bugs": "https://github.com/hexonet/java-sdk/issues",
+    "maintainers": [
+        {
+            "name": "Kai Schwarz",
+            "email": "kschwarz@hexonet.net"
+        }
+    ],
+    "keywords": [
+        "hexonet",
+        "domain",
+        "api",
+        "connector",
+        "isp",
+        "ispapi",
+        "ssl",
+        "cert",
+        "dns",
+        "backorder",
+        "premium",
+        "preregistration",
+        "registration",
+        "application"
+    ],
+    "devDependencies": {
+        "@conveyal/maven-semantic-release": "4.0.7",
+        "@semantic-release/changelog": "3.0.1",
+        "@semantic-release/commit-analyzer": "6.1.0",
+        "@semantic-release/exec": "3.3.0",
+        "@semantic-release/git": "7.0.5",
+        "@semantic-release/github": "5.2.1",
+        "conventional-changelog": "2.0.3",
+        "semantic-release": "15.10.6",
+        "travis-deploy-once": "5.0.9"
+    },
+    "release": {
+        "debug": false,
+        "analyzeCommits": {
+            "preset": "angular"
+        },
+        "generateNotes": {
+            "preset": "angular"
+        },
+        "verifyConditions": [
+            "@semantic-release/changelog",
+            "@semantic-release/git",
+            "@semantic-release/github"
+        ],
+        "verifyRelease": [
+            "@conveyal/maven-semantic-release"
+        ],
+        "prepare": [
+            "@conveyal/maven-semantic-release",
+            {
+                "path": "@semantic-release/changelog",
+                "changelogFile": "HISTORY.md"
+            },
+            {
+                "path": "@semantic-release/git",
+                "assets": [
+                    "HISTORY.md",
+                    "package.json",
+                    "package-lock.json",
+                    "pom.xml"
+                ],
+                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
+        "publish": [
+            "@semantic-release/github",
+            "@conveyal/maven-semantic-release"
+        ]
+    },
+    "scripts": {
+        "semantic-release": "semantic-release",
+        "travis-deploy-once": "travis-deploy-once"
+    }
+}
