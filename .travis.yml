@@ -13,7 +13,7 @@ cache:
     - $HOME/.cache/pip
 before_install:
   - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
-      openssl aes-256-cbc -K $encrypted_c9f9aedf26b7_key -iv $encrypted_c9f9aedf26b7_iv -in codesigning.asc.enc -out codesigning.asc -d &&
+      openssl aes-256-cbc -K $encrypted_c9f9aedf26b7_key -iv $encrypted_c9f9aedf26b7_iv -in codesigning.asc.enc -out codesigning.asc -d
       gpg --import --batch codesigning.asc ; fi
 before_script:
   - yarn global add @conveyal/maven-semantic-release semantic-release
