@@ -1,3 +1,17 @@
+# [2.1.0](https://github.com/hexonet/java-sdk/compare/v2.0.2...v2.1.0) (2018-11-29)
+
+
+### Bug Fixes
+
+* **pom.xml:** test releasing ([c5497a7](https://github.com/hexonet/java-sdk/commit/c5497a7))
+* **travis:** fix versioning issue ([e432694](https://github.com/hexonet/java-sdk/commit/e432694))
+* **travis:** review travis/semantic-release config ([216b3c8](https://github.com/hexonet/java-sdk/commit/216b3c8))
+
+
+### Features
+
+* **travis:** cleanup before_script ([8d7f207](https://github.com/hexonet/java-sdk/commit/8d7f207))
+
 ### Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
