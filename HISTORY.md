@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/hexonet/java-sdk/compare/v2.1.2...v2.1.3) (2018-11-30)
+
+
+### Bug Fixes
+
+* **release:** review pom.xml to include javadoc etc. in package phase ([54a3ce9](https://github.com/hexonet/java-sdk/commit/54a3ce9))
+
 ## [2.1.2](https://github.com/hexonet/java-sdk/compare/v2.1.1...v2.1.2) (2018-11-29)
 
 
