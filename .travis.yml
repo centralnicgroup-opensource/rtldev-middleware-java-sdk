@@ -5,7 +5,8 @@ notifications:
 sudo: false
 install: true
 jdk:
-  - oraclejdk8
+  - oraclejdk11
+  - openjdk11
 cache:
   directories:
     - $HOME/.m2
@@ -26,6 +27,3 @@ after_success:
       npm prune &&
       npm i &&
       npx travis-deploy-once "npx semantic-release" ; fi
-branches:
-  except:
-  - "/^v\\d+\\.\\d+\\.\\d+$/"
