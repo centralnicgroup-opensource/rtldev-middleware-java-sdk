@@ -100,7 +100,7 @@ Please have an eye on our [HEXONET Backend API documentation](https://github.com
         // --- use this if you have active ip filter settings ---
           .setRemoteIPAddress("1.2.3.4");
         // ------------------------------------------------------
-        
+
         Response r = cl.login();
         // --- use this for 2-Factor Auth ---
         // Response r = cl.login("... provide otp code here ...");
@@ -149,7 +149,7 @@ Please have an eye on our [HEXONET Backend API documentation](https://github.com
         // --- use this if you have active ip filter settings ---
           .setRemoteIPAddress("1.2.3.4");
         // ------------------------------------------------------
-        
+
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         Response r = cl.request(cmd);
