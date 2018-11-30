@@ -25,6 +25,7 @@ hs_err_pid*
 !target/
 target/*
 !target/site
+!target/apidocs
 
 pom.xml.versionsBackup
 pom.xml.releaseBackup
