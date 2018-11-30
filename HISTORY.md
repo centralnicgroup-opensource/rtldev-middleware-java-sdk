@@ -33,6 +33,30 @@
 
 * **travis:** cleanup before_script ([8d7f207](https://github.com/hexonet/java-sdk/commit/8d7f207))
 
+# [2.0.2](https://github.com/hexonet/java-sdk/compare/v2.0.1...v2.0.2) (2018-11-29)
+
+
+### Bug Fixes
+
+* **travis:** fix semantic-release call ([cc6c1bf](https://github.com/hexonet/java-sdk/commit/cc6c1bf))
+
+# [2.0.1](https://github.com/hexonet/java-sdk/compare/v2.0.0...v2.0.1) (2018-11-29)
+
+
+### Bug Fixes
+
+* **travis:** rename maven settings file ([71a9722](https://github.com/hexonet/java-sdk/commit/71a9722))
+
+# [2.0.0](https://github.com/hexonet/java-sdk/compare/v1.3.19...v2.0.0) (2018-11-29)
+
+### Code Refactoring
+
+* **pkg:** review into direction of cross-SDK UML diagram ([0f30646)](https://github.com/hexonet/java-sdk/commit/0f30646))
+
+### BREAKING CHANGES
+
+* **pkg:** downward incompatible. check the documentation on how to migrate.
+
 ### Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
