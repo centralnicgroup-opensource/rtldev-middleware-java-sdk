@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"net.hexonet.apiconnector","l":"Client"},{"p":"net.hexonet.apiconnector","l":"HashResponse"},{"p":"net.hexonet.apiconnector","l":"ListResponse"}]

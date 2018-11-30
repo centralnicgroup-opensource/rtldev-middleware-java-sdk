@@ -97,8 +97,8 @@ public class SocketConfig {
     }
 
     /**
-     * Method to use to get the configured backend system entity "54cd" -> LIVE System, "1234" ->
-     * OT&E System
+     * Method to use to get the configured backend system entity. Use "54cd" for LIVE System and
+     * "1234" for OT&amp;E System
      * 
      * @return the backend system entity
      */
@@ -168,7 +168,8 @@ public class SocketConfig {
     }
 
     /**
-     * Setter method for backend system entity "54cd" -> LIVE System, "1234" -> OT&E System
+     * Setter method for backend system entity. Use "54cd" for LIVE System and "1234" for OT&amp;E
+     * System
      * 
      * @param value system entity
      * @return current SocketConfig instance to reuse for method chaining

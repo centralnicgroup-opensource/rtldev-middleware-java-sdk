@@ -76,8 +76,7 @@ public class APIClient {
     /**
      * Method to use to encode data before sending it to the API server
      * 
-     * @param p_d   The socket configuration provided
-     * @param p_cmd The command to request
+     * @param cmd The command to request
      * @return the ready to use, encoded request payload
      */
     public String getPOSTData(Map<String, String> cmd) {
@@ -440,7 +439,7 @@ public class APIClient {
     }
 
     /**
-     * Set OT&E System for API communication
+     * Set OT&amp;E System for API communication
      * 
      * @return Current APIClient instance for method chaining
      */
