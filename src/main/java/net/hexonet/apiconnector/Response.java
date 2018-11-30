@@ -12,7 +12,7 @@ import java.util.Map;
  * @version %I%, %G%
  * @since 2.0
  */
-class Response extends ResponseTemplate {
+public class Response extends ResponseTemplate {
     /**
      * The API Command used within this request
      */
