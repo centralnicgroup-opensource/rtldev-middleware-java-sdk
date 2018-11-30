@@ -51,7 +51,7 @@ As our package is available on the OSSRH as mentioned above, simply use:
   <dependency>
     <groupId>net.hexonet.apiconnector</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>1.3.18</version>
+    <version>2.1.3</version>
   </dependency>
 </dependencies>
 ```
@@ -73,7 +73,7 @@ Add the following lines to your maven project's pom.xml:
     <dependency>
         <groupId>com.github.hexonet</groupId>
         <artifactId>java-sdk</artifactId>
-        <version>v1.3.18</version>
+        <version>v2.1.3</version>
       </dependency>
   </dependencies>
 ```
@@ -87,23 +87,24 @@ Please have an eye on our [HEXONET Backend API documentation](https://github.com
 #### Session based API Communication
 
 ```java
-    import net.hexonet.apiconnector.Client;
-    import net.hexonet.apiconnector.ListResponse;
+    import net.hexonet.apiconnector.APIClient;
+    import net.hexonet.apiconnector.Response;
     import java.util.HashMap;
     import java.util.Map;
 
     public static void main(String[] args) {
         // perform an api login and create an api session
-        Map<String, String> cfg = new HashMap<String, String>();
-        cfg.put("login", "test.user");
-        cfg.put("pw", "test.passw0rd");
-        cfg.put("entity", "1234");
-        // --- use this for 2-Factor Auth ---
-        // cfg.put("otp", "my_otp_code");
+        APIClient cl = new APIClient();
+        cl.useOTESystem()
+          .setCredentials("test.user", "test.passw0rd")
         // --- use this if you have active ip filter settings ---
-        // cfg.put("remoteaddr", "client's remote ip address");
-        Client cl = new Client();
-        ListResponse r = cl.login(cfg);
+          .setRemoteIPAddress("1.2.3.4");
+        // ------------------------------------------------------
+        
+        Response r = cl.login();
+        // --- use this for 2-Factor Auth ---
+        // Response r = cl.login("... provide otp code here ...");
+        // ----------------------------------
 
         if (r.isSuccess()){
             System.out.println("Login succeeded.");
@@ -135,23 +136,23 @@ Please have an eye on our [HEXONET Backend API documentation](https://github.com
 #### Sessionless API Communication
 
 ```java
-    import net.hexonet.apiconnector.Client;
-    import net.hexonet.apiconnector.ListResponse;
+    import net.hexonet.apiconnector.APIClient;
+    import net.hexonet.apiconnector.Response;
     import java.util.HashMap;
     import java.util.Map;
 
     public static void main(String[] args) {
         // perform an api login and create an api session
-        Map<String, String> cfg = new HashMap<String, String>();
-        cfg.put("login", "test.user");
-        cfg.put("pw", "test.passw0rd");
-        cfg.put("entity", "1234");
+        APIClient cl = new APIClient();
+        cl.useOTESystem()
+          .setCredentials("test.user", "test.passw0rd")
         // --- use this if you have active ip filter settings ---
-        // cfg.put("remoteaddr", "client's remote ip address");
-        Client cl = new Client();
+          .setRemoteIPAddress("1.2.3.4");
+        // ------------------------------------------------------
+        
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
-        ListResponse r = cl.request(cmd, cfg);
+        Response r = cl.request(cmd);
         if (r.isSuccess()){
             System.out.println("Command succeeded.");
         }
