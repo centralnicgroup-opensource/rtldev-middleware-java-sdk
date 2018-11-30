@@ -1,3 +1,11 @@
+## [2.1.4](https://github.com/hexonet/java-sdk/compare/v2.1.3...v2.1.4) (2018-11-30)
+
+
+### Bug Fixes
+
+* **releasing:** add missing maven-site-plugin ([375345b](https://github.com/hexonet/java-sdk/commit/375345b))
+* **Response:** make Response class public ([87a9cfa](https://github.com/hexonet/java-sdk/commit/87a9cfa))
+
 ## [2.1.3](https://github.com/hexonet/java-sdk/compare/v2.1.2...v2.1.3) (2018-11-30)
 
 
