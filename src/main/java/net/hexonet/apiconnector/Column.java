@@ -19,6 +19,9 @@ public class Column {
 
     /**
      * Class constructor.
+     * 
+     * @param key  column name
+     * @param data column data as list
      */
     public Column(String key, ArrayList<String> data) {
         this.data = new ArrayList<String>(data);
@@ -47,6 +50,7 @@ public class Column {
     /**
      * Get data for given column index
      * 
+     * @param idx column data index
      * @return data for given column index
      */
     public String getDataByIndex(int idx) {

@@ -132,7 +132,7 @@ public class APIClient {
     /**
      * Get the current module version
      * 
-     * @returns module version
+     * @return module version
      */
     public String getVersion() {
         return "1.3.20";

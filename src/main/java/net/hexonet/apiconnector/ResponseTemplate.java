@@ -17,7 +17,9 @@ public class ResponseTemplate {
     protected Map<String, Object> hash;
 
     /**
-     * Class constructor.
+     * Class constructor
+     * 
+     * @param raw plain API response text
      */
     public ResponseTemplate(String raw) {
         if (raw.length() == 0) {

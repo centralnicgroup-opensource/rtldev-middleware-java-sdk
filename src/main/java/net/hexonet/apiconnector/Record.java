@@ -15,7 +15,9 @@ public class Record {
     private Map<String, String> data;
 
     /**
-     * Class constructor.
+     * Class constructor
+     * 
+     * @param data row data as associative array
      */
     public Record(Map<String, String> data) {
         this.data = new HashMap<String, String>(data);
@@ -33,6 +35,7 @@ public class Record {
     /**
      * Get data for given golumn name
      * 
+     * @param key column name
      * @return data for given column name
      */
     public String getDataByKey(String key) {
