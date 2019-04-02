@@ -7,12 +7,10 @@ install: true
 jdk:
   - oraclejdk11
   - openjdk11
-  - oraclejdk-ea
   - openjdk-ea
 matrix:
   allow_failures:
     - jdk: openjdk-ea
-    - jdk: oraclejdk-ea
 cache:
   directories:
     - $HOME/.m2
