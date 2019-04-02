@@ -42,11 +42,14 @@ public class APIClient {
     private SocketConfig socketConfig;
     /** debug mode flag */
     private boolean debugMode;
+    /** user agent string */
+    private String ua;
 
     /**
      * Class constructor. Creates an API Client ready to use.
      */
     public APIClient() {
+        this.ua = "";
         this.debugMode = false;
         this.setURL("https://coreapi.1api.net/api/call.cgi");
         this.socketConfig = new SocketConfig();
@@ -127,6 +130,38 @@ public class APIClient {
      */
     public String getURL() {
         return this.socketURL;
+    }
+
+    /**
+     * Set a custom user agent header (useful for tools that use our SDK)
+     * 
+     * @param str user agent label
+     * @param rv  user agent revision
+     */
+    public void setUserAgent(String str, String rv) {
+        String jv = System.getProperty("java.vm.name").toLowerCase().replaceAll(" .+", "");
+        String jrv = System.getProperty("java.version");
+        String arch = System.getProperty("os.arch");
+        String os = System.getProperty("os.name");
+        this.ua = (str + " (" + os + "; " + arch + "; rv:" + rv + ") java-sdk/" + this.getVersion()
+                + " " + jv + "/" + jrv);
+    }
+
+    /**
+     * Get the user agent string
+     * 
+     * @return user agent string
+     */
+    public String getUserAgent() {
+        if (this.ua.length() == 0) {
+            String jv = System.getProperty("java.vm.name").toLowerCase().replaceAll(" .+", "");
+            String jrv = System.getProperty("java.version");
+            String arch = System.getProperty("os.arch");
+            String os = System.getProperty("os.name");
+            this.ua = ("JAVA-SDK (" + os + "; " + arch + "; rv:" + this.getVersion() + ") " + jv
+                    + "/" + jrv);
+        }
+        return this.ua;
     }
 
     /**
@@ -334,7 +369,7 @@ public class APIClient {
             con.setRequestMethod("POST");
             con.setRequestProperty("Content-length", String.valueOf(data.length()));
             con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            con.setRequestProperty("User-Agent", "JAVA-SDK::" + this.getVersion());
+            con.setRequestProperty("User-Agent", this.getUserAgent());
             con.setRequestProperty("Expect", "");
             con.setConnectTimeout(APIClient.socketTimeout);
             con.setReadTimeout(APIClient.socketTimeout);

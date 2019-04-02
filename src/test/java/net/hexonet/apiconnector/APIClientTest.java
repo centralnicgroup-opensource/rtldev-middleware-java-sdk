@@ -93,6 +93,39 @@ public class APIClientTest {
     }
 
     /**
+     * Test getUserAgent method
+     */
+    @Test
+    public void getUserAgent() {
+        APIClient cl = new APIClient();
+        String jv = System.getProperty("java.vm.name").toLowerCase().replaceAll(" .+", "");
+        String jrv = System.getProperty("java.version");
+        String arch = System.getProperty("os.arch");
+        String os = System.getProperty("os.name");
+        String uaexpected = ("JAVA-SDK (" + os + "; " + arch + "; rv:" + cl.getVersion() + ") " + jv
+                + "/" + jrv);
+        assertEquals(cl.getUserAgent(), uaexpected);
+    }
+
+    /**
+     * Test setUserAgent method
+     */
+    @Test
+    public void setUserAgent() {
+        String pid = "WHMCS";
+        String rv = "7.7.0";
+        APIClient cl = new APIClient();
+        cl.setUserAgent(pid, rv);
+        String jv = System.getProperty("java.vm.name").toLowerCase().replaceAll(" .+", "");
+        String jrv = System.getProperty("java.version");
+        String arch = System.getProperty("os.arch");
+        String os = System.getProperty("os.name");
+        String uaexpected = (pid + " (" + os + "; " + arch + "; rv:" + rv + ") java-sdk/"
+                + cl.getVersion() + " " + jv + "/" + jrv);
+        assertEquals(cl.getUserAgent(), uaexpected);
+    }
+
+    /**
      * Test setURL method
      */
     @Test
