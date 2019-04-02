@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/hexonet/java-sdk/compare/v2.1.4...v2.2.0) (2019-04-02)
+
+
+### Features
+
+* **apiclient:** review user agent usage ([e2c276d](https://github.com/hexonet/java-sdk/commit/e2c276d))
+
 ## [2.1.4](https://github.com/hexonet/java-sdk/compare/v2.1.3...v2.1.4) (2018-11-30)
 
 
