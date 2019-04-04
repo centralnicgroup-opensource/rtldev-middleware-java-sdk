@@ -1,8 +1,11 @@
 language: java
 dist: xenial
 notifications:
-  email: false
-sudo: false
+  email:
+    recipients:
+    - kschwarz@hexonet.net
+    on_success: never
+    on_failure: always
 install: true
 jdk:
   - oraclejdk11
