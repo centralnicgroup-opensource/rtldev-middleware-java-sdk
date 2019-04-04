@@ -137,14 +137,16 @@ public class APIClient {
      * 
      * @param str user agent label
      * @param rv  user agent revision
+     * @return Current APIClient instance for method chaining
      */
-    public void setUserAgent(String str, String rv) {
+    public APIClient setUserAgent(String str, String rv) {
         String jv = System.getProperty("java.vm.name").toLowerCase().replaceAll(" .+", "");
         String jrv = System.getProperty("java.version");
         String arch = System.getProperty("os.arch");
         String os = System.getProperty("os.name");
         this.ua = (str + " (" + os + "; " + arch + "; rv:" + rv + ") java-sdk/" + this.getVersion()
                 + " " + jv + "/" + jrv);
+        return this;
     }
 
     /**
