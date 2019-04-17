@@ -44,8 +44,7 @@
         "@semantic-release/git": "7.0.8",
         "@semantic-release/github": "5.2.10",
         "conventional-changelog": "3.1.3",
-        "semantic-release": "15.13.3",
-        "travis-deploy-once": "5.0.11"
+        "semantic-release": "^15.13.12"
     },
     "release": {
         "debug": false,
@@ -88,7 +87,6 @@
         ]
     },
     "scripts": {
-        "semantic-release": "semantic-release",
-        "travis-deploy-once": "travis-deploy-once"
+        "semantic-release": "semantic-release"
     }
 }
