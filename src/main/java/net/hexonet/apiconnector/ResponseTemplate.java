@@ -121,4 +121,17 @@ public class ResponseTemplate {
         String code = (String) this.hash.get("CODE");
         return code.charAt(0) == '4';
     }
+
+    /**
+     * Check if current operation is returned as pending
+     * 
+     * @return boolean result
+     */
+    public boolean isPending() {
+        String pending = (String) this.hash.get("PENDING");
+        if (pending != null) {
+            return pending.equals("1");
+        }
+        return false;
+    }
 }

@@ -66,4 +66,23 @@ public class ResponseTemplateTest {
                 "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response\r\nruntime=0.12\r\nEOF\r\n");
         assertEquals(0.12, tpl.getRuntime(), 0);
     }
+
+    /**
+     * Test isPending method #1
+     */
+    @Test
+    public void isPending1() {
+        ResponseTemplate tpl = new ResponseTemplate("");
+        assertEquals(false, tpl.isPending());
+    }
+
+    /**
+     * Test isPending method #2
+     */
+    @Test
+    public void isPending2() {
+        ResponseTemplate tpl = new ResponseTemplate(
+                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response\r\npending=1\r\nEOF\r\n");
+        assertEquals(true, tpl.isPending());
+    }
 }
