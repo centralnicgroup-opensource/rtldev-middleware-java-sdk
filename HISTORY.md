@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/hexonet/java-sdk/compare/v2.2.1...v2.3.0) (2019-04-17)
+
+
+### Features
+
+* **responsetemplate:** add isPending method ([28657fa](https://github.com/hexonet/java-sdk/commit/28657fa))
+
 ## [2.2.1](https://github.com/hexonet/java-sdk/compare/v2.2.0...v2.2.1) (2019-04-04)
 
 
