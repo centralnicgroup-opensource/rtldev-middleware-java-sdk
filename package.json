@@ -73,7 +73,6 @@
                 "assets": [
                     "HISTORY.md",
                     "package.json",
-                    "package-lock.json",
                     "pom.xml",
                     "target/apidocs",
                     "target/site"
