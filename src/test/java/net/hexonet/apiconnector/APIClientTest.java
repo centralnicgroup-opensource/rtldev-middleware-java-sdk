@@ -89,7 +89,7 @@ public class APIClientTest {
     public void getURL() {
         APIClient cl = new APIClient();
         String url = cl.getURL();
-        assertEquals("https://coreapi.1api.net/api/call.cgi", url);
+        assertEquals("https://api.ispapi.net/api/call.cgi", url);
     }
 
     /**
@@ -131,8 +131,8 @@ public class APIClientTest {
     @Test
     public void setURL() {
         APIClient cl = new APIClient();
-        String url = cl.setURL("http://coreapi.1api.net/api/call.cgi").getURL();
-        assertEquals("http://coreapi.1api.net/api/call.cgi", url);
+        String url = cl.setURL("http://api.ispapi.net/api/call.cgi").getURL();
+        assertEquals("http://api.ispapi.net/api/call.cgi", url);
     }
 
     /**
