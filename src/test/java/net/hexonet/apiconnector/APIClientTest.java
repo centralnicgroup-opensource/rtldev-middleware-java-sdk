@@ -426,7 +426,7 @@ public class APIClientTest {
     @Test
     public void request1() {
         APIClient cl = new APIClient();
-        cl.enableDebugMode().setURL(cl.getURL().replace("coreapi", "wrongcoreapi"))
+        cl.enableDebugMode().setURL(cl.getURL().replace("api", "wrongcoreapi"))
                 .setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd")
                 .useOTESystem();
         Map<String, String> cmd = new HashMap<String, String>();
@@ -444,7 +444,7 @@ public class APIClientTest {
     @Test
     public void request2() {
         APIClient cl = new APIClient();
-        cl.setURL(cl.getURL().replace("coreapi", "wrongcoreapi")).setRemoteIPAddress("1.2.3.4")
+        cl.setURL(cl.getURL().replace("api", "wrongcoreapi")).setRemoteIPAddress("1.2.3.4")
                 .setCredentials("test.user", "test.passw0rd").useOTESystem();
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "GetUserIndex");
