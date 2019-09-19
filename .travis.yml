@@ -23,6 +23,8 @@ branches:
   only:
     - master
     - /^dependabot.*$/
+before_install:
+  - export MAVEN_OPTS="-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
 script:
   - mvn site
   - mvn package
