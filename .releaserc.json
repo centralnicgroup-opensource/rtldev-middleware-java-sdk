@@ -1,0 +1,26 @@
+{
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "HISTORY.md"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "HISTORY.md",
+                    "package.json",
+                    "pom.xml",
+                    "target/apidocs",
+                    "target/site"
+                ]
+            }
+        ],
+        "@semantic-release/github",
+        "@conveyal/maven-semantic-release"
+    ]
+}

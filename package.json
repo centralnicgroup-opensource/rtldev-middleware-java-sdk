@@ -39,53 +39,7 @@
     "devDependencies": {
         "@conveyal/maven-semantic-release": "^4.3.0",
         "@semantic-release/changelog": "^3.0.4",
-        "@semantic-release/commit-analyzer": "^6.2.0",
-        "@semantic-release/exec": "^3.3.6",
         "@semantic-release/git": "^7.0.16",
-        "@semantic-release/github": "^5.4.3",
-        "conventional-changelog": "^3.1.10",
         "semantic-release": "^15.13.18"
-    },
-    "release": {
-        "debug": false,
-        "analyzeCommits": {
-            "preset": "angular"
-        },
-        "generateNotes": {
-            "preset": "angular"
-        },
-        "verifyConditions": [
-            "@semantic-release/changelog",
-            "@semantic-release/git",
-            "@semantic-release/github"
-        ],
-        "verifyRelease": [
-            "@conveyal/maven-semantic-release"
-        ],
-        "prepare": [
-            "@conveyal/maven-semantic-release",
-            {
-                "path": "@semantic-release/changelog",
-                "changelogFile": "HISTORY.md"
-            },
-            {
-                "path": "@semantic-release/git",
-                "assets": [
-                    "HISTORY.md",
-                    "package.json",
-                    "pom.xml",
-                    "target/apidocs",
-                    "target/site"
-                ],
-                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-            }
-        ],
-        "publish": [
-            "@semantic-release/github",
-            "@conveyal/maven-semantic-release"
-        ]
-    },
-    "scripts": {
-        "semantic-release": "semantic-release"
     }
 }

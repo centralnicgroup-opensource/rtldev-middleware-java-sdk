@@ -3,15 +3,13 @@ dist: xenial
 notifications:
   email:
     recipients:
-    - kschwarz@hexonet.net
+    - middleware@hexonet.net
     on_success: never
     on_failure: always
 install: true
-cache:
-  directories:
-    - $HOME/.m2
-    - $HOME/.cache/yarn
-    - $HOME/.cache/pip
+addons:
+  apt:
+    update: true
 jdk:
   - oraclejdk11
   - openjdk11
