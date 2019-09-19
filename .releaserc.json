@@ -8,6 +8,7 @@
                 "changelogFile": "HISTORY.md"
             }
         ],
+        "@conveyal/maven-semantic-release",
         [
             "@semantic-release/git",
             {
@@ -20,7 +21,6 @@
                 ]
             }
         ],
-        "@semantic-release/github",
-        "@conveyal/maven-semantic-release"
+        "@semantic-release/github"
     ]
 }
