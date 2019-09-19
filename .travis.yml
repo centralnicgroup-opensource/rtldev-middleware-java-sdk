@@ -32,8 +32,8 @@ install:
   - tar -xvzf apache-maven-3.6.2-bin.tar.gz
   - sudo mv apache-maven-3.6.2 maven
 script:
-  - mvn site -ntp
-  - mvn package -ntp
+  - mvn -ntp site
+  - mvn -ntp package
 jobs:
   include:
     - stage: release
