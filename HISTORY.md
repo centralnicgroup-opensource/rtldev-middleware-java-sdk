@@ -1,3 +1,21 @@
+## [2.3.2](https://github.com/hexonet/java-sdk/compare/v2.3.1...v2.3.2) (2019-09-19)
+
+
+### Bug Fixes
+
+* **release process:** add `-ntp` parameter to mvn calls ([e2b992e](https://github.com/hexonet/java-sdk/commit/e2b992e))
+* **release process:** change logger level for Downloads to `warn` ([efa5284](https://github.com/hexonet/java-sdk/commit/efa5284))
+* **release process:** fix maven 3.6.2 download url ([d3889d9](https://github.com/hexonet/java-sdk/commit/d3889d9))
+* **release process:** fix maven command line calls ([94ebb3a](https://github.com/hexonet/java-sdk/commit/94ebb3a))
+* **release process:** fix maven version number ([65b27ab](https://github.com/hexonet/java-sdk/commit/65b27ab))
+* **release process:** fix maven version number ([688fbfc](https://github.com/hexonet/java-sdk/commit/688fbfc))
+* **release process:** migrate configuration ([3fa221e](https://github.com/hexonet/java-sdk/commit/3fa221e))
+* **release process:** try maven_opts review ([9f15670](https://github.com/hexonet/java-sdk/commit/9f15670))
+* **release process:** try maven_opts review ([56a5b71](https://github.com/hexonet/java-sdk/commit/56a5b71))
+* **release process:** upgrade maven to 3.6.2 ([97740e8](https://github.com/hexonet/java-sdk/commit/97740e8))
+* **release process:** use -B instead of -ntp for maven ([12807df](https://github.com/hexonet/java-sdk/commit/12807df))
+* **release process:** verify maven version number and paths ([5054df2](https://github.com/hexonet/java-sdk/commit/5054df2))
+
 ## [2.3.1](https://github.com/hexonet/java-sdk/compare/v2.3.0...v2.3.1) (2019-08-19)
 
 
