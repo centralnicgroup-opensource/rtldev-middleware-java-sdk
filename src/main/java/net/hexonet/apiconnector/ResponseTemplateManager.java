@@ -24,7 +24,8 @@ public class ResponseTemplateManager {
         this.templates = new HashMap<String, String>();
         this.templates.put("404", this.generateTemplate("421", "Page not found"));
         this.templates.put("500", this.generateTemplate("500", "Internal server error"));
-        this.templates.put("empty", this.generateTemplate("423", "Empty API response"));
+        this.templates.put("empty", this.generateTemplate("423",
+                "Empty API response. Probably unreachable API end point"));
         this.templates.put("error", this.generateTemplate("421",
                 "Command failed due to server error. Client should try again"));
         this.templates.put("expired", this.generateTemplate("530", "SESSION NOT FOUND"));

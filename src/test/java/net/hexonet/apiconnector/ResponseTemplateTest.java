@@ -15,7 +15,8 @@ public class ResponseTemplateTest {
     public void constructorVars() {
         ResponseTemplate tpl = new ResponseTemplate("");
         assertEquals(423, tpl.getCode());
-        assertEquals("Empty API response", tpl.getDescription());
+        assertEquals("Empty API response. Probably unreachable API end point",
+                tpl.getDescription());
     }
 
     /**
@@ -26,7 +27,8 @@ public class ResponseTemplateTest {
         ResponseTemplate tpl = new ResponseTemplate("");
         Map<String, Object> h = tpl.getHash();
         assertEquals("423", (String) h.get("CODE"));
-        assertEquals("Empty API response", (String) h.get("DESCRIPTION"));
+        assertEquals("Empty API response. Probably unreachable API end point",
+                (String) h.get("DESCRIPTION"));
     }
 
     /**
@@ -44,7 +46,7 @@ public class ResponseTemplateTest {
     @Test
     public void getQueuetime2() {
         ResponseTemplate tpl = new ResponseTemplate(
-                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response\r\nqueuetime=0\r\nEOF\r\n");
+                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response. Probably unreachable API end point\r\nqueuetime=0\r\nEOF\r\n");
         assertEquals(0, tpl.getQueuetime(), 0);
     }
 
@@ -63,7 +65,7 @@ public class ResponseTemplateTest {
     @Test
     public void getRuntime2() {
         ResponseTemplate tpl = new ResponseTemplate(
-                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response\r\nruntime=0.12\r\nEOF\r\n");
+                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response. Probably unreachable API end point\r\nruntime=0.12\r\nEOF\r\n");
         assertEquals(0.12, tpl.getRuntime(), 0);
     }
 
@@ -82,7 +84,7 @@ public class ResponseTemplateTest {
     @Test
     public void isPending2() {
         ResponseTemplate tpl = new ResponseTemplate(
-                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response\r\npending=1\r\nEOF\r\n");
+                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response. Probably unreachable API end point\r\npending=1\r\nEOF\r\n");
         assertEquals(true, tpl.isPending());
     }
 }
