@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/hexonet/java-sdk/compare/v2.3.3...v2.3.4) (2019-10-04)
+
+
+### Bug Fixes
+
+* **responsetemplate/mgr:** improve description for `423 Empty API response` ([09d6060](https://github.com/hexonet/java-sdk/commit/09d6060))
+
 ## [2.3.3](https://github.com/hexonet/java-sdk/compare/v2.3.2...v2.3.3) (2019-09-19)
 
 
