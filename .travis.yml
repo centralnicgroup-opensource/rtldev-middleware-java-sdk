@@ -1,9 +1,9 @@
 language: java
-dist: xenial
+dist: bionic
 notifications:
   email:
     recipients:
-    - middleware@hexonet.net
+      - middleware@hexonet.net
     on_success: never
     on_failure: always
 install: true
