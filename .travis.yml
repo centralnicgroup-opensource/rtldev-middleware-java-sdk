@@ -1,5 +1,5 @@
 language: java
-dist: bionic
+dist: xenial
 notifications:
   email:
     recipients:
@@ -39,6 +39,7 @@ jobs:
       script:
         - openssl aes-256-cbc -K $encrypted_c9f9aedf26b7_key -iv $encrypted_c9f9aedf26b7_iv -in codesigning.asc.enc -out codesigning.asc -d
         - gpg --import --batch codesigning.asc
+        - nvm install lts/* && nvm use lts/*
         - npm prune
         - travis_retry npm i
         - npx semantic-release
