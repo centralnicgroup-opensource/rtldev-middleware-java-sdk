@@ -7,10 +7,6 @@ notifications:
     on_success: never
     on_failure: always
 install: true
-cache:
-  directories:
-    - $HOME/.m2
-    - $HOME/.yarn-cache
 addons:
   apt:
     update: true
