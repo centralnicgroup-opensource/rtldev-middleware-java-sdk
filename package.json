@@ -39,7 +39,7 @@
     "devDependencies": {
         "npm": ">=6.13.4",
         "@conveyal/maven-semantic-release": "^4.3.0",
-        "@semantic-release/changelog": "^3.0.4",
+        "@semantic-release/changelog": "^5.0.0",
         "@semantic-release/git": "^7.0.16",
         "semantic-release": "^15.13.18"
     }
