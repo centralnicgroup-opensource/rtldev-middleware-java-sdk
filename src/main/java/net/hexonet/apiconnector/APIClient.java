@@ -76,17 +76,19 @@ public class APIClient {
         return this;
     }
 
+
     /**
      * Method to use to encode data before sending it to the API server
      * 
      * @param cmd The command to request
      * @return the ready to use, encoded request payload
      */
-    public String getPOSTData(Map<String, String> cmd) {
+    public String getPOSTData(Map<String, Object> cmd) {
+        Map<String, String> newcmd = this.flattenCommand(cmd);
         StringBuilder data = new StringBuilder(this.socketConfig.getPOSTData());
         try {
             StringBuilder tmp = new StringBuilder("");
-            Iterator<Map.Entry<String, String>> it = cmd.entrySet().iterator();
+            Iterator<Map.Entry<String, String>> it = newcmd.entrySet().iterator();
             boolean hasNext = it.hasNext();
             while (hasNext) {
                 Map.Entry<String, String> pair = it.next();
@@ -290,7 +292,7 @@ public class APIClient {
      * @return API Response
      */
     public Response login() {
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StartSession");
         Response rr = this.request(cmd);
         if (rr.isSuccess()) {
@@ -325,7 +327,7 @@ public class APIClient {
      * @return API Response
      */
     public Response loginExtended(Map<String, String> params) {
-        Map<String, String> cmd = new HashMap<String, String>(params);
+        Map<String, Object> cmd = new HashMap<String, Object>(params);
         cmd.put("COMMAND", "StartSession");
         Response rr = this.request(cmd);
         if (rr.isSuccess()) {
@@ -345,7 +347,7 @@ public class APIClient {
      * @return API Response
      */
     public Response logout() {
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("Command", "EndSession");
         Response rr = this.request(cmd);
         if (rr.isSuccess()) {
@@ -360,7 +362,7 @@ public class APIClient {
      * @param cmd API command to request
      * @return API Response
      */
-    public Response request(Map<String, String> cmd) {
+    public Response request(Map<String, Object> cmd) {
         String data = this.getPOSTData(cmd);
 
         StringBuilder response;
@@ -398,7 +400,7 @@ public class APIClient {
                 System.err.println(e);
             }
         }
-        Response r = new Response(response.toString(), cmd);
+        Response r = new Response(response.toString(), this.flattenCommand(cmd));
         if (this.debugMode) {
             System.out.println(data);
             System.out.println(cmd);
@@ -414,14 +416,15 @@ public class APIClient {
      * @return API Response or null in case there are no further list entries
      */
     public Response requestNextResponsePage(Response rr) {
-        Map<String, String> mycmd = this.toUpperCaseKeys(rr.getCommand());
+        Map<String, Object> mycmd =
+                new HashMap<String, Object>(this.toUpperCaseKeys(rr.getCommand()));
         if (mycmd.get("LAST") != null) {
             throw new Error(
                     "Parameter LAST in use. Please remove it to avoid issues in requestNextPage.");
         }
         int first = 0;
         if (mycmd.get("FIRST") != null) {
-            first = Integer.parseInt(mycmd.get("FIRST"));
+            first = Integer.parseInt((String) mycmd.get("FIRST"));
         }
         int total = rr.getRecordsTotalCount();
         int limit = rr.getRecordsLimitation();
@@ -443,7 +446,7 @@ public class APIClient {
      */
     public ArrayList<Response> requestAllResponsePages(Map<String, String> cmd) {
         ArrayList<Response> responses = new ArrayList<Response>();
-        Map<String, String> mycmd = new HashMap<String, String>(cmd);
+        Map<String, Object> mycmd = new HashMap<String, Object>(cmd);
         cmd.put("FIRST", "0");
         Response rr = this.request(mycmd);
         Response tmp = rr;
@@ -507,6 +510,36 @@ public class APIClient {
         while (it.hasNext()) {
             Map.Entry<String, String> pair = it.next();
             newcmd.put(pair.getKey().toUpperCase(), pair.getValue());
+        }
+        return newcmd;
+    }
+
+    /**
+     * flatten provided API command (possibly including parameters in array format) to Map<String,
+     * String>
+     */
+    private Map<String, String> flattenCommand(Map<String, Object> cmd) {
+        Map<String, String> newcmd = new HashMap<String, String>();
+        Iterator<Map.Entry<String, Object>> it = cmd.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Object> pair = it.next();
+            Object val = pair.getValue();
+            if (val != null) {
+                String key = pair.getKey().toUpperCase();
+                if (val.getClass().isArray()) {
+                    String[] param = (String[]) val;
+                    int a = 0;
+                    for (int i = 0; i < param.length; i++) {
+                        String entry = param[i].replaceAll("[\r\n]", "");
+                        if (!"".equals(entry)) {// null check included
+                            newcmd.put(key + a, entry);
+                            a++;
+                        }
+                    }
+                } else {
+                    newcmd.put(key, val.toString());
+                }
+            }
         }
         return newcmd;
     }

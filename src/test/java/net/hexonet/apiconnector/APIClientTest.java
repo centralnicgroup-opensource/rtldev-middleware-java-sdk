@@ -19,7 +19,7 @@ public class APIClientTest {
     @Test
     public void getPOSTData1() {
         APIClient cl = new APIClient();
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "ModifyDomain");
         cmd.put("AUTH", "gwrgwqg%&\\44t3*");
         String validate =
@@ -34,11 +34,27 @@ public class APIClientTest {
     @Test
     public void getPOSTData2() {
         APIClient cl = new APIClient();
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "ModifyDomain");
         cmd.put("AUTH", null);
         String validate = "s_entity=54cd&s_command=COMMAND%3DModifyDomain";
         String enc = cl.getPOSTData(cmd);
+        assertEquals(validate, enc);
+    }
+
+    /**
+     * Test getPOSTData method #3
+     */
+    @Test
+    public void getPOSTData3() {
+        APIClient cl = new APIClient();
+        Map<String, Object> cmd = new HashMap<String, Object>();
+        cmd.put("COMMAND", "QueryDomainOptions");
+        cmd.put("DOMAIN", new String[] {"example1.com", "example2.com"});
+        String validate =
+                "s_entity=54cd&s_command=COMMAND%3DQueryDomainOptions%0ADOMAIN0%3Dexample1.com%0ADOMAIN1%3Dexample2.com";
+        String enc = cl.getPOSTData(cmd);
+        System.out.println(enc);
         assertEquals(validate, enc);
     }
 
@@ -142,7 +158,7 @@ public class APIClientTest {
     public void setOTP1() {
         APIClient cl = new APIClient();
         cl.setOTP("12345678");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_otp=12345678&s_command=COMMAND%3DStatusAccount";
@@ -156,7 +172,7 @@ public class APIClientTest {
     public void setOTP2() {
         APIClient cl = new APIClient();
         cl.setOTP("12345678").setOTP("");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -170,7 +186,7 @@ public class APIClientTest {
     public void setSession1() {
         APIClient cl = new APIClient();
         cl.setSession("12345678");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_session=12345678&s_command=COMMAND%3DStatusAccount";
@@ -186,7 +202,7 @@ public class APIClientTest {
         // credentials and otp code have to be unset when session id is set
         cl.setRoleCredentials("myaccountid", "myrole", "mypassword").setOTP("12345678")
                 .setSession("12345678");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_session=12345678&s_command=COMMAND%3DStatusAccount";
@@ -200,7 +216,7 @@ public class APIClientTest {
     public void setSession3() {
         APIClient cl = new APIClient();
         cl.setSession("12345678").setSession("");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -217,7 +233,7 @@ public class APIClientTest {
         cl.setSession("12345678").saveSession(sessionobj);
         APIClient cl2 = new APIClient();
         cl2.reuseSession(sessionobj);
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl2.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_session=12345678&s_command=COMMAND%3DStatusAccount";
@@ -231,7 +247,7 @@ public class APIClientTest {
     public void setRemoteIPAddress1() {
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("10.10.10.10");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate =
@@ -246,7 +262,7 @@ public class APIClientTest {
     public void setRemoteIPAddress2() {
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("10.10.10.10").setRemoteIPAddress("");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -260,7 +276,7 @@ public class APIClientTest {
     public void setCredentials1() {
         APIClient cl = new APIClient();
         cl.setCredentials("myaccountid", "mypassword");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate =
@@ -275,7 +291,7 @@ public class APIClientTest {
     public void setCredentials2() {
         APIClient cl = new APIClient();
         cl.setCredentials("myaccountid", "mypassword").setCredentials("", "");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -289,7 +305,7 @@ public class APIClientTest {
     public void setRoleCredentials1() {
         APIClient cl = new APIClient();
         cl.setRoleCredentials("myaccountid", "myroleid", "mypassword");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate =
@@ -305,7 +321,7 @@ public class APIClientTest {
         APIClient cl = new APIClient();
         cl.setRoleCredentials("myaccountid", "myroleid", "mypassword").setRoleCredentials("", "",
                 "");
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -429,7 +445,7 @@ public class APIClientTest {
         cl.enableDebugMode().setURL(cl.getURL().replace("api", "wrongcoreapi"))
                 .setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd")
                 .useOTESystem();
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "GetUserIndex");
         Response r = cl.request(cmd);
         assertTrue(r.isTmpError());
@@ -446,7 +462,7 @@ public class APIClientTest {
         APIClient cl = new APIClient();
         cl.setURL(cl.getURL().replace("api", "wrongcoreapi")).setRemoteIPAddress("1.2.3.4")
                 .setCredentials("test.user", "test.passw0rd").useOTESystem();
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "GetUserIndex");
         Response r = cl.request(cmd);
         assertTrue(r.isTmpError());
@@ -562,7 +578,7 @@ public class APIClientTest {
      */
     @Test
     public void setUserView() {
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "GetUserIndex");
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd").useOTESystem()
@@ -576,7 +592,7 @@ public class APIClientTest {
      */
     @Test
     public void resetUserView() {
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "GetUserIndex");
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd").useOTESystem()
