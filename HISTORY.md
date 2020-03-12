@@ -1,3 +1,20 @@
+# [3.0.0](https://github.com/hexonet/java-sdk/compare/v2.3.4...v3.0.0) (2020-03-12)
+
+
+### Bug Fixes
+
+* **travis:** move allow_failures from matrix to jobs ([2237296](https://github.com/hexonet/java-sdk/commit/22372968a6307951b62fbf5450e12feda060c746))
+
+
+### Features
+
+* **apiclient:** request method now accepts HashMap<String, Object> as command (allow nested arrays) ([35e500d](https://github.com/hexonet/java-sdk/commit/35e500d25919c9095c78b148c96fdc396bf47167))
+
+
+### BREAKING CHANGES
+
+* **apiclient:** changed type for parameter cmd of APIClient method request
+
 ## [2.3.4](https://github.com/hexonet/java-sdk/compare/v2.3.3...v2.3.4) (2019-10-04)
 
 
