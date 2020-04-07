@@ -1,7 +1,7 @@
 # java-sdk
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Build Status](https://travis-ci.org/hexonet/java-sdk.svg?branch=master)](https://travis-ci.org/hexonet/java-sdk)
+[![Build Status](https://travis-ci.com/hexonet/java-sdk.svg?branch=master)](https://travis-ci.com/hexonet/java-sdk)
 ![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/net/hexonet/apiconnector/java-sdk/maven-metadata.xml.svg)
 [![Release](https://jitpack.io/v/hexonet/java-sdk.svg)](https://jitpack.io/#hexonet/java-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
