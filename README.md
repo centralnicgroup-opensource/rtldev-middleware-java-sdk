@@ -110,7 +110,7 @@ Please have an eye on our [HEXONET Backend API documentation](https://github.com
         if (r.isSuccess()){
             System.out.println("Login succeeded.");
             // perform further api request reusing the generated api session
-            Map<String, String> cmd = new HashMap<String, String>();
+            Map<String, Object> cmd = new HashMap<String, String>();
             cmd.put("COMMAND", "StatusAccount");
             r = cl.request(cmd);
             if (r.isSuccess()){
@@ -151,7 +151,7 @@ Please have an eye on our [HEXONET Backend API documentation](https://github.com
           .setRemoteIPAddress("1.2.3.4");
         // ------------------------------------------------------
 
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, Object> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         Response r = cl.request(cmd);
         if (r.isSuccess()){
