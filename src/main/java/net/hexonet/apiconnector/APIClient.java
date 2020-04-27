@@ -83,12 +83,11 @@ public class APIClient {
      * @param cmd The command to request
      * @return the ready to use, encoded request payload
      */
-    public String getPOSTData(Map<String, Object> cmd) {
-        Map<String, String> newcmd = this.flattenCommand(cmd);
+    public String getPOSTData(Map<String, String> cmd) {
         StringBuilder data = new StringBuilder(this.socketConfig.getPOSTData());
         try {
             StringBuilder tmp = new StringBuilder("");
-            Iterator<Map.Entry<String, String>> it = newcmd.entrySet().iterator();
+            Iterator<Map.Entry<String, String>> it = cmd.entrySet().iterator();
             boolean hasNext = it.hasNext();
             while (hasNext) {
                 Map.Entry<String, String> pair = it.next();
@@ -363,7 +362,13 @@ public class APIClient {
      * @return API Response
      */
     public Response request(Map<String, Object> cmd) {
-        String data = this.getPOSTData(cmd);
+        // flatten nested api command bulk parameters
+        Map<String, String> newcmd = this.flattenCommand(cmd);
+        // auto convert umlaut names to punycode
+        newcmd = this.autoIDNConvert(newcmd);
+
+        // request command to API
+        String data = this.getPOSTData(newcmd);
 
         StringBuilder response;
         try {
@@ -400,10 +405,10 @@ public class APIClient {
                 System.err.println(e);
             }
         }
-        Response r = new Response(response.toString(), this.flattenCommand(cmd));
+        Response r = new Response(response.toString(), newcmd);
         if (this.debugMode) {
             System.out.println(data);
-            System.out.println(cmd);
+            System.out.println(newcmd);
             System.out.println(r.getPlain());
         }
         return r;
@@ -416,8 +421,8 @@ public class APIClient {
      * @return API Response or null in case there are no further list entries
      */
     public Response requestNextResponsePage(Response rr) {
-        Map<String, Object> mycmd =
-                new HashMap<String, Object>(this.toUpperCaseKeys(rr.getCommand()));
+        Map<String, Object> mycmd = new HashMap<String, Object>();
+        mycmd.putAll(rr.getCommand());
         if (mycmd.get("LAST") != null) {
             throw new Error(
                     "Parameter LAST in use. Please remove it to avoid issues in requestNextPage.");
@@ -499,22 +504,6 @@ public class APIClient {
     }
 
     /**
-     * Translate all command parameter names to uppercase
-     * 
-     * @param cmd api command
-     * @return api command with uppercase parameter names
-     */
-    private Map<String, String> toUpperCaseKeys(Map<String, String> cmd) {
-        Map<String, String> newcmd = new HashMap<String, String>();
-        Iterator<Map.Entry<String, String>> it = cmd.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, String> pair = it.next();
-            newcmd.put(pair.getKey().toUpperCase(), pair.getValue());
-        }
-        return newcmd;
-    }
-
-    /**
      * flatten provided API command (possibly including parameters in array format) to Map<String,
      * String>
      */
@@ -526,7 +515,7 @@ public class APIClient {
             Object val = pair.getValue();
             if (val != null) {
                 String key = pair.getKey().toUpperCase();
-                if (val.getClass().isArray()) {
+                if (val instanceof String[]) {
                     String[] param = (String[]) val;
                     int a = 0;
                     for (int i = 0; i < param.length; i++) {
@@ -537,10 +526,54 @@ public class APIClient {
                         }
                     }
                 } else {
-                    newcmd.put(key, val.toString());
+                    newcmd.put(key, val.toString().replaceAll("[\r\n]", ""));
                 }
             }
         }
         return newcmd;
+    }
+
+    private Map<String, String> autoIDNConvert(Map<String, String> cmd) {
+        if (cmd.get("COMMAND").equalsIgnoreCase("ConvertIDN")) {
+            return cmd;
+        }
+        ArrayList<String> toconvert = new ArrayList<String>();
+        ArrayList<String> keys = new ArrayList<String>();
+        for (Map.Entry<String, String> entry : cmd.entrySet()) {
+            String key = entry.getKey();
+            if (key.matches("^(DOMAIN|NAMESERVER|DNSZONE)([0-9]*)$")) {
+                keys.add(key);
+            }
+        }
+        if (keys.isEmpty()) {
+            return cmd;
+        }
+        ArrayList<String> idxs = new ArrayList<String>();
+        for (int i = 0; i < keys.size(); i++) {
+            String key = keys.get(i);
+            String val = cmd.get(key);
+            if (!val.matches("^[A-Za-z0-9. -]+$")) {
+                idxs.add(key);
+                toconvert.add(val);
+            }
+        }
+        if (toconvert.isEmpty()) {
+            return cmd;
+        }
+        Map<String, Object> convertcmd = new HashMap<String, Object>();
+        convertcmd.put("COMMAND", "ConvertIDN");
+        convertcmd.put("DOMAIN", toconvert.toArray(new String[toconvert.size()]));
+        Response r = this.request(convertcmd);
+        if (r.isSuccess()) {
+            Column col = r.getColumn("ACE");
+            if (col != null) {
+                ArrayList<String> data = col.getData();
+                for (int idx = 0; idx < data.size(); idx++) {
+                    String pc = data.get(idx);
+                    cmd.replace(idxs.get(idx), pc);
+                }
+            }
+        }
+        return cmd;
     }
 }

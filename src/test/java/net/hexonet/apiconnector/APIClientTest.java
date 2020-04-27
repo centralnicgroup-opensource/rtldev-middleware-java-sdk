@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class APIClientTest {
     @Test
     public void getPOSTData1() {
         APIClient cl = new APIClient();
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "ModifyDomain");
         cmd.put("AUTH", "gwrgwqg%&\\44t3*");
         String validate =
@@ -34,27 +35,11 @@ public class APIClientTest {
     @Test
     public void getPOSTData2() {
         APIClient cl = new APIClient();
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "ModifyDomain");
         cmd.put("AUTH", null);
         String validate = "s_entity=54cd&s_command=COMMAND%3DModifyDomain";
         String enc = cl.getPOSTData(cmd);
-        assertEquals(validate, enc);
-    }
-
-    /**
-     * Test getPOSTData method #3
-     */
-    @Test
-    public void getPOSTData3() {
-        APIClient cl = new APIClient();
-        Map<String, Object> cmd = new HashMap<String, Object>();
-        cmd.put("COMMAND", "QueryDomainOptions");
-        cmd.put("DOMAIN", new String[] {"example1.com", "example2.com"});
-        String validate =
-                "s_entity=54cd&s_command=COMMAND%3DQueryDomainOptions%0ADOMAIN0%3Dexample1.com%0ADOMAIN1%3Dexample2.com";
-        String enc = cl.getPOSTData(cmd);
-        System.out.println(enc);
         assertEquals(validate, enc);
     }
 
@@ -158,7 +143,7 @@ public class APIClientTest {
     public void setOTP1() {
         APIClient cl = new APIClient();
         cl.setOTP("12345678");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_otp=12345678&s_command=COMMAND%3DStatusAccount";
@@ -172,7 +157,7 @@ public class APIClientTest {
     public void setOTP2() {
         APIClient cl = new APIClient();
         cl.setOTP("12345678").setOTP("");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -186,7 +171,7 @@ public class APIClientTest {
     public void setSession1() {
         APIClient cl = new APIClient();
         cl.setSession("12345678");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_session=12345678&s_command=COMMAND%3DStatusAccount";
@@ -202,7 +187,7 @@ public class APIClientTest {
         // credentials and otp code have to be unset when session id is set
         cl.setRoleCredentials("myaccountid", "myrole", "mypassword").setOTP("12345678")
                 .setSession("12345678");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_session=12345678&s_command=COMMAND%3DStatusAccount";
@@ -216,7 +201,7 @@ public class APIClientTest {
     public void setSession3() {
         APIClient cl = new APIClient();
         cl.setSession("12345678").setSession("");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -233,7 +218,7 @@ public class APIClientTest {
         cl.setSession("12345678").saveSession(sessionobj);
         APIClient cl2 = new APIClient();
         cl2.reuseSession(sessionobj);
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl2.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_session=12345678&s_command=COMMAND%3DStatusAccount";
@@ -247,7 +232,7 @@ public class APIClientTest {
     public void setRemoteIPAddress1() {
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("10.10.10.10");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate =
@@ -262,7 +247,7 @@ public class APIClientTest {
     public void setRemoteIPAddress2() {
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("10.10.10.10").setRemoteIPAddress("");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -276,7 +261,7 @@ public class APIClientTest {
     public void setCredentials1() {
         APIClient cl = new APIClient();
         cl.setCredentials("myaccountid", "mypassword");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate =
@@ -291,7 +276,7 @@ public class APIClientTest {
     public void setCredentials2() {
         APIClient cl = new APIClient();
         cl.setCredentials("myaccountid", "mypassword").setCredentials("", "");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -305,7 +290,7 @@ public class APIClientTest {
     public void setRoleCredentials1() {
         APIClient cl = new APIClient();
         cl.setRoleCredentials("myaccountid", "myroleid", "mypassword");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate =
@@ -321,7 +306,7 @@ public class APIClientTest {
         APIClient cl = new APIClient();
         cl.setRoleCredentials("myaccountid", "myroleid", "mypassword").setRoleCredentials("", "",
                 "");
-        Map<String, Object> cmd = new HashMap<String, Object>();
+        Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
         String tmp = cl.getPOSTData(cmd);
         String validate = "s_entity=54cd&s_command=COMMAND%3DStatusAccount";
@@ -472,6 +457,60 @@ public class APIClientTest {
     }
 
     /**
+     * Test request method #3 (flattenCommand)
+     */
+    @Test
+    public void request3() {
+        APIClient cl = new APIClient();
+        cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd")
+                .useOTESystem();
+        String[] domains = {"example.com", "example.net"};
+        Map<String, Object> cmd = new HashMap<String, Object>();
+        cmd.put("COMMAND", "CheckDomains");
+        cmd.put("DOMAIN", domains);
+        Response r = cl.request(cmd);
+
+        assertTrue(r.isSuccess());
+        assertEquals(200, r.getCode());
+        assertEquals("Command completed successfully", r.getDescription());
+
+        Map<String, String> newcmd = r.getCommand();
+        assertTrue(newcmd.containsKey("DOMAIN0"));
+        assertTrue(newcmd.containsKey("DOMAIN1"));
+        assertFalse(newcmd.containsKey("DOMAIN"));
+        assertEquals("example.com", newcmd.get("DOMAIN0"));
+        assertEquals("example.net", newcmd.get("DOMAIN1"));
+    }
+
+    /**
+     * Test request method #4 (autoIDNConvert)
+     */
+    @Test
+    public void request4() {
+        APIClient cl = new APIClient();
+        cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd")
+                .useOTESystem();
+        String[] domains = {"example.com", "dömäin.example", "example.net"};
+        Map<String, Object> cmd = new HashMap<String, Object>();
+        cmd.put("COMMAND", "CheckDomains");
+        cmd.put("DOMAIN", domains);
+        Response r = cl.request(cmd);
+
+        assertTrue(r.isSuccess());
+        assertEquals(200, r.getCode());
+        assertEquals("Command completed successfully", r.getDescription());
+
+        Map<String, String> newcmd = r.getCommand();
+        assertTrue(newcmd.containsKey("DOMAIN0"));
+        assertTrue(newcmd.containsKey("DOMAIN1"));
+        assertTrue(newcmd.containsKey("DOMAIN2"));
+        assertFalse(newcmd.containsKey("DOMAIN"));
+        assertEquals("example.com", newcmd.get("DOMAIN0"));
+        assertEquals("xn--dmin-moa0i.example", newcmd.get("DOMAIN1"));
+        assertEquals("example.net", newcmd.get("DOMAIN2"));
+    }
+
+    /**
      * Test requestNextResponsePage method #1
      */
     @Test
@@ -592,14 +631,18 @@ public class APIClientTest {
      */
     @Test
     public void resetUserView() {
+        Map<String, String> newcmd = new HashMap<String, String>();
+        newcmd.put("COMMAND", "GetUserIndex");
         Map<String, Object> cmd = new HashMap<String, Object>();
-        cmd.put("COMMAND", "GetUserIndex");
+        cmd.putAll(newcmd);
+
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd").useOTESystem()
                 .setUserView("hexotestman.com").resetUserView();
         Response r = cl.request(cmd);
         assertTrue(r.isSuccess());
-        String pd = cl.getPOSTData(cmd);
+
+        String pd = cl.getPOSTData(newcmd);
         assertTrue(pd.indexOf("hexotestman.com") == -1);
     }
 }
