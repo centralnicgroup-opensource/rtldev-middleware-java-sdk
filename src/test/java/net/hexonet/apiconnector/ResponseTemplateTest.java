@@ -15,7 +15,7 @@ public class ResponseTemplateTest {
     public void constructorVars() {
         ResponseTemplate tpl = new ResponseTemplate("");
         assertEquals(423, tpl.getCode());
-        assertEquals("Empty API response. Probably unreachable API end point",
+        assertEquals("Empty API response. Probably unreachable API end point {CONNECTION_URL}",
                 tpl.getDescription());
     }
 
@@ -38,7 +38,7 @@ public class ResponseTemplateTest {
         ResponseTemplate tpl = new ResponseTemplate("");
         Map<String, Object> h = tpl.getHash();
         assertEquals("423", (String) h.get("CODE"));
-        assertEquals("Empty API response. Probably unreachable API end point",
+        assertEquals("Empty API response. Probably unreachable API end point {CONNECTION_URL}",
                 (String) h.get("DESCRIPTION"));
     }
 

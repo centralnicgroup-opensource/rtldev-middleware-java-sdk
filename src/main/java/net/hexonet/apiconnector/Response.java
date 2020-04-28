@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Response covers all functionality to wrap a Backend API Response like accessing data
@@ -41,9 +43,31 @@ public class Response extends ResponseTemplate {
      * @param raw API plain response
      * @param cmd API command used within this request
      */
-    @SuppressWarnings("unchecked") // not really a good way ...
     public Response(String raw, Map<String, String> cmd) {
+        this(raw, cmd, Map.ofEntries());
+    }
+
+    /**
+     * Constructor
+     * 
+     * @param raw API plain response
+     * @param cmd API command used within this request
+     * @param ph  place holder variables replacements
+     */
+    @SuppressWarnings("unchecked") // not really a good way ...
+    public Response(String raw, Map<String, String> cmd, Map<String, String> ph) {
         super(raw);
+
+        String regex = "\\{[^}]+\\}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(this.raw);
+        if (matcher.find()) {
+            for (Map.Entry<String, String> entry : ph.entrySet()) {
+                this.raw = this.raw.replace("{" + entry.getKey() + "}", entry.getValue());
+            }
+            super.init(this.raw.replaceAll(regex, ""));
+        }
+
         this.command = new HashMap<String, String>(cmd);
         if (this.command.containsKey("PASSWORD")) { // make password no longer accessible
             this.command.replace("PASSWORD", "***");
