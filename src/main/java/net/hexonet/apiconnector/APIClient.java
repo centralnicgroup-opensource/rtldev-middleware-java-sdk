@@ -51,6 +51,8 @@ public class APIClient {
     private String ua;
     /** additional connection settings */
     private Map<String, String> curlopts;
+    /** logger instance */
+    private Logger logger;
 
     /**
      * Class constructor. Creates an API Client ready to use.
@@ -62,6 +64,28 @@ public class APIClient {
         this.socketConfig = new SocketConfig();
         this.useLIVESystem();
         this.curlopts = new HashMap<String, String>();
+        this.setDefaultLogger();
+    }
+
+    /**
+     * Set a custom logger for debug mdoe
+     * 
+     * @param logger
+     * @return Current APIClient instance for method chaining
+     */
+    public APIClient setCustomLogger(Logger logger) {
+        this.logger = logger;
+        return this;
+    }
+
+    /**
+     * Activate the default logger for debug mode
+     * 
+     * @return Current APIClient instance for method chaining
+     */
+    public APIClient setDefaultLogger() {
+        this.logger = new Logger();
+        return this;
     }
 
     /**
@@ -472,6 +496,7 @@ public class APIClient {
         cfg.put("CONNECTION_URL", this.socketURL);
 
         StringBuilder response;
+        Response r;
         try {
             response = new StringBuilder("");
             URL myurl = new URL(cfg.get("CONNECTION_URL"));
@@ -513,15 +538,15 @@ public class APIClient {
         } catch (Exception e) {
             ResponseTemplate tpl = ResponseTemplateManager.getInstance().getTemplate("httperror");
             response = new StringBuilder(tpl.getPlain());
+            r = new Response(response.toString(), newcmd, cfg);
             if (this.debugMode) {
-                System.err.println(e);
+                this.logger.log(secured, r, e.getMessage());
             }
+            return r;
         }
-        Response r = new Response(response.toString(), newcmd, cfg);
+        r = new Response(response.toString(), newcmd, cfg);
         if (this.debugMode) {
-            System.out.println(secured);
-            System.out.println(newcmd);
-            System.out.println(r.getPlain());
+            this.logger.log(secured, r);
         }
         return r;
     }

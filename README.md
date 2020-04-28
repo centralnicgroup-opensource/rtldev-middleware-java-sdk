@@ -22,6 +22,7 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 * Automatic IDN Domain name conversion to punycode (our API accepts only punycode format in commands)
 * Allows nested associative arrays in API commands to improve for bulk parameters
 * Connecting and communication with our API
+* Possibility to use a custom mechanism for debug mode
 * Several ways to access and deal with response data
 * Getting the command again returned together with the response
 * Sessionless communication
@@ -161,6 +162,31 @@ Just in case the above port or ip address can't be used, use function setURL ins
 e.g. `$cl->setURL("http://127.0.0.1:8765/api/call.cgi");` would change the port. Configure that port also in the Apache Configuration (-> Step 2)!
 
 Don't use `https` for that setup as it leads to slowing things down as of the https `overhead` of securing the connection. In this setup we just connect to localhost, so no direct outgoing network traffic using `http`. The apache configuration finally takes care passing it to `https` for the final communication to the HEXONET API.
+
+### Customize Logging / Outputs
+
+When having the debug mode activated \HEXONET\Logger will be used for doing outputs.
+Of course it could be of interest for integrators to look for a way of getting this replaced by a custom mechanism like forwarding things to a 3rd-party software, logging into file or whatever.
+
+```java
+    import net.hexonet.apiconnector.APIClient;
+    import net.hexonet.apiconnector.Response;
+    import java.util.HashMap;
+    import java.util.Map;
+
+    public static void main(String[] args) {
+        APIClient cl = new APIClient();
+        cl.useOTESystem()
+          .enableDebugMode() // activate debug outputs
+          .setCustomLogger(new MyCustomerLogger()) // provide your mechanism here
+          .setCredentials("test.user", "test.passw0rd");
+        Map<String, Object> cmd = new HashMap<String, String>();
+        cmd.put("COMMAND", "StatusAccount");
+        Response r = cl.request(cmd);
+    }
+```
+
+NOTE: Find an example for a custom logger class implementation in `src/main/java/net/hexonet/apiconnector/CustomLogger.java`. If you have questions, feel free to open a github issue.
 
 ### Usage Examples
 
