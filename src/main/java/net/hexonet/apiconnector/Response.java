@@ -160,6 +160,24 @@ public class Response extends ResponseTemplate {
     }
 
     /**
+     * Get Command used in this request in plain text
+     * 
+     * @return plain text command
+     */
+    public String getCommandPlain() {
+        StringBuilder tmp = new StringBuilder("");
+        Iterator<Map.Entry<String, String>> it = this.command.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, String> pair = it.next();
+            tmp.append(pair.getKey());
+            tmp.append(" = ");
+            tmp.append(pair.getValue());
+            tmp.append("\n");
+        }
+        return tmp.toString();
+    }
+
+    /**
      * Get Page Number of current List Query
      * 
      * @return page number or -1 in case of a non-list response
