@@ -144,6 +144,30 @@ public class APIClientTest {
     }
 
     /**
+     * Test setUserAgent method by including additional modules
+     */
+    @Test
+    public void setUserAgentModules() {
+        String pid = "WHMCS";
+        String rv = "7.7.0";
+        ArrayList<String> mods = new ArrayList<String>();
+        mods.add("reg/2.6.2");
+        mods.add("ssl/7.2.2");
+        mods.add("dc/8.2.2");
+
+        APIClient cl = new APIClient();
+        cl.setUserAgent(pid, rv, mods);
+        String jv = System.getProperty("java.vm.name").toLowerCase().replaceAll(" .+", "");
+        String jrv = System.getProperty("java.version");
+        String arch = System.getProperty("os.arch");
+        String os = System.getProperty("os.name");
+        String uaexpected = (pid + " (" + os + "; " + arch + "; rv:" + rv
+                + ") reg/2.6.2 ssl/7.2.2 dc/8.2.2 java-sdk/" + cl.getVersion() + " " + jv + "/"
+                + jrv);
+        assertEquals(cl.getUserAgent(), uaexpected);
+    }
+
+    /**
      * Test setURL method
      */
     @Test

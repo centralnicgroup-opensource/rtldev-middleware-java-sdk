@@ -166,12 +166,31 @@ public class APIClient {
      * @return Current APIClient instance for method chaining
      */
     public APIClient setUserAgent(String str, String rv) {
+        return this.setUserAgent(str, rv, new ArrayList<String>());
+    }
+
+    /**
+     * Set a custom user agent header (useful for tools that use our SDK)
+     * 
+     * @param str     user agent label
+     * @param rv      user agent revision
+     * @param modules further modules to add to user agent string ["<module>/<version>"]
+     * @return Current APIClient instance for method chaining
+     */
+    public APIClient setUserAgent(String str, String rv, ArrayList<String> modules) {
+        StringBuilder mods = new StringBuilder(" ");
+        if (modules.size() > 0) {
+            for (int i = 0; i < modules.size(); i++) {
+                mods.append(modules.get(i));
+                mods.append(" ");
+            }
+        }
         String jv = System.getProperty("java.vm.name").toLowerCase().replaceAll(" .+", "");
         String jrv = System.getProperty("java.version");
         String arch = System.getProperty("os.arch");
         String os = System.getProperty("os.name");
-        this.ua = (str + " (" + os + "; " + arch + "; rv:" + rv + ") java-sdk/" + this.getVersion()
-                + " " + jv + "/" + jrv);
+        this.ua = (str + " (" + os + "; " + arch + "; rv:" + rv + ")" + mods + "java-sdk/"
+                + this.getVersion() + " " + jv + "/" + jrv);
         return this;
     }
 
