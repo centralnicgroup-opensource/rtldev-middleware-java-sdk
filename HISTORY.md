@@ -1,3 +1,21 @@
+# [3.1.0](https://github.com/hexonet/java-sdk/compare/v3.0.0...v3.1.0) (2020-04-28)
+
+
+### Bug Fixes
+
+* **docs:** fixed javadoc comments ([b6aa6bd](https://github.com/hexonet/java-sdk/commit/b6aa6bdc407aeadf617a4a0ac2921e7c9062a1c9))
+* **messaging:** return a specific error template in case of missing API response code or description ([500934b](https://github.com/hexonet/java-sdk/commit/500934b8925fd90261f8f8eba465cb4be0ee3f85))
+* **security:** replace passwords whereever they could be used for output ([65860ab](https://github.com/hexonet/java-sdk/commit/65860abdfe8d4bb07d5500f952403d864df9b443))
+
+
+### Features
+
+* **apiclient:** allow to specify additional libraries via setUserAgent ([58c7eb2](https://github.com/hexonet/java-sdk/commit/58c7eb244e548f224a01df69ebfea4dff3e9df05))
+* **apiclient:** automatic IDN conversion of API command parameters to punycode ([afc36af](https://github.com/hexonet/java-sdk/commit/afc36af743e872025ab3242d45fdc7c0fe6a8bd6))
+* **apiclient:** support the `High Performance Proxy Setup`. see README.md ([446ec48](https://github.com/hexonet/java-sdk/commit/446ec4893006e40f47c3aee98ab52def66bd182d))
+* **response:** added getCommandPlain (getting used command in plain text) ([9dfe033](https://github.com/hexonet/java-sdk/commit/9dfe03363e279f61694f56092d24174817d5e020))
+* **response:** possibility of placeholder vars in standard responses to improve error details ([5590557](https://github.com/hexonet/java-sdk/commit/55905572304382175dd583735e0c4038ed842290))
+
 # [3.0.0](https://github.com/hexonet/java-sdk/compare/v2.3.4...v3.0.0) (2020-03-12)
 
 
