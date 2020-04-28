@@ -88,7 +88,7 @@ public class APIClient {
      * Method to use to encode data before sending it to the API Server
      * 
      * @param cmd The command to request
-     * @return
+     * @return the ready to use, encoded request payload
      */
     public String getPOSTData(Map<String, String> cmd) {
         return this.getPOSTData(cmd, false);
@@ -99,7 +99,7 @@ public class APIClient {
      * 
      * @param cmd     The command to request
      * @param secured if password data shall be secured for output purposes
-     * @return the ready to use, encoded request payload
+     * @return the ready to use, encoded and secured request payload
      */
     public String getPOSTData(Map<String, String> cmd, boolean secured) {
         String pd;
@@ -174,7 +174,7 @@ public class APIClient {
      * 
      * @param str     user agent label
      * @param rv      user agent revision
-     * @param modules further modules to add to user agent string ["<module>/<version>"]
+     * @param modules further modules to add to user agent string ["module/version"]
      * @return Current APIClient instance for method chaining
      */
     public APIClient setUserAgent(String str, String rv, ArrayList<String> modules) {

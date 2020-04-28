@@ -31,7 +31,7 @@ public class ResponseTemplate {
     /**
      * init hash - workaround for not calling constructor in response class twice (TO DO)
      * 
-     * @param raw
+     * @param raw plain API response text
      */
     protected void init(String raw) {
         this.raw = raw;
