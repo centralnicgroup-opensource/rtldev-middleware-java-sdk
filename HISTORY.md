@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/hexonet/java-sdk/compare/v3.1.0...v3.2.0) (2020-04-28)
+
+
+### Features
+
+* **logger:** possibility to override debug mode's default logging mechanism. See README.md ([b878191](https://github.com/hexonet/java-sdk/commit/b878191142d476a0d46fc86b9a1385e3572bdd56))
+
 # [3.1.0](https://github.com/hexonet/java-sdk/compare/v3.0.0...v3.1.0) (2020-04-28)
 
 
