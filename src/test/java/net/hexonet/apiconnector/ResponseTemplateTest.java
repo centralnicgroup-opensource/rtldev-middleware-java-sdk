@@ -20,6 +20,17 @@ public class ResponseTemplateTest {
     }
 
     /**
+     * Test constructor with invalid API response
+     */
+    @Test
+    public void invalidResponse() {
+        ResponseTemplate rt =
+                new ResponseTemplate("[RESPONSE]\r\ncode=200\r\nqueuetime=0\r\nEOF\r\n");
+        assertEquals(423, rt.getCode());
+        assertEquals("Invalid API response. Contact Support", rt.getDescription());
+    }
+
+    /**
      * Test getHash method
      */
     @Test

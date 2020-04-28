@@ -646,24 +646,40 @@ public class APIClientTest {
         assertTrue(pd.indexOf("hexotestman.com") == -1);
     }
 
+    /**
+     * Test setProxy method
+     */
+    @Test
     public void setProxy() {
         APIClient cl = new APIClient();
         cl.setProxy("127.0.0.1");
         assertEquals("127.0.0.1", cl.getProxy());
     }
 
+    /**
+     * Test setReferer method
+     */
+    @Test
     public void setReferer() {
         APIClient cl = new APIClient();
         cl.setReferer("https://www.hexonet.net/");
         assertEquals("https://www.hexonet.net/", cl.getReferer());
     }
 
+    /**
+     * Test useHighPerformanceConnectionSetup method
+     */
+    @Test
     public void useHighPerformanceConnectionSetup() {
         APIClient cl = new APIClient();
         cl.useHighPerformanceConnectionSetup();
         assertEquals(APIClient.ISPAPI_CONNECTION_URL_PROXY, cl.getURL());
     }
 
+    /**
+     * Test useDefaultConnectionSetup method
+     */
+    @Test
     public void useDefaultConnectionSetup() {
         APIClient cl = new APIClient();
         cl.useHighPerformanceConnectionSetup();

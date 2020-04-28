@@ -27,6 +27,10 @@ public class ResponseTemplate {
         }
         this.raw = raw;
         this.hash = ResponseParser.parse(raw);
+        if (!this.hash.containsKey("CODE") || !this.hash.containsKey("DESCRIPTION")) {
+            this.raw = ResponseTemplateManager.getInstance().getTemplate("invalid").getPlain();
+            this.hash = ResponseParser.parse(this.raw);
+        }
     }
 
     /**

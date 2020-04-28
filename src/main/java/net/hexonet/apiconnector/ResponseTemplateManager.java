@@ -31,6 +31,8 @@ public class ResponseTemplateManager {
         this.templates.put("expired", this.generateTemplate("530", "SESSION NOT FOUND"));
         this.templates.put("httperror",
                 this.generateTemplate("421", "Command failed due to HTTP communication error"));
+        this.templates.put("invalid",
+                this.generateTemplate("423", "Invalid API response. Contact Support"));
         this.templates.put("unauthorized", this.generateTemplate("500", "Unauthorized"));
     }
 

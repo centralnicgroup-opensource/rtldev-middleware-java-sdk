@@ -1,7 +1,6 @@
 package net.hexonet.apiconnector;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,18 +11,6 @@ import org.junit.Test;
  * Unit test for class ResponseParser
  */
 public class ResponseParserTest {
-    /**
-     * Test parse method
-     */
-    @Test
-    public void parse() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        String plain = rtm.generateTemplate("421", "");
-        plain = plain.replace("\r\nDESCRIPTION=", "");
-        Map<String, Object> h = ResponseParser.parse(plain);
-        assertNull(h.get("DESCRIPTION"));
-    }
-
     /**
      * Test serialize method #1
      */
