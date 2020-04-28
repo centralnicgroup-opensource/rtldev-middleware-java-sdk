@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import org.junit.Test;
 
 /**
@@ -42,6 +44,31 @@ public class ResponseTest {
         Response r = new Response("", cmd);
         String str = "SUBUSER = test.user\nCOMMAND = CheckAuthentication\nPASSWORD = ***\n";
         assertEquals(str, r.getCommandPlain());
+    }
+
+    /**
+     * Test place holder vars replacement mechanism
+     */
+    @Test
+    public void placeHolderReplacements() {
+        Map<String, String> cmd = new HashMap<String, String>();
+        cmd.put("COMMAND", "StatusAccount");
+
+        // ensure no vars are returned in response, just in case no place holder replacements are
+        // provided
+        Response r = new Response("", cmd);
+        String regex = "\\{[^}]+\\}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(r.getDescription());
+        assertFalse(matcher.find());
+
+        // ensure variable replacements are correctly handled in case place holder replacements are
+        // provided
+        r = new Response("", cmd, Map.ofEntries(Map.entry("CONNECTION_URL", "123HXPHFOUND123")));
+        regex = "123HXPHFOUND123";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(r.getDescription());
+        assertTrue(matcher.find());
     }
 
     /**

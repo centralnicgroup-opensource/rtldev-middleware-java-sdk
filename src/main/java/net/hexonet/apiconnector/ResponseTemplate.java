@@ -25,6 +25,15 @@ public class ResponseTemplate {
         if (raw.length() == 0) {
             raw = ResponseTemplateManager.getInstance().getTemplate("empty").getPlain();
         }
+        this.init(raw);
+    }
+
+    /**
+     * init hash - workaround for not calling constructor in response class twice (TO DO)
+     * 
+     * @param raw
+     */
+    protected void init(String raw) {
         this.raw = raw;
         this.hash = ResponseParser.parse(raw);
         if (!this.hash.containsKey("CODE") || !this.hash.containsKey("DESCRIPTION")) {

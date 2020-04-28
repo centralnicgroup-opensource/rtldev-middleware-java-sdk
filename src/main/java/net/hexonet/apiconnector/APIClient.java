@@ -468,11 +468,13 @@ public class APIClient {
         // request command to API
         String data = this.getPOSTData(newcmd);
         String secured = this.getPOSTData(newcmd, true);
+        Map<String, String> cfg = new HashMap<String, String>();
+        cfg.put("CONNECTION_URL", this.socketURL);
 
         StringBuilder response;
         try {
             response = new StringBuilder("");
-            URL myurl = new URL(this.socketURL);
+            URL myurl = new URL(cfg.get("CONNECTION_URL"));
             HttpsURLConnection con = (HttpsURLConnection) myurl.openConnection();
             if (this.curlopts.containsKey("PROXY")) {
                 URL proxyurl = new URL(this.curlopts.get("PROXY"));
@@ -515,7 +517,7 @@ public class APIClient {
                 System.err.println(e);
             }
         }
-        Response r = new Response(response.toString(), newcmd);
+        Response r = new Response(response.toString(), newcmd, cfg);
         if (this.debugMode) {
             System.out.println(secured);
             System.out.println(newcmd);
