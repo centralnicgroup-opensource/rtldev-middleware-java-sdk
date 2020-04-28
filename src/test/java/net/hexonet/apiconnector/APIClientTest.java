@@ -90,7 +90,7 @@ public class APIClientTest {
     public void getURL() {
         APIClient cl = new APIClient();
         String url = cl.getURL();
-        assertEquals("https://api.ispapi.net/api/call.cgi", url);
+        assertEquals(APIClient.ISPAPI_CONNECTION_URL, url);
     }
 
     /**
@@ -132,8 +132,8 @@ public class APIClientTest {
     @Test
     public void setURL() {
         APIClient cl = new APIClient();
-        String url = cl.setURL("http://api.ispapi.net/api/call.cgi").getURL();
-        assertEquals("http://api.ispapi.net/api/call.cgi", url);
+        String url = cl.setURL(APIClient.ISPAPI_CONNECTION_URL_PROXY).getURL();
+        assertEquals(APIClient.ISPAPI_CONNECTION_URL_PROXY, url);
     }
 
     /**
@@ -644,5 +644,30 @@ public class APIClientTest {
 
         String pd = cl.getPOSTData(newcmd);
         assertTrue(pd.indexOf("hexotestman.com") == -1);
+    }
+
+    public void setProxy() {
+        APIClient cl = new APIClient();
+        cl.setProxy("127.0.0.1");
+        assertEquals("127.0.0.1", cl.getProxy());
+    }
+
+    public void setReferer() {
+        APIClient cl = new APIClient();
+        cl.setReferer("https://www.hexonet.net/");
+        assertEquals("https://www.hexonet.net/", cl.getReferer());
+    }
+
+    public void useHighPerformanceConnectionSetup() {
+        APIClient cl = new APIClient();
+        cl.useHighPerformanceConnectionSetup();
+        assertEquals(APIClient.ISPAPI_CONNECTION_URL_PROXY, cl.getURL());
+    }
+
+    public void useDefaultConnectionSetup() {
+        APIClient cl = new APIClient();
+        cl.useHighPerformanceConnectionSetup();
+        cl.useDefaultConnectionSetup();
+        assertEquals(APIClient.ISPAPI_CONNECTION_URL, cl.getURL());
     }
 }

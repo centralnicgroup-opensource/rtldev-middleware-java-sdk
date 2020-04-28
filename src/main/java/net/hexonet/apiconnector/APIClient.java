@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -32,6 +34,9 @@ import javax.net.ssl.HttpsURLConnection;
  * @since 2.0
  */
 public class APIClient {
+    public static final String ISPAPI_CONNECTION_URL_PROXY = "http://127.0.0.1/api/call.cgi";
+    public static final String ISPAPI_CONNECTION_URL = "https://api.ispapi.net/api/call.cgi";
+
     /** represents default http socket timeout */
     private static int socketTimeout = 300000;
     /** represents default api url to communicate with */
@@ -44,6 +49,8 @@ public class APIClient {
     private boolean debugMode;
     /** user agent string */
     private String ua;
+    /** additional connection settings */
+    private Map<String, String> curlopts;
 
     /**
      * Class constructor. Creates an API Client ready to use.
@@ -51,9 +58,10 @@ public class APIClient {
     public APIClient() {
         this.ua = "";
         this.debugMode = false;
-        this.setURL("https://api.ispapi.net/api/call.cgi");
+        this.setURL(ISPAPI_CONNECTION_URL);
         this.socketConfig = new SocketConfig();
         this.useLIVESystem();
+        this.curlopts = new HashMap<String, String>();
     }
 
     /**
@@ -165,6 +173,60 @@ public class APIClient {
                     + "/" + jrv);
         }
         return this.ua;
+    }
+
+    /**
+     * Set proxy to use for API communication
+     * 
+     * @param proxy proxy to use
+     * @return Current APIClient instance for method chaining
+     */
+    public APIClient setProxy(String proxy) {
+        if (this.curlopts.containsKey("PROXY")) {
+            this.curlopts.replace("PROXY", proxy);
+        } else {
+            this.curlopts.put("PROXY", proxy);
+        }
+        return this;
+    }
+
+    /**
+     * Get proxy configuration for API communication
+     * 
+     * @return Proxy URL or null if not configured
+     */
+    public String getProxy() {
+        if (this.curlopts.containsKey("PROXY")) {
+            return this.curlopts.get("PROXY");
+        }
+        return null;
+    }
+
+    /**
+     * Set Referer Header to use for API communication
+     * 
+     * @param referer Referer Header value
+     * @return Current APIClient instance for method chaining
+     */
+    public APIClient setReferer(String referer) {
+        if (this.curlopts.containsKey("REFERER")) {
+            this.curlopts.replace("REFERER", referer);
+        } else {
+            this.curlopts.put("REFERER", referer);
+        }
+        return this;
+    }
+
+    /**
+     * Get the configured Referer Header Value
+     * 
+     * @return Referer Header Value
+     */
+    public String getReferer() {
+        if (this.curlopts.containsKey("REFERER")) {
+            return this.curlopts.get("REFERER");
+        }
+        return null;
     }
 
     /**
@@ -375,7 +437,18 @@ public class APIClient {
             response = new StringBuilder("");
             URL myurl = new URL(this.socketURL);
             HttpsURLConnection con = (HttpsURLConnection) myurl.openConnection();
+            if (this.curlopts.containsKey("PROXY")) {
+                URL proxyurl = new URL(this.curlopts.get("PROXY"));
+                Proxy proxy = new Proxy(Proxy.Type.HTTP,
+                        new InetSocketAddress(proxyurl.getHost(), proxyurl.getPort()));
+                con = (HttpsURLConnection) myurl.openConnection(proxy);
+            } else {
+                con = (HttpsURLConnection) myurl.openConnection();
+            }
             con.setRequestMethod("POST");
+            if (this.curlopts.containsKey("REFERER")) {
+                con.setRequestProperty("REFERER", this.curlopts.get("REFERER"));
+            }
             con.setRequestProperty("Content-length", String.valueOf(data.length()));
             con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             con.setRequestProperty("User-Agent", this.getUserAgent());
@@ -484,6 +557,26 @@ public class APIClient {
     }
 
     /**
+     * Activate High Performance Connection Setup (see README.md)
+     * 
+     * @return Current APIClient instance for method chaining
+     */
+    public APIClient useHighPerformanceConnectionSetup() {
+        this.setURL(ISPAPI_CONNECTION_URL_PROXY);
+        return this;
+    }
+
+    /**
+     * Activate Default Connection Setup
+     * 
+     * @return Current APIClient instance for method chaining
+     */
+    public APIClient useDefaultConnectionSetup() {
+        this.setURL(ISPAPI_CONNECTION_URL);
+        return this;
+    }
+
+    /**
      * Set OT&amp;E System for API communication
      * 
      * @return Current APIClient instance for method chaining
@@ -504,8 +597,10 @@ public class APIClient {
     }
 
     /**
-     * flatten provided API command (possibly including parameters in array format) to Map<String,
-     * String>
+     * Flatten API command's nested arrays for easier handling
+     * 
+     * @param cmd API Command
+     * @return flattened API Command
      */
     private Map<String, String> flattenCommand(Map<String, Object> cmd) {
         Map<String, String> newcmd = new HashMap<String, String>();
