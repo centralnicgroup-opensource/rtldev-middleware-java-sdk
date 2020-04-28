@@ -84,15 +84,31 @@ public class APIClient {
         return this;
     }
 
+    /**
+     * Method to use to encode data before sending it to the API Server
+     * 
+     * @param cmd The command to request
+     * @return
+     */
+    public String getPOSTData(Map<String, String> cmd) {
+        return this.getPOSTData(cmd, false);
+    }
 
     /**
      * Method to use to encode data before sending it to the API server
      * 
-     * @param cmd The command to request
+     * @param cmd     The command to request
+     * @param secured if password data shall be secured for output purposes
      * @return the ready to use, encoded request payload
      */
-    public String getPOSTData(Map<String, String> cmd) {
-        StringBuilder data = new StringBuilder(this.socketConfig.getPOSTData());
+    public String getPOSTData(Map<String, String> cmd, boolean secured) {
+        String pd;
+        if (secured) {
+            pd = this.socketConfig.getPOSTData().replaceAll("s_pw=[^&]+", "s_pw=***");
+        } else {
+            pd = this.socketConfig.getPOSTData();
+        }
+        StringBuilder data = new StringBuilder(pd);
         try {
             StringBuilder tmp = new StringBuilder("");
             Iterator<Map.Entry<String, String>> it = cmd.entrySet().iterator();
@@ -113,9 +129,10 @@ public class APIClient {
                     }
                 }
             }
+            pd = tmp.toString().replaceAll("PASSWORD=[^\n]+", "PASSWORD=***");
             data.append(URLEncoder.encode("s_command", "UTF-8"));
             data.append("=");
-            data.append(URLEncoder.encode(tmp.toString(), "UTF-8").replace("*", "%2A"));
+            data.append(URLEncoder.encode(pd, "UTF-8").replace("*", "%2A"));
             return data.toString();
         } catch (UnsupportedEncodingException e) {
             return "";
@@ -431,6 +448,7 @@ public class APIClient {
 
         // request command to API
         String data = this.getPOSTData(newcmd);
+        String secured = this.getPOSTData(newcmd, true);
 
         StringBuilder response;
         try {
@@ -480,7 +498,7 @@ public class APIClient {
         }
         Response r = new Response(response.toString(), newcmd);
         if (this.debugMode) {
-            System.out.println(data);
+            System.out.println(secured);
             System.out.println(newcmd);
             System.out.println(r.getPlain());
         }
