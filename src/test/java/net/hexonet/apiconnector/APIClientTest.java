@@ -44,6 +44,23 @@ public class APIClientTest {
     }
 
     /**
+     * Test getPOSTData method #3
+     */
+    @Test
+    public void getPOSTDataSecured() {
+        APIClient cl = new APIClient();
+        cl.setCredentials("test.user", "test.passw0rd");
+        Map<String, String> cmd = new HashMap<String, String>();
+        cmd.put("COMMAND", "CheckAuthentication");
+        cmd.put("SUBUSER", "test.user");
+        cmd.put("PASSWORD", "test.passw0rd");
+        String enc = cl.getPOSTData(cmd, true);
+        String str =
+                "s_entity=54cd&s_login=test.user&s_pw=***&s_command=SUBUSER%3Dtest.user%0APASSWORD%3D%2A%2A%2A%0ACOMMAND%3DCheckAuthentication";
+        assertEquals(str, enc);
+    }
+
+    /**
      * Test enableDebugMode method
      */
     @Test

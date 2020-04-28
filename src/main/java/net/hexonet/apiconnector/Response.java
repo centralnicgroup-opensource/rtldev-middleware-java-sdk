@@ -45,6 +45,9 @@ public class Response extends ResponseTemplate {
     public Response(String raw, Map<String, String> cmd) {
         super(raw);
         this.command = new HashMap<String, String>(cmd);
+        if (this.command.containsKey("PASSWORD")) { // make password no longer accessible
+            this.command.replace("PASSWORD", "***");
+        }
         this.columnkeys = new ArrayList<String>();
         this.columns = new ArrayList<Column>();
         this.recordIndex = 0;
