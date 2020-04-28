@@ -15,6 +15,23 @@ import org.junit.Test;
  * Unit test for class Response
  */
 public class ResponseTest {
+
+    /**
+     * Test getCommandPlain method
+     */
+    @Test
+    public void getCommandPlain() {
+        // ensure no vars are returned in response, just in case no place holder replacements are
+        // provided
+        Map<String, String> cmd = new HashMap<String, String>();
+        cmd.put("COMMAND", "QueryDomainOptions");
+        cmd.put("DOMAIN0", "example.com");
+        cmd.put("DOMAIN1", "example.net");
+        Response r = new Response("", cmd);
+        String str = "COMMAND = QueryDomainOptions\nDOMAIN0 = example.com\nDOMAIN1 = example.net\n";
+        assertEquals(str, r.getCommandPlain());
+    }
+
     /**
      * Test getCurrentPageNumber method #1
      */
