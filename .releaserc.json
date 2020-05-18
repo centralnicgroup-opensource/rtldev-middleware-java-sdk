@@ -22,6 +22,7 @@
                     "HISTORY.md",
                     "package.json",
                     "pom.xml",
+                    "src/main/java/net/hexonet/apiconnector/APIClient.java",
                     "target/apidocs",
                     "target/site"
                 ]
