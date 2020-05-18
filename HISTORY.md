@@ -1,3 +1,16 @@
+# [4.0.0](https://github.com/hexonet/java-sdk/compare/v3.2.0...v4.0.0) (2020-05-18)
+
+
+### Features
+
+* **responsetranslator:** added initial version coming with rewrite/restructuring from scratch ([a953e69](https://github.com/hexonet/java-sdk/commit/a953e69e32a4e0c32286b33b36c726425c9e9f97))
+
+
+### BREAKING CHANGES
+
+* **responsetranslator:** Downward incompatible restructuring (Merge of Response/ResponseTemplate, Rewrite
+ResponseTemplateManager) and introducing ResponseTranslator
+
 # [3.2.0](https://github.com/hexonet/java-sdk/compare/v3.1.0...v3.2.0) (2020-04-28)
 
 
