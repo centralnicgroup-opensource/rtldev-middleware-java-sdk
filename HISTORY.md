@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/hexonet/java-sdk/compare/v4.0.2...v4.0.3) (2020-05-18)
+
+
+### Bug Fixes
+
+* **pom.xml:** move nexus plugin to the bottom to change release behavior ([11ab75a](https://github.com/hexonet/java-sdk/commit/11ab75aaf111985f9489ed4f3f40b1647b504be4))
+
 ## [4.0.2](https://github.com/hexonet/java-sdk/compare/v4.0.1...v4.0.2) (2020-05-18)
 
 
