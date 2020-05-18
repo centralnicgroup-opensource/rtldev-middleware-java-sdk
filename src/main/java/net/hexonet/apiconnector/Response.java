@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 /**
  * Response covers all functionality to wrap a Backend API Response like accessing data
@@ -14,7 +12,12 @@ import java.util.regex.Matcher;
  * @version %I%, %G%
  * @since 2.0
  */
-public class Response extends ResponseTemplate {
+public class Response {
+    /** backend system plain response data */
+    private String raw;
+    /** backend system parsed response data (hash format) */
+    private Map<String, Object> hash;
+
     /**
      * The API Command used within this request
      */
@@ -41,6 +44,15 @@ public class Response extends ResponseTemplate {
      * Constructor
      * 
      * @param raw API plain response
+     */
+    public Response(String raw) {
+        this(raw, Map.ofEntries(), Map.ofEntries());
+    }
+
+    /**
+     * Constructor
+     * 
+     * @param raw API plain response
      * @param cmd API command used within this request
      */
     public Response(String raw, Map<String, String> cmd) {
@@ -56,22 +68,14 @@ public class Response extends ResponseTemplate {
      */
     @SuppressWarnings("unchecked") // not really a good way ...
     public Response(String raw, Map<String, String> cmd, Map<String, String> ph) {
-        super(raw);
-
-        String regex = "\\{[^}]+\\}";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(this.raw);
-        if (matcher.find()) {
-            for (Map.Entry<String, String> entry : ph.entrySet()) {
-                this.raw = this.raw.replace("{" + entry.getKey() + "}", entry.getValue());
-            }
-            super.init(this.raw.replaceAll(regex, ""));
+        // secure password for output
+        if (cmd.containsKey("PASSWORD")) {
+            cmd.replace("PASSWORD", "***");
         }
 
+        this.raw = ResponseTranslator.translate(raw, cmd, ph);
+        this.hash = ResponseParser.parse(this.raw);
         this.command = new HashMap<String, String>(cmd);
-        if (this.command.containsKey("PASSWORD")) { // make password no longer accessible
-            this.command.replace("PASSWORD", "***");
-        }
         this.columnkeys = new ArrayList<String>();
         this.columns = new ArrayList<Column>();
         this.recordIndex = 0;
@@ -104,6 +108,112 @@ public class Response extends ResponseTemplate {
                 this.addRecord(d);
             }
         }
+    }
+
+    /**
+     * Get API response code
+     * 
+     * @return API response code
+     */
+    public int getCode() {
+        return Integer.parseInt((String) this.hash.get("CODE"));
+    }
+
+    /**
+     * Get API response description
+     * 
+     * @return API response description
+     */
+    public String getDescription() {
+        return (String) this.hash.get("DESCRIPTION");
+    }
+
+    /**
+     * Get Plain API response
+     * 
+     * @return Plain API response
+     */
+    public String getPlain() {
+        return this.raw;
+    }
+
+    /**
+     * Get Queuetime of API response
+     * 
+     * @return Queuetime of API response
+     */
+    public double getQueuetime() {
+        String rt = (String) this.hash.get("QUEUETIME");
+        if (rt != null) {
+            return Double.parseDouble((String) this.hash.get("QUEUETIME"));
+        }
+        return 0.00;
+    }
+
+    /**
+     * Get API response as Hash
+     * 
+     * @return API response hash
+     */
+    public Map<String, Object> getHash() {
+        return this.hash;
+    }
+
+    /**
+     * Get Runtime of API response
+     * 
+     * @return Runtime of API response
+     */
+    public double getRuntime() {
+        String rt = (String) this.hash.get("RUNTIME");
+        if (rt != null) {
+            return Double.parseDouble((String) this.hash.get("RUNTIME"));
+        }
+        return 0.00;
+    }
+
+    /**
+     * Check if current API response represents an error case API response code is an 5xx code
+     * 
+     * @return boolean result
+     */
+    public boolean isError() {
+        String code = (String) this.hash.get("CODE");
+        return code.charAt(0) == '5';
+    }
+
+    /**
+     * Check if current API response represents a success case API response code is an 2xx code
+     * 
+     * @return boolean result
+     */
+    public boolean isSuccess() {
+        String code = (String) this.hash.get("CODE");
+        return code.charAt(0) == '2';
+    }
+
+    /**
+     * Check if current API response represents a temporary error case API response code is an 4xx
+     * code
+     * 
+     * @return boolean result
+     */
+    public boolean isTmpError() {
+        String code = (String) this.hash.get("CODE");
+        return code.charAt(0) == '4';
+    }
+
+    /**
+     * Check if current operation is returned as pending
+     * 
+     * @return boolean result
+     */
+    public boolean isPending() {
+        String pending = (String) this.hash.get("PENDING");
+        if (pending != null) {
+            return pending.equals("1");
+        }
+        return false;
     }
 
     /**

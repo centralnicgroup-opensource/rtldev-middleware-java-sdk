@@ -295,7 +295,7 @@ public class APIClient {
      * @return module version
      */
     public String getVersion() {
-        return "1.3.20";
+        return "3.2.0";
     }
 
     /**
@@ -495,10 +495,10 @@ public class APIClient {
         Map<String, String> cfg = new HashMap<String, String>();
         cfg.put("CONNECTION_URL", this.socketURL);
 
-        StringBuilder response;
+        StringBuilder response = new StringBuilder("");
         Response r;
+        String err = null;
         try {
-            response = new StringBuilder("");
             URL myurl = new URL(cfg.get("CONNECTION_URL"));
             HttpsURLConnection con = (HttpsURLConnection) myurl.openConnection();
             if (this.curlopts.containsKey("PROXY")) {
@@ -535,18 +535,14 @@ public class APIClient {
                 }
             }
             in.close();
+            con.disconnect();
         } catch (Exception e) {
-            ResponseTemplate tpl = ResponseTemplateManager.getInstance().getTemplate("httperror");
-            response = new StringBuilder(tpl.getPlain());
-            r = new Response(response.toString(), newcmd, cfg);
-            if (this.debugMode) {
-                this.logger.log(secured, r, e.getMessage());
-            }
-            return r;
+            err = e.getMessage();
+            response.append("httperror");
         }
         r = new Response(response.toString(), newcmd, cfg);
         if (this.debugMode) {
-            this.logger.log(secured, r);
+            this.logger.log(secured, r, err);
         }
         return r;
     }

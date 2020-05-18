@@ -475,7 +475,7 @@ public class APIClientTest {
         cmd.put("COMMAND", "GetUserIndex");
         Response r = cl.request(cmd);
         assertTrue(r.isTmpError());
-        ResponseTemplate tpl = ResponseTemplateManager.getInstance().getTemplate("httperror");
+        Response tpl = ResponseTemplateManager.getTemplate("httperror");
         assertEquals(tpl.getCode(), r.getCode());
         assertEquals(tpl.getDescription(), r.getDescription());
     }
@@ -492,7 +492,7 @@ public class APIClientTest {
         cmd.put("COMMAND", "GetUserIndex");
         Response r = cl.request(cmd);
         assertTrue(r.isTmpError());
-        ResponseTemplate tpl = ResponseTemplateManager.getInstance().getTemplate("httperror");
+        Response tpl = ResponseTemplateManager.getTemplate("httperror");
         assertEquals(tpl.getCode(), r.getCode());
         assertEquals(tpl.getDescription(), r.getDescription());
     }
@@ -556,9 +556,6 @@ public class APIClientTest {
      */
     @Test
     public void requestNextResponsePage1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
-                "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
         cmd.put("LIMIT", "2");
@@ -566,7 +563,11 @@ public class APIClientTest {
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd")
                 .useOTESystem();
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+
+        ResponseTemplateManager.addTemplate("listP0",
+                "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
+
+        Response r = new Response("listP0", cmd);
         Response nr = cl.requestNextResponsePage(r);
         assertTrue(r.isSuccess());
         assertTrue(nr.isSuccess());
@@ -585,15 +586,14 @@ public class APIClientTest {
      */
     @Test
     public void requestNextResponsePage2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
         cmd.put("LIMIT", "2");
         cmd.put("FIRST", "0");
         cmd.put("LAST", "1");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         boolean thrown = false;
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd")
@@ -617,13 +617,12 @@ public class APIClientTest {
         APIClient cl = new APIClient();
         cl.setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd").useOTESystem()
                 .disableDebugMode();
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
         cmd.put("LIMIT", "2");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         Response nr = cl.requestNextResponsePage(r);
         assertTrue(r.isSuccess());
         assertTrue(nr.isSuccess());

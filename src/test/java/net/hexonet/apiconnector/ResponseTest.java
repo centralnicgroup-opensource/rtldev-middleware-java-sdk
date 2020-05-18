@@ -9,14 +9,80 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import org.junit.Test;
 
 /**
  * Unit test for class Response
  */
 public class ResponseTest {
+    /**
+     * Test getHash method
+     */
+    @Test
+    public void getHash() {
+        Response tpl = new Response("");
+        Map<String, Object> h = tpl.getHash();
+        assertEquals("423", (String) h.get("CODE"));
+        assertEquals("Empty API response. Probably unreachable API end point",
+                (String) h.get("DESCRIPTION"));
+    }
+
+    /**
+     * Test getQueuetime method #1
+     */
+    @Test
+    public void getQueuetime1() {
+        Response tpl = new Response("");
+        assertEquals(0, tpl.getQueuetime(), 0);
+    }
+
+    /**
+     * Test getQueuetime method #2
+     */
+    @Test
+    public void getQueuetime2() {
+        Response tpl = new Response(
+                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response. Probably unreachable API end point\r\nqueuetime=0\r\nEOF\r\n");
+        assertEquals(0, tpl.getQueuetime(), 0);
+    }
+
+    /**
+     * Test getRuntime method #1
+     */
+    @Test
+    public void getRuntime1() {
+        Response tpl = new Response("");
+        assertEquals(0, tpl.getRuntime(), 0);
+    }
+
+    /**
+     * Test getRuntime method #2
+     */
+    @Test
+    public void getRuntime2() {
+        Response tpl = new Response(
+                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response. Probably unreachable API end point\r\nruntime=0.12\r\nEOF\r\n");
+        assertEquals(0.12, tpl.getRuntime(), 0);
+    }
+
+    /**
+     * Test isPending method #1
+     */
+    @Test
+    public void isPending1() {
+        Response tpl = new Response("");
+        assertEquals(false, tpl.isPending());
+    }
+
+    /**
+     * Test isPending method #2
+     */
+    @Test
+    public void isPending2() {
+        Response tpl = new Response(
+                "[RESPONSE]\r\ncode=423\r\ndescription=Empty API response. Probably unreachable API end point\r\npending=1\r\nEOF\r\n");
+        assertEquals(true, tpl.isPending());
+    }
 
     /**
      * Test getCommandPlain method
@@ -47,42 +113,16 @@ public class ResponseTest {
     }
 
     /**
-     * Test place holder vars replacement mechanism
-     */
-    @Test
-    public void placeHolderReplacements() {
-        Map<String, String> cmd = new HashMap<String, String>();
-        cmd.put("COMMAND", "StatusAccount");
-
-        // ensure no vars are returned in response, just in case no place holder replacements are
-        // provided
-        Response r = new Response("", cmd);
-        String regex = "\\{[^}]+\\}";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(r.getDescription());
-        assertFalse(matcher.find());
-
-        // ensure variable replacements are correctly handled in case place holder replacements are
-        // provided
-        r = new Response("", cmd, Map.ofEntries(Map.entry("CONNECTION_URL", "123HXPHFOUND123")));
-        regex = "123HXPHFOUND123";
-        pattern = Pattern.compile(regex);
-        matcher = pattern.matcher(r.getDescription());
-        assertTrue(matcher.find());
-    }
-
-    /**
      * Test getCurrentPageNumber method #1
      */
     @Test
     public void getCurrentPageNumber1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         assertEquals(1, r.getCurrentPageNumber());
     }
 
@@ -91,12 +131,10 @@ public class ResponseTest {
      */
     @Test
     public void getCurrentPageNumber2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
-
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertEquals(-1, r.getCurrentPageNumber());
     }
 
@@ -105,12 +143,10 @@ public class ResponseTest {
      */
     @Test
     public void getFirstRecordIndex1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
-
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertEquals(-1, r.getFirstRecordIndex());
     }
 
@@ -119,16 +155,15 @@ public class ResponseTest {
      */
     @Test
     public void getFirstRecordIndex2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
-
-        Map<String, Object> h = rtm.getTemplate("OK").getHash();
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
+        Response r = new Response("OK");
+        Map<String, Object> h = r.getHash();
         Map<String, ArrayList<String>> hm = new HashMap<String, ArrayList<String>>();
         hm.put("DOMAIN", new ArrayList<String>(Arrays.asList("mydomain1.com", "mydomain2.com")));
         h.put("PROPERTY", hm);
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(ResponseParser.serialize(h), cmd);
+        r = new Response(ResponseParser.serialize(h), cmd);
         assertEquals(0, r.getFirstRecordIndex());
     }
 
@@ -137,13 +172,12 @@ public class ResponseTest {
      */
     @Test
     public void getColumns() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         ArrayList<Column> cols = r.getColumns();
         assertEquals(6, cols.size());
     }
@@ -153,13 +187,12 @@ public class ResponseTest {
      */
     @Test
     public void getColumnIndex1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         String data = r.getColumnIndex("DOMAIN", 0);
         assertEquals("0-60motorcycletimes.com", data);
     }
@@ -169,13 +202,12 @@ public class ResponseTest {
      */
     @Test
     public void getColumnIndex2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         String data = r.getColumnIndex("COLUMN_NOT_EXISTS", 0);
         assertNull(data);
     }
@@ -185,13 +217,12 @@ public class ResponseTest {
      */
     @Test
     public void getColumnKeys() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         ArrayList<String> colkeys = r.getColumnKeys();
         assertEquals(6, colkeys.size());
         assertTrue(colkeys
@@ -203,13 +234,12 @@ public class ResponseTest {
      */
     @Test
     public void getCurrentRecord1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         Record rec = r.getCurrentRecord();
         Map<String, String> m = new HashMap<String, String>();
         m.put("COUNT", "2");
@@ -226,12 +256,10 @@ public class ResponseTest {
      */
     @Test
     public void getCurrentRecord2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
-
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "StatusAccount");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertNull(r.getCurrentRecord());
     }
 
@@ -241,13 +269,12 @@ public class ResponseTest {
     @Test
     @SuppressWarnings("unchecked")
     public void getListHash() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         Map<String, Object> lh = r.getListHash();
         ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) lh.get("LIST");
         assertEquals(2, list.size());
@@ -263,13 +290,12 @@ public class ResponseTest {
      */
     @Test
     public void getNextRecord() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         Record rec = r.getNextRecord();
         Map<String, String> hm = new HashMap<String, String>();
         hm.put("DOMAIN", "0-be-s01-0.com");
@@ -283,13 +309,12 @@ public class ResponseTest {
      */
     @Test
     public void getPagination() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         Map<String, Object> pager = r.getPagination();
         assertTrue(pager.containsKey("COUNT"));
         assertTrue(pager.containsKey("CURRENTPAGE"));
@@ -307,13 +332,12 @@ public class ResponseTest {
      */
     @Test
     public void getPreviousRecord() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
 
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         r.getNextRecord();
         Map<String, String> hm = new HashMap<String, String>();
         hm.put("COUNT", "2");
@@ -331,11 +355,10 @@ public class ResponseTest {
      */
     @Test
     public void hasNextPage1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertFalse(r.hasNextPage());
     }
 
@@ -344,12 +367,11 @@ public class ResponseTest {
      */
     @Test
     public void hasNextPage2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         assertTrue(r.hasNextPage());
     }
 
@@ -358,11 +380,10 @@ public class ResponseTest {
      */
     @Test
     public void hasPreviousPage1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertFalse(r.hasPreviousPage());
     }
 
@@ -371,12 +392,11 @@ public class ResponseTest {
      */
     @Test
     public void hasPreviousPage2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         assertFalse(r.hasPreviousPage());
     }
 
@@ -385,11 +405,10 @@ public class ResponseTest {
      */
     @Test
     public void getLastRecordIndex1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertEquals(-1, r.getLastRecordIndex());
     }
 
@@ -398,9 +417,8 @@ public class ResponseTest {
      */
     @Test
     public void getLastRecordIndex2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        ResponseTemplate tpl =
-                new ResponseTemplate(rtm.generateTemplate("200", "Command completed successfully"));
+        Response tpl = new Response(
+                ResponseTemplateManager.generateTemplate("200", "Command completed successfully"));
         Map<String, Object> h = tpl.getHash();
         Map<String, Object> hm = new HashMap<String, Object>();
         hm.put("DOMAIN", new ArrayList<String>(Arrays.asList("mydomain1.com", "mydomain2.com")));
@@ -416,11 +434,10 @@ public class ResponseTest {
      */
     @Test
     public void getNextPageNumber1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertEquals(-1, r.getNextPageNumber());
     }
 
@@ -429,12 +446,11 @@ public class ResponseTest {
      */
     @Test
     public void getNextPageNumber2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         assertEquals(2, r.getNextPageNumber());
     }
 
@@ -443,11 +459,10 @@ public class ResponseTest {
      */
     @Test
     public void getNumberOfPages() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertEquals(0, r.getNumberOfPages());
     }
 
@@ -456,11 +471,10 @@ public class ResponseTest {
      */
     @Test
     public void getPreviousPageNumber1() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("OK", rtm.generateTemplate("200", "Command completed successfully"));
+        ResponseTemplateManager.addTemplate("OK", "200", "Command completed successfully");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("OK").getPlain(), cmd);
+        Response r = new Response("OK", cmd);
         assertEquals(-1, r.getPreviousPageNumber());
     }
 
@@ -469,12 +483,11 @@ public class ResponseTest {
      */
     @Test
     public void getPreviousPageNumber2() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         assertEquals(-1, r.getPreviousPageNumber());
     }
 
@@ -483,12 +496,11 @@ public class ResponseTest {
      */
     @Test
     public void rewindRecordList() {
-        ResponseTemplateManager rtm = ResponseTemplateManager.getInstance();
-        rtm.addTemplate("listP0",
+        ResponseTemplateManager.addTemplate("listP0",
                 "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n");
         Map<String, String> cmd = new HashMap<String, String>();
         cmd.put("COMMAND", "QueryDomainList");
-        Response r = new Response(rtm.getTemplate("listP0").getPlain(), cmd);
+        Response r = new Response("listP0", cmd);
         assertNull(r.getPreviousRecord());
         assertNotNull(r.getNextRecord());
         assertNull(r.getNextRecord());

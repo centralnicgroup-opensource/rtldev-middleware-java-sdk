@@ -8,6 +8,12 @@
                 "changelogFile": "HISTORY.md"
             }
         ],
+        [
+            "@semantic-release/exec",
+            {
+                "prepareCmd": "./updateVersion.sh ${nextRelease.version}"
+            }
+        ],
         "@conveyal/maven-semantic-release",
         [
             "@semantic-release/git",

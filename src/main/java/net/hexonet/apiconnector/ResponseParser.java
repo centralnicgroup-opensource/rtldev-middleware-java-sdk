@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * @version %I%, %G%
  * @since 2.0
  */
-public class ResponseParser {
+public final class ResponseParser {
     /**
      * Method to stringify a parsed api response
      * 
