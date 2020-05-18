@@ -70,7 +70,7 @@ public class APIClient {
     /**
      * Set a custom logger for debug mdoe
      * 
-     * @param logger
+     * @param logger your custom logger class instance
      * @return Current APIClient instance for method chaining
      */
     public APIClient setCustomLogger(Logger logger) {
