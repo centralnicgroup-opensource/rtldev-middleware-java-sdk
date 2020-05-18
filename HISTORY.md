@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/hexonet/java-sdk/compare/v4.0.0...v4.0.1) (2020-05-18)
+
+
+### Bug Fixes
+
+* **semantic-release:** include APIClient.java in release commit to include the version number change ([e5de21d](https://github.com/hexonet/java-sdk/commit/e5de21d5532b5209c8cb1fe7da5ff651668d1438))
+
 # [4.0.0](https://github.com/hexonet/java-sdk/compare/v3.2.0...v4.0.0) (2020-05-18)
 
 
