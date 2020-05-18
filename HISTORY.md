@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/hexonet/java-sdk/compare/v4.0.1...v4.0.2) (2020-05-18)
+
+
+### Bug Fixes
+
+* **ci:** correctly cleanup and regnerate site and javadoc ([d8eecdb](https://github.com/hexonet/java-sdk/commit/d8eecdb693cc820836a4a00c7801374c91d73f28))
+
 ## [4.0.1](https://github.com/hexonet/java-sdk/compare/v4.0.0...v4.0.1) (2020-05-18)
 
 
