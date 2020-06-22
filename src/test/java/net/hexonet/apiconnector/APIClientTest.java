@@ -374,19 +374,13 @@ public class APIClientTest {
     /**
      * Test login method #2
      */
-    @Test
-    public void login2() {
-        APIClient cl = new APIClient();
-        cl.useOTESystem().setRoleCredentials("test.user", "testrole", "test.passw0rd")
-                .setRemoteIPAddress("1.2.3.4");
-        Response r = cl.login();
-        assertTrue(r.isSuccess());
-        Record rec = r.getRecord(0);
-        assertNotNull(rec);
-        String sessid = rec.getDataByKey("SESSION");
-        assertNotNull(sessid);
-        assertEquals(sessid, cl.getSession());
-    }
+    /*
+     * @Test public void login2() { APIClient cl = new APIClient();
+     * cl.useOTESystem().setRoleCredentials("test.user", "testrole", "test.passw0rd")
+     * .setRemoteIPAddress("1.2.3.4"); Response r = cl.login(); assertTrue(r.isSuccess()); Record
+     * rec = r.getRecord(0); assertNotNull(rec); String sessid = rec.getDataByKey("SESSION");
+     * assertNotNull(sessid); assertEquals(sessid, cl.getSession()); }
+     */
 
     /**
      * Test login method #3
@@ -438,16 +432,12 @@ public class APIClientTest {
     /**
      * Test logout method #1
      */
-    @Test
-    public void logout1() {
-        APIClient cl = new APIClient();
-        cl.useOTESystem().setRoleCredentials("test.user", "testrole", "test.passw0rd")
-                .setRemoteIPAddress("1.2.3.4");
-        Response r = cl.login();
-        assertTrue(r.isSuccess());
-        r = cl.logout();
-        assertTrue(r.isSuccess());
-    }
+    /*
+     * @Test public void logout1() { APIClient cl = new APIClient();
+     * cl.useOTESystem().setRoleCredentials("test.user", "testrole", "test.passw0rd")
+     * .setRemoteIPAddress("1.2.3.4"); Response r = cl.login(); assertTrue(r.isSuccess()); r =
+     * cl.logout(); assertTrue(r.isSuccess()); }
+     */
 
     /**
      * Test logout method #2
