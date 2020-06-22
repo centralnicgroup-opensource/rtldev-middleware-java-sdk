@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/hexonet/java-sdk/compare/v4.0.3...v4.0.4) (2020-06-22)
+
+
+### Bug Fixes
+
+* **tests:** deactive role user tests ([bdef58b](https://github.com/hexonet/java-sdk/commit/bdef58bb4480743fa3ea7efefbd2ffe3d6306aa6))
+
 ## [4.0.3](https://github.com/hexonet/java-sdk/compare/v4.0.2...v4.0.3) (2020-05-18)
 
 
