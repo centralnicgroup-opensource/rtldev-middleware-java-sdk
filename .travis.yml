@@ -13,8 +13,6 @@ jdk:
   - oraclejdk11
   - openjdk11
   - openjdk-ea
-before_install:
-  - export MAVEN_OPTS=-Dorg.slf4j.simpleLogger.defaultLogLevel=WARN
 install: skip
 script:
   - mvn -B clean
@@ -26,16 +24,13 @@ jobs:
   include:
     - stage: release
       node_js: lts/*
-      before_install:
-        - export TRAVIS_NODE_VERSION="lts/*"
-        - npm prune
       install:
         - rm -rf ~/.nvm
         - git clone https://github.com/creationix/nvm.git ~/.nvm
         - (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
         - source ~/.nvm/nvm.sh
         - nvm install $TRAVIS_NODE_VERSION
-        - travis_retry npm i
+        - travis_retry npm prune && npm i
       script:
         - openssl aes-256-cbc -K $encrypted_c9f9aedf26b7_key -iv $encrypted_c9f9aedf26b7_iv -in codesigning.asc.enc -out codesigning.asc -d
         - gpg --import --batch codesigning.asc
