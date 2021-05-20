@@ -34,7 +34,9 @@ import javax.net.ssl.HttpsURLConnection;
  * @since 2.0
  */
 public class APIClient {
+    /** high performance proxy setup API endpoint url */
     public static final String ISPAPI_CONNECTION_URL_PROXY = "http://127.0.0.1/api/call.cgi";
+    /** common API endpoint url */
     public static final String ISPAPI_CONNECTION_URL = "https://api.ispapi.net/api/call.cgi";
 
     /** represents default http socket timeout */

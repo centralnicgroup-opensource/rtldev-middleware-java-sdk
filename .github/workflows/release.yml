@@ -1,0 +1,59 @@
+name: Release
+on: [push]
+
+jobs:
+  test:
+    name: Test Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Java JDK 16 (adopt)
+        uses: actions/setup-java@v2
+        with:
+          java-version: "16"
+          distribution: "adopt"
+      - name: Validate & Coverage Report
+        run: mvn -B clean site package
+      - uses: actions/upload-artifact@v2
+        with:
+          name: java-sdk-target
+          path: target
+  release:
+    name: Release Job
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Download Maven build artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: java-sdk-target
+      - uses: actions/setup-java@v2
+        with:
+          java-version: "16"
+          distribution: "adopt"
+      - name: Setup NodeJS LTS
+        uses: actions/setup-node@v2
+      - name: Install dependencies
+        run: npm prune && npm i
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          MAVEN_OPTS: ${{ secrets.MAVEN_OPTS }}
+          OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
+          OSSRH_JIRA_PASSWORD: ${{ secrets.OSSRH_JIRA_PASSWORD }}
+          ENCRYPTED_C9F9AEDF26B7_KEY: ${{ secrets.ENCRYPTED_C9F9AEDF26B7_KEY }}
+          ENCRYPTED_C9F9AEDF26B7_IV: ${{ secrets.ENCRYPTED_C9F9AEDF26B7_IV }}
+          GPG_KEY_NAME: ${{ secrets.GPG_KEY_NAME }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          openssl aes-256-cbc -K $ENCRYPTED_C9F9AEDF26B7_KEY -iv $ENCRYPTED_C9F9AEDF26B7_IV -in codesigning.asc.enc -out codesigning.asc -d
+          gpg --import --batch codesigning.asc
+          npx semantic-release
