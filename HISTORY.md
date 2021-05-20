@@ -1,3 +1,10 @@
+## [4.0.6](https://github.com/hexonet/java-sdk/compare/v4.0.5...v4.0.6) (2021-05-20)
+
+
+### Bug Fixes
+
+* **maven-gpg-plugin:** set pinentry-mode to loopback ([98d75f5](https://github.com/hexonet/java-sdk/commit/98d75f5e3ee5aa301f9a1e951bacc60947184e49))
+
 ## [4.0.5](https://github.com/hexonet/java-sdk/compare/v4.0.4...v4.0.5) (2021-05-20)
 
 
