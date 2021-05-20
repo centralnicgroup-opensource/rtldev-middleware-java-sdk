@@ -37,7 +37,7 @@
         "application"
     ],
     "devDependencies": {
-        "@conveyal/maven-semantic-release": "^4.3.0",
+        "@conveyal/maven-semantic-release": "^5.0.0",
         "@semantic-release/changelog": "^5.0.0",
         "@semantic-release/exec": "^5.0.0",
         "@semantic-release/git": "^9.0.0",
