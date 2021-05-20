@@ -1,3 +1,10 @@
+## [4.0.7](https://github.com/hexonet/java-sdk/compare/v4.0.6...v4.0.7) (2021-05-20)
+
+
+### Bug Fixes
+
+* **test:** release ([686b040](https://github.com/hexonet/java-sdk/commit/686b040a682a9a437dc8850cba59ca0f283062a1))
+
 ## [4.0.6](https://github.com/hexonet/java-sdk/compare/v4.0.5...v4.0.6) (2021-05-20)
 
 
