@@ -5,6 +5,13 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+/**
+ * ResponseTranslator is used to translate HEXONET API responses.
+ * 
+ * @author Kai Schwarz
+ * @version %I%, %G%
+ * @since 4.0
+ */
 public final class ResponseTranslator {
     /** hidden class var of API description regex mappings for translation */
     private static Map<String, String> descriptionRegexMap;
@@ -15,10 +22,25 @@ public final class ResponseTranslator {
                 "Authorization failed; Used Command `{COMMAND}` not white-listed by your Access Control List");
     };
 
+    /**
+     * Translate the given API response, no placeholder vars given
+     * 
+     * @param raw The API response in plain text
+     * @param cmd The requested API command
+     * @return the translated API response
+     */
     public static String translate(String raw, Map<String, String> cmd) {
         return translate(raw, cmd, Map.ofEntries());
     }
 
+    /**
+     * Translate the given API response, no placeholders vars given
+     * 
+     * @param raw The API response in plain text
+     * @param cmd The requested API command
+     * @param ph The placeholder vars container
+     * @return the translated API response
+     */
     public static String translate(String raw, Map<String, String> cmd, Map<String, String> ph) {
         String regex;
         Pattern pattern;
