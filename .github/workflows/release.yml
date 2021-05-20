@@ -14,11 +14,13 @@ jobs:
           java-version: "16"
           distribution: "adopt"
       - name: Validate & Coverage Report
-        run: mvn -B clean site package
+        run: |
+          mvn -B clean site package
+          zip -r target.zip  target/
       - uses: actions/upload-artifact@v2
         with:
           name: java-sdk-target
-          path: target
+          path: target.zip
   release:
     name: Release Job
     runs-on: ubuntu-latest
@@ -35,6 +37,9 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: java-sdk-target
+      - run: |
+          unzip target.zip
+          rm target.zip
       - uses: actions/setup-java@v2
         with:
           java-version: "16"
