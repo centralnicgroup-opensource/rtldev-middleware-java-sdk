@@ -1,3 +1,10 @@
+## [4.0.5](https://github.com/hexonet/java-sdk/compare/v4.0.4...v4.0.5) (2021-05-20)
+
+
+### Bug Fixes
+
+* **contributing.md:** test release after gh actions migration ([448a856](https://github.com/hexonet/java-sdk/commit/448a856a2866bd34efb5f4b19cf01028cd21c252))
+
 ## [4.0.4](https://github.com/hexonet/java-sdk/compare/v4.0.3...v4.0.4) (2020-06-22)
 
 
