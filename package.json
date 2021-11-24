@@ -1,47 +1,47 @@
 {
-    "name": "java-sdk",
-    "description": "JAVA SDK for the insanely fast HEXONET API",
-    "version": "0.0.0-development",
-    "private": true,
-    "author": {
-        "name": "Kai Schwarz",
-        "email": "kschwarz@hexonet.net"
-    },
-    "license": "MIT",
-    "engines": {
-        "node": ">=12.0.0"
-    },
-    "homepage": "https://github.com/hexonet/java-sdk",
-    "repository": "github:hexonet/java-sdk",
-    "bugs": "https://github.com/hexonet/java-sdk/issues",
-    "maintainers": [
-        {
-            "name": "Kai Schwarz",
-            "email": "kschwarz@hexonet.net"
-        }
-    ],
-    "keywords": [
-        "hexonet",
-        "domain",
-        "api",
-        "connector",
-        "isp",
-        "ispapi",
-        "ssl",
-        "cert",
-        "dns",
-        "backorder",
-        "premium",
-        "preregistration",
-        "registration",
-        "application"
-    ],
-    "devDependencies": {
-        "@conveyal/maven-semantic-release": "^5.0.0",
-        "@semantic-release/changelog": "^5.0.0",
-        "@semantic-release/exec": "^5.0.0",
-        "@semantic-release/git": "^9.0.0",
-        "npm": ">=6.13.4",
-        "semantic-release": "^18.0.1"
+  "name": "java-sdk",
+  "description": "JAVA SDK for the insanely fast HEXONET API",
+  "version": "0.0.0-development",
+  "private": true,
+  "author": {
+    "name": "Kai Schwarz",
+    "email": "kschwarz@hexonet.net"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.17.0",
+    "npm": ">=6.14.13"
+  },
+  "homepage": "https://github.com/hexonet/java-sdk",
+  "repository": "github:hexonet/java-sdk",
+  "bugs": "https://github.com/hexonet/java-sdk/issues",
+  "maintainers": [
+    {
+      "name": "Kai Schwarz",
+      "email": "kschwarz@hexonet.net"
     }
+  ],
+  "keywords": [
+    "hexonet",
+    "domain",
+    "api",
+    "connector",
+    "isp",
+    "ispapi",
+    "ssl",
+    "cert",
+    "dns",
+    "backorder",
+    "premium",
+    "preregistration",
+    "registration",
+    "application"
+  ],
+  "devDependencies": {
+    "@conveyal/maven-semantic-release": "^5.0.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/exec": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^18.0.1"
+  }
 }
