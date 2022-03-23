@@ -1,3 +1,10 @@
+## [4.0.8](https://github.com/hexonet/java-sdk/compare/v4.0.7...v4.0.8) (2022-03-23)
+
+
+### Bug Fixes
+
+* **ot&e:** url updated for OT&E environment ([292991f](https://github.com/hexonet/java-sdk/commit/292991ff2f1235aa823cc0feaf74a5538c9c0120))
+
 ## [4.0.7](https://github.com/hexonet/java-sdk/compare/v4.0.6...v4.0.7) (2021-05-20)
 
 
