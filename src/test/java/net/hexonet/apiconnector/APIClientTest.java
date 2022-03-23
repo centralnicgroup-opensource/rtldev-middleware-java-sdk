@@ -458,9 +458,9 @@ public class APIClientTest {
     @Test
     public void request1() {
         APIClient cl = new APIClient();
-        cl.enableDebugMode().setURL(cl.getURL().replace("api", "wrongcoreapi"))
-                .setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd")
-                .useOTESystem();
+        cl.enableDebugMode().useOTESystem().setURL(cl.getURL().replace("api", "wrongcoreapi"))
+                .setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd");
+
         Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "GetUserIndex");
         Response r = cl.request(cmd);
@@ -476,8 +476,8 @@ public class APIClientTest {
     @Test
     public void request2() {
         APIClient cl = new APIClient();
-        cl.setURL(cl.getURL().replace("api", "wrongcoreapi")).setRemoteIPAddress("1.2.3.4")
-                .setCredentials("test.user", "test.passw0rd").useOTESystem();
+        cl.useOTESystem().setURL(cl.getURL().replace("api", "wrongcoreapi"))
+                .setRemoteIPAddress("1.2.3.4").setCredentials("test.user", "test.passw0rd");
         Map<String, Object> cmd = new HashMap<String, Object>();
         cmd.put("COMMAND", "GetUserIndex");
         Response r = cl.request(cmd);
