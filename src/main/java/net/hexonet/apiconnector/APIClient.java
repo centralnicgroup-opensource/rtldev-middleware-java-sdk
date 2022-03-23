@@ -38,7 +38,7 @@ public class APIClient {
     public static final String ISPAPI_CONNECTION_URL_PROXY = "http://127.0.0.1/api/call.cgi";
     /** common API endpoint url production environment */
     public static final String ISPAPI_CONNECTION_URL_LIVE = "https://api.ispapi.net/api/call.cgi";
-    /** common API endpoint url OT&E environment */
+    /** common API endpoint url OTE environment */
     public static final String ISPAPI_CONNECTION_URL_OTE =
             "https://api-ote.ispapi.net/api/call.cgi";
 
