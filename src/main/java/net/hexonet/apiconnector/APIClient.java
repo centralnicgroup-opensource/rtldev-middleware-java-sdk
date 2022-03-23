@@ -36,8 +36,11 @@ import javax.net.ssl.HttpsURLConnection;
 public class APIClient {
     /** high performance proxy setup API endpoint url */
     public static final String ISPAPI_CONNECTION_URL_PROXY = "http://127.0.0.1/api/call.cgi";
-    /** common API endpoint url */
-    public static final String ISPAPI_CONNECTION_URL = "https://api.ispapi.net/api/call.cgi";
+    /** common API endpoint url production environment */
+    public static final String ISPAPI_CONNECTION_URL_LIVE = "https://api.ispapi.net/api/call.cgi";
+    /** common API endpoint url OT&E environment */
+    public static final String ISPAPI_CONNECTION_URL_OTE =
+            "https://api-ote.ispapi.net/api/call.cgi";
 
     /** represents default http socket timeout */
     private static int socketTimeout = 300000;
@@ -62,7 +65,7 @@ public class APIClient {
     public APIClient() {
         this.ua = "";
         this.debugMode = false;
-        this.setURL(ISPAPI_CONNECTION_URL);
+        this.setURL(ISPAPI_CONNECTION_URL_LIVE);
         this.socketConfig = new SocketConfig();
         this.useLIVESystem();
         this.curlopts = new HashMap<String, String>();
@@ -123,7 +126,7 @@ public class APIClient {
     /**
      * Method to use to encode data before sending it to the API server
      * 
-     * @param cmd     The command to request
+     * @param cmd The command to request
      * @param secured if password data shall be secured for output purposes
      * @return the ready to use, encoded and secured request payload
      */
@@ -188,7 +191,7 @@ public class APIClient {
      * Set a custom user agent header (useful for tools that use our SDK)
      * 
      * @param str user agent label
-     * @param rv  user agent revision
+     * @param rv user agent revision
      * @return Current APIClient instance for method chaining
      */
     public APIClient setUserAgent(String str, String rv) {
@@ -198,8 +201,8 @@ public class APIClient {
     /**
      * Set a custom user agent header (useful for tools that use our SDK)
      * 
-     * @param str     user agent label
-     * @param rv      user agent revision
+     * @param str user agent label
+     * @param rv user agent revision
      * @param modules further modules to add to user agent string ["module/version"]
      * @return Current APIClient instance for method chaining
      */
@@ -374,7 +377,7 @@ public class APIClient {
      * Set Credentials to be used for API communication
      * 
      * @param uid account name
-     * @param pw  account password
+     * @param pw account password
      * @return Current APIClient instance for method chaining
      */
     public APIClient setCredentials(String uid, String pw) {
@@ -386,9 +389,9 @@ public class APIClient {
     /**
      * Set Credentials to be used for API communication
      * 
-     * @param uid  account name
+     * @param uid account name
      * @param role role user id
-     * @param pw   role user password
+     * @param pw role user password
      * @return Current APIClient instance for method chaining
      */
     public APIClient setRoleCredentials(String uid, String role, String pw) {
@@ -434,7 +437,7 @@ public class APIClient {
      * parameters.
      * 
      * @param params given specific command parameters
-     * @param otp    optional one time password
+     * @param otp optional one time password
      * @return API Response
      */
     public Response loginExtended(Map<String, String> params, String otp) {
@@ -634,7 +637,7 @@ public class APIClient {
      * @return Current APIClient instance for method chaining
      */
     public APIClient useDefaultConnectionSetup() {
-        this.setURL(ISPAPI_CONNECTION_URL);
+        this.setURL(ISPAPI_CONNECTION_URL_LIVE);
         return this;
     }
 
@@ -644,6 +647,7 @@ public class APIClient {
      * @return Current APIClient instance for method chaining
      */
     public APIClient useOTESystem() {
+        this.setURL(ISPAPI_CONNECTION_URL_OTE);
         this.socketConfig.setSystemEntity("1234");
         return this;
     }
@@ -654,6 +658,7 @@ public class APIClient {
      * @return Current APIClient instance for method chaining
      */
     public APIClient useLIVESystem() {
+        this.setURL(ISPAPI_CONNECTION_URL_LIVE);
         this.socketConfig.setSystemEntity("54cd");
         return this;
     }

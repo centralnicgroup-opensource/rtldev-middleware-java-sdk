@@ -107,7 +107,7 @@ public class APIClientTest {
     public void getURL() {
         APIClient cl = new APIClient();
         String url = cl.getURL();
-        assertEquals(APIClient.ISPAPI_CONNECTION_URL, url);
+        assertEquals(APIClient.ISPAPI_CONNECTION_URL_LIVE, url);
     }
 
     /**
@@ -714,6 +714,6 @@ public class APIClientTest {
         APIClient cl = new APIClient();
         cl.useHighPerformanceConnectionSetup();
         cl.useDefaultConnectionSetup();
-        assertEquals(APIClient.ISPAPI_CONNECTION_URL, cl.getURL());
+        assertEquals(APIClient.ISPAPI_CONNECTION_URL_LIVE, cl.getURL());
     }
 }
