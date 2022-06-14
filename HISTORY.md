@@ -1,3 +1,10 @@
+## [4.0.9](https://github.com/hexonet/java-sdk/compare/v4.0.8...v4.0.9) (2022-06-14)
+
+
+### Bug Fixes
+
+* **dep-bump:** upgraded dependencies ([35c1f98](https://github.com/hexonet/java-sdk/commit/35c1f98a2611ffa5ee9113da00d7dc545e875eee))
+
 ## [4.0.8](https://github.com/hexonet/java-sdk/compare/v4.0.7...v4.0.8) (2022-03-23)
 
 
