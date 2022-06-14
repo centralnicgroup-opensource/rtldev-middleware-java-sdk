@@ -20,7 +20,7 @@
             {
                 "assets": [
                     "HISTORY.md",
-                    "package.json",
+                    "package?(-lock).json",
                     "pom.xml",
                     "src/main/java/net/hexonet/apiconnector/APIClient.java",
                     "target/apidocs",
