@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Java JDK 16 (adopt)
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: "16"
           distribution: "adopt"
@@ -35,7 +35,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -46,14 +46,17 @@ jobs:
       - run: |
           unzip -o target.zip
           rm target.zip
-      - uses: actions/setup-java@v2
+      - uses: actions/setup-java@v3
         with:
           java-version: "16"
           distribution: "adopt"
       - name: Setup NodeJS LTS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          check-latest: true
       - name: Install dependencies
-        run: npm prune && npm i
+        run: npm ci
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
