@@ -1,9 +1,9 @@
 name: Release
-on: 
+on:
   push:
     branches:
       - "**"
-    tags-ignore: 
+    tags-ignore:
       - "**"
 
 jobs:
@@ -19,6 +19,15 @@ jobs:
         with:
           java-version: "16"
           distribution: "adopt"
+      - name: Super Linter Code Base
+        uses: github/super-linter@v4
+        env:
+          FILTER_REGEX_INCLUDE: "((/src/main/.*.java)|updateVersion.sh)"
+          DEFAULT_BRANCH: master
+          VALIDATE_GOOGLE_JAVA_FORMAT: true
+          VALIDATE_BASH: true
+          VALIDATE_ALL_CODEBASE: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Validate & Coverage Report
         run: |
           mvn -B clean site package
