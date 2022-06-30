@@ -38,7 +38,8 @@
         "application"
     ],
     "overrides": {
-        "semantic-release": "^19.0.3"
+        "semantic-release": "^19.0.3",
+        "got": "^11.8.5"
     },
     "devDependencies": {
         "@conveyal/maven-semantic-release": "^5.0.0",
