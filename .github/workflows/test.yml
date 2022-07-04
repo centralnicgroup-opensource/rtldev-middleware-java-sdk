@@ -41,8 +41,8 @@ jobs:
           zip -r target.zip  target/
       - uses: actions/upload-artifact@v3
         with:
+          path: java-sdk
           name: target.zip
-          path: target.zip
 
   test_matrix:
     strategy:
@@ -67,7 +67,3 @@ jobs:
         run: |
           mvn -B clean site package
           zip -r target.zip  target/
-      - uses: actions/upload-artifact@v3
-        with:
-          name: target.zip
-          path: target.zip
