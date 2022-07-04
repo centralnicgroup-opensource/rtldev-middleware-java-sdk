@@ -16,21 +16,6 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      #- name: Download Maven build artifact
-      #  uses: actions/download-artifact@v3
-      #  with:
-      #    name: javasdkcoverage
-      #    path: target.zip
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: test.yml
-          workflow_conclusion: success
-          name: javasdkcoverage
-          skip_unpack: true
-      - run: |
-          unzip -o javasdkcoverage.zip
-          rm javasdkcoverage.zip
       - uses: actions/setup-java@v3
         with:
           java-version: "18"
@@ -43,6 +28,10 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm ci
+      # no chance to prioritize test workflow for updating coverage/docs
+      # for now doing it again here  
+      - name: Validate & Coverage Report
+        run: mvn -B clean site package
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
