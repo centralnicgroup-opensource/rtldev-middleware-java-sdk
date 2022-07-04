@@ -28,9 +28,6 @@ jobs:
           workflow_conclusion: success
           name: javasdkcoverage
           path: target.zip
-      - run: |
-          unzip -o javasdkcoverage.zip
-          rm javasdkcoverage.zip
       - uses: actions/setup-java@v3
         with:
           java-version: "18"
