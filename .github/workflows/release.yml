@@ -19,7 +19,6 @@ jobs:
       - name: Download Maven build artifact
         uses: actions/download-artifact@v3
         with:
-          path: java-sdk
           name: target.zip
       - run: |
           unzip -o target.zip
