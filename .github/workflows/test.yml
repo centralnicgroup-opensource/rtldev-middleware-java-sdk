@@ -41,7 +41,8 @@ jobs:
           zip -r target.zip  target/
       - uses: actions/upload-artifact@v3
         with:
-          name: target.zip
+          name: javasdkcoverage
+          path: target.zip
 
   test_matrix:
     strategy:
