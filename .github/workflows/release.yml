@@ -38,7 +38,7 @@ jobs:
           name: coverage
       - run: |
           rm -rf target
-          unzip -o target.zip -qq
+          unzip -qq -o target.zip
           rm target.zip
       - name: Install dependencies
         run: npm ci
