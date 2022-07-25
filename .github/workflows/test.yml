@@ -1,10 +1,9 @@
 name: Test
 
 on:
-  #push:
-    #branches:
-      #- dependabot/**
-      #- '!master'
+  push:
+    branches:
+      - dependabot/**
 
   pull_request:
     types:
@@ -61,4 +60,4 @@ jobs:
         with:
           name: coverage
           path: ~/target.zip
-          retention-days: 5
+          retention-days: 1
