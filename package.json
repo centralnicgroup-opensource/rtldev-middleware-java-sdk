@@ -39,7 +39,8 @@
   ],
   "overrides": {
     "semantic-release": "^19.0.3",
-    "got": "^11.8.5"
+    "got": "^11.8.5",
+    "http-cache-semantics": "^4.1.1"
   },
   "devDependencies": {
     "@conveyal/maven-semantic-release": "^5.0.0",
