@@ -11,7 +11,7 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 
 ## Resources
 
-* [Documentation](https://centralnic-reseller.github.io/centralnic-reseller/docs/hexonet/sdks/java-sdk/)
+* [Documentation](https://centralnicgroup-public.github.io/rtldev-middleware-documentation/docs/hexonet/sdks/java-sdk/)
 * [Release Notes](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/releases)
 
 ## Authors
