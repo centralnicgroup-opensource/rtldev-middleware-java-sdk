@@ -11,10 +11,18 @@
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "./updateVersion.sh ${nextRelease.version}"
+                "prepareCmd": "./updateVersion.sh ${nextRelease.version}",
+                "successCmd": "gulp publish --notes \"${encodeURIComponent(nextRelease.notes)}\""
             }
         ],
-        "@conveyal/maven-semantic-release",
+        [
+            "@terrestris/maven-semantic-release",
+            {
+                "mavenTarget": "deploy",
+                "settingsPath": "maven-settings.xml",
+                "debug": true
+            }
+        ],
         [
             "@semantic-release/git",
             {
