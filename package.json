@@ -9,8 +9,8 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.15.1",
-    "npm": ">=8.11.1"
+    "node": ">=20.6.1",
+    "npm": ">=9.8.1"
   },
   "homepage": "https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk",
   "repository": "github:centralnicgroup-opensource/rtldev-middleware-java-sdk",
@@ -39,15 +39,15 @@
   ],
   "overrides": {
     "xml2js": "^0.5.0",
-    "semantic-release": "^21.0.1",
     "got": "^11.8.5",
     "http-cache-semantics": "^4.1.1"
   },
   "devDependencies": {
-    "@conveyal/maven-semantic-release": "^5.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "semantic-release": "^21.0.1"
+    "@terrestris/maven-semantic-release": "^2.3.0",
+    "gulp": "^4.0.2",
+    "rtldev-middleware-gulp-release-notification-plugin": "github:centralnicgroup-opensource/rtldev-middleware-gulp-release-notification-plugin"
   }
 }
