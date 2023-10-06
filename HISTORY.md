@@ -1,3 +1,10 @@
+## [4.0.10](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.9...v4.0.10) (2023-10-06)
+
+
+### Bug Fixes
+
+* **package & releaserc:** semantic release bump to 22.0.5 and node to latest & gulp release plugin ([6cd5a2f](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/6cd5a2f461a97ec3dc70b7bc62fc310725d7a81f))
+
 ## [4.0.9](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.8...v4.0.9) (2022-06-14)
 
 
