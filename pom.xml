@@ -7,7 +7,7 @@
   </properties>
   <groupId>net.hexonet.apiconnector</groupId>
   <artifactId>java-sdk</artifactId>
-  <version>4.0.10</version>
+  <version>4.0.11</version>
   <packaging>jar</packaging>
   <name>java-sdk</name>
   <description>A connector library for the insanely fast HEXONET backend API.</description>

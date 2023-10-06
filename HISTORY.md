@@ -1,3 +1,10 @@
+## [4.0.11](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.10...v4.0.11) (2023-10-06)
+
+
+### Bug Fixes
+
+* **release.yml:** rewording ([f5ef3ed](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/f5ef3ed854d77dd0ba62f130647264b4b0c3cd83))
+
 ## [4.0.10](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.9...v4.0.10) (2023-10-06)
 
 
