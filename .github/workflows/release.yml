@@ -23,8 +23,8 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-java@v3
         with:
-          java-version: "18"
-          distribution: "adopt"
+          java-version: ${{ vars.RTLDEV_MW_CI_JAVA_VERSION }}
+          distribution: ${{ vars.RTLDEV_MW_CI_JAVA_DISTRO }}
       - name: Setup NodeJS ${{ vars.RTLDEV_MW_CI_NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
