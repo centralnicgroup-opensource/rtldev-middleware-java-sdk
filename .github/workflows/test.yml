@@ -16,7 +16,7 @@ jobs:
   # separate job to set as required in branch protection,
   # as the build names above change each time Node versions change
   lint:
-    name: Linting
+    name: 🧪 Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,7 +41,7 @@ jobs:
       matrix:
         java-version: ${{ fromJson(vars.RTLDEV_MW_CI_JAVA_MATRIX) }}
 
-    name: Test @ Java JDK ${{ matrix.java-version }}
+    name: 🧪 Testing
     needs: lint    
 
     steps:
