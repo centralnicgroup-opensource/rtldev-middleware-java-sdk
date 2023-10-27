@@ -1,3 +1,11 @@
+## [4.0.12](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.11...v4.0.12) (2023-10-27)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-clean-plugin ([88abc3e](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/88abc3ed3b0929bed5b87a35ce35d51a3b8bcdf0))
+* **deps:** bump org.apache.maven.plugins:maven-surefire-plugin ([3325284](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/3325284a0de5e1e6935164ee598228efc07711a6))
+
 ## [4.0.11](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.10...v4.0.11) (2023-10-06)
 
 
