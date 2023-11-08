@@ -70,7 +70,6 @@
         <version>3.6.2</version>
         <configuration>
           <verbose>true</verbose>
-          <source>8</source>
           <additionalOptions>-html5</additionalOptions>
         </configuration>
         <executions>
@@ -122,6 +121,11 @@
       <plugin>
         <artifactId>maven-install-plugin</artifactId>
         <version>3.1.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.4.5</version> <!-- Use the desired version -->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

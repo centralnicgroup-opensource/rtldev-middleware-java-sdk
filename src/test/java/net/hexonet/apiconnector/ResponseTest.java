@@ -108,7 +108,7 @@ public class ResponseTest {
         cmd.put("SUBUSER", "test.user");
         cmd.put("PASSWORD", "test.passw0rd");
         Response r = new Response("", cmd);
-        String str = "SUBUSER = test.user\nCOMMAND = CheckAuthentication\nPASSWORD = ***\n";
+        String str = "COMMAND = CheckAuthentication\nPASSWORD = ***\nSUBUSER = test.user\n";
         assertEquals(str, r.getCommandPlain());
     }
 

@@ -1,0 +1,15 @@
+// .devcontainer/devcontainer.json
+{
+    "name": "Java",
+    "image": "mcr.microsoft.com/devcontainers/java",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        },
+        "extensions": [
+            "vscjava.vscode-java-pack"
+        ]
+    }
+}

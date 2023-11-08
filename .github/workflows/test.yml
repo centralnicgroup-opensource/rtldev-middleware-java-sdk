@@ -4,14 +4,11 @@ on:
   workflow_call:
 
 jobs:
-  # separate job to set as required in branch protection,
-  # as the build names above change each time Node versions change
   lint:
     name: 🧪 Linting
     runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
     permissions:
       contents: read
-      packages: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,25 +20,20 @@ jobs:
         env:
           FILTER_REGEX_INCLUDE: "((/src/main/.*.java)|updateVersion.sh)"
           DEFAULT_BRANCH: master
-          VALIDATE_GOOGLE_JAVA_FORMAT: true
+          VALIDATE_JAVA: true
           VALIDATE_BASH: true
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test_matrix:
+    name: 🧪 Testing
     runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
+    needs: lint   
     permissions:
-      contents: write
-      packages: write
-      deployments: write
-
+      contents: read
     strategy:
       matrix:
         java-version: ${{ fromJson(vars.RTLDEV_MW_CI_JAVA_MATRIX) }}
-
-    name: 🧪 Testing
-    needs: lint    
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
