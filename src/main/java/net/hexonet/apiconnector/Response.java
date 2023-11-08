@@ -3,16 +3,19 @@ package net.hexonet.apiconnector;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Response covers all functionality to wrap a Backend API Response like accessing data
- * 
+ * Response covers all functionality to wrap a Backend API Response like
+ * accessing data
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
  */
 public class Response {
+
     /** backend system plain response data */
     private String raw;
     /** backend system parsed response data (hash format) */
@@ -23,7 +26,8 @@ public class Response {
      */
     private Map<String, String> command;
     /**
-     * Column names available in this responsse NOTE: this includes also FIRST, LAST, LIMIT, COUNT,
+     * Column names available in this responsse NOTE: this includes also FIRST,
+     * LAST, LIMIT, COUNT,
      * TOTAL and maybe further specific columns in case of a list query
      */
     private ArrayList<String> columnkeys;
@@ -42,7 +46,7 @@ public class Response {
 
     /**
      * Constructor
-     * 
+     *
      * @param raw API plain response
      */
     public Response(String raw) {
@@ -51,7 +55,7 @@ public class Response {
 
     /**
      * Constructor
-     * 
+     *
      * @param raw API plain response
      * @param cmd API command used within this request
      */
@@ -61,7 +65,7 @@ public class Response {
 
     /**
      * Constructor
-     * 
+     *
      * @param raw API plain response
      * @param cmd API command used within this request
      * @param ph  place holder variables replacements
@@ -84,7 +88,9 @@ public class Response {
         Object property = this.hash.get("PROPERTY");
         if (property != null) {
             Map<String, ArrayList<String>> p = (HashMap<String, ArrayList<String>>) property;
-            Iterator<Map.Entry<String, ArrayList<String>>> it = p.entrySet().iterator();
+            Iterator<Map.Entry<String, ArrayList<String>>> it = p
+                    .entrySet()
+                    .iterator();
             int count = 0;
             while (it.hasNext()) {
                 Map.Entry<String, ArrayList<String>> pair = it.next();
@@ -112,7 +118,7 @@ public class Response {
 
     /**
      * Get API response code
-     * 
+     *
      * @return API response code
      */
     public int getCode() {
@@ -121,7 +127,7 @@ public class Response {
 
     /**
      * Get API response description
-     * 
+     *
      * @return API response description
      */
     public String getDescription() {
@@ -130,7 +136,7 @@ public class Response {
 
     /**
      * Get Plain API response
-     * 
+     *
      * @return Plain API response
      */
     public String getPlain() {
@@ -139,7 +145,7 @@ public class Response {
 
     /**
      * Get Queuetime of API response
-     * 
+     *
      * @return Queuetime of API response
      */
     public double getQueuetime() {
@@ -152,7 +158,7 @@ public class Response {
 
     /**
      * Get API response as Hash
-     * 
+     *
      * @return API response hash
      */
     public Map<String, Object> getHash() {
@@ -161,7 +167,7 @@ public class Response {
 
     /**
      * Get Runtime of API response
-     * 
+     *
      * @return Runtime of API response
      */
     public double getRuntime() {
@@ -173,8 +179,9 @@ public class Response {
     }
 
     /**
-     * Check if current API response represents an error case API response code is an 5xx code
-     * 
+     * Check if current API response represents an error case API response code is
+     * an 5xx code
+     *
      * @return boolean result
      */
     public boolean isError() {
@@ -183,8 +190,9 @@ public class Response {
     }
 
     /**
-     * Check if current API response represents a success case API response code is an 2xx code
-     * 
+     * Check if current API response represents a success case API response code is
+     * an 2xx code
+     *
      * @return boolean result
      */
     public boolean isSuccess() {
@@ -193,9 +201,10 @@ public class Response {
     }
 
     /**
-     * Check if current API response represents a temporary error case API response code is an 4xx
+     * Check if current API response represents a temporary error case API response
+     * code is an 4xx
      * code
-     * 
+     *
      * @return boolean result
      */
     public boolean isTmpError() {
@@ -204,8 +213,8 @@ public class Response {
     }
 
     /**
-     * Check if current operation is returned as pending
-     * 
+     * Check if current operation is returned as pending.
+     *
      * @return boolean result
      */
     public boolean isPending() {
@@ -217,8 +226,8 @@ public class Response {
     }
 
     /**
-     * Add a column to the column list
-     * 
+     * Add a column to the column list.
+     *
      * @param key  column name
      * @param data array of column data
      * @return Current Response Instance for method chaining
@@ -231,8 +240,8 @@ public class Response {
     }
 
     /**
-     * Add a record to the record list
-     * 
+     * Add a record to the record list.
+     *
      * @param h row data
      * @return Current Response Instance for method chaining
      */
@@ -242,8 +251,8 @@ public class Response {
     }
 
     /**
-     * Get column by column name
-     * 
+     * Get column by column name.
+     *
      * @param key column name
      * @return column instance or null if column does not exist
      */
@@ -255,8 +264,8 @@ public class Response {
     }
 
     /**
-     * Get Data by Column Name and Index
-     * 
+     * Get Data by Column Name and Index.
+     *
      * @param colkey column name
      * @param index  column data index
      * @return column data at index or null if not found
@@ -270,8 +279,8 @@ public class Response {
     }
 
     /**
-     * Get Column Names
-     * 
+     * Get Column Names.
+     *
      * @return Array of Column Names
      */
     public ArrayList<String> getColumnKeys() {
@@ -279,8 +288,8 @@ public class Response {
     }
 
     /**
-     * Get List of Columns
-     * 
+     * Get List of Columns.
+     *
      * @return Array of Columns
      */
     public ArrayList<Column> getColumns() {
@@ -288,8 +297,8 @@ public class Response {
     }
 
     /**
-     * Get Command used in this request
-     * 
+     * Get Command used in this request.
+     *
      * @return command
      */
     public Map<String, String> getCommand() {
@@ -297,26 +306,28 @@ public class Response {
     }
 
     /**
-     * Get Command used in this request in plain text
-     * 
+     * Get Command used in this request in plain text.
+     *
      * @return plain text command
      */
     public String getCommandPlain() {
         StringBuilder tmp = new StringBuilder("");
-        Iterator<Map.Entry<String, String>> it = this.command.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, String> pair = it.next();
-            tmp.append(pair.getKey());
-            tmp.append(" = ");
-            tmp.append(pair.getValue());
-            tmp.append("\n");
+        List<Map.Entry<String, String>> sortedEntries = new ArrayList<>(
+                this.command.entrySet());
+        sortedEntries.sort(Map.Entry.comparingByKey());
+        for (Map.Entry<String, String> pair : sortedEntries) {
+            tmp
+                    .append(pair.getKey())
+                    .append(" = ")
+                    .append(pair.getValue())
+                    .append("\n");
         }
         return tmp.toString();
     }
 
     /**
-     * Get Page Number of current List Query
-     * 
+     * Get Page Number of current List Query.
+     *
      * @return page number or -1 in case of a non-list response
      */
     public int getCurrentPageNumber() {
@@ -329,8 +340,8 @@ public class Response {
     }
 
     /**
-     * Get Record of current record index
-     * 
+     * Get Record of current record index.
+     *
      * @return Record or null in case of a non-list response
      */
     public Record getCurrentRecord() {
@@ -341,8 +352,8 @@ public class Response {
     }
 
     /**
-     * Get Index of first row in this response
-     * 
+     * Get Index of first row in this response.
+     *
      * @return first row index; -1 if record list is empty
      */
     public int getFirstRecordIndex() {
@@ -360,8 +371,8 @@ public class Response {
     }
 
     /**
-     * Get last record index of the current list query
-     * 
+     * Get last record index of the current list query.
+     *
      * @return record index or -1 for a non-list response
      */
     public int getLastRecordIndex() {
@@ -380,8 +391,8 @@ public class Response {
     }
 
     /**
-     * Get Response as List Hash including useful meta data for tables
-     * 
+     * Get Response as List Hash including useful meta data for tables.
+     *
      * @return hash including list meta data and array of rows in hash notation
      */
     public Map<String, Object> getListHash() {
@@ -400,8 +411,8 @@ public class Response {
     }
 
     /**
-     * Get next record in record list
-     * 
+     * Get next record in record list.
+     *
      * @return Record or null in case there's no further record
      */
     public Record getNextRecord() {
@@ -412,8 +423,8 @@ public class Response {
     }
 
     /**
-     * Get Page Number of next list query
-     * 
+     * Get Page Number of next list query.
+     *
      * @return page number or -1 if there's no next page
      */
     public int getNextPageNumber() {
@@ -427,8 +438,8 @@ public class Response {
     }
 
     /**
-     * Get the number of pages available for this list query
-     * 
+     * Get the number of pages available for this list query.
+     *
      * @return number of pages
      */
     public int getNumberOfPages() {
@@ -441,8 +452,8 @@ public class Response {
     }
 
     /**
-     * Get object containing all paging data
-     * 
+     * Get object containing all paging data.
+     *
      * @return paginator data
      */
     public Map<String, Object> getPagination() {
@@ -460,8 +471,8 @@ public class Response {
     }
 
     /**
-     * Get Page Number of previous list query
-     * 
+     * Get Page Number of previous list query.
+     *
      * @return page number or -1 if there's no previous page
      */
     public int getPreviousPageNumber() {
@@ -477,8 +488,8 @@ public class Response {
     }
 
     /**
-     * Get previous record in record list
-     * 
+     * Get previous record in record list.
+     *
      * @return Record or null if there's no previous record
      */
     public Record getPreviousRecord() {
@@ -489,12 +500,12 @@ public class Response {
     }
 
     /**
-     * Get Record at given index
-     * 
+     * Get Record at given index.
+     *
      * @param idx record index
      * @return Record or null if index does not exist
      */
-    public Record getRecord(int idx) {
+    public Record getRecord(final int idx) {
         if (idx >= 0 && this.records.size() > idx) {
             return this.records.get(idx);
         }
@@ -502,8 +513,8 @@ public class Response {
     }
 
     /**
-     * Get all Records
-     * 
+     * Get all Records.
+     *
      * @return list of records
      */
     public ArrayList<Record> getRecords() {
@@ -512,7 +523,7 @@ public class Response {
 
     /**
      * Get count of rows in this response
-     * 
+     *
      * @return count of rows
      */
     public int getRecordsCount() {
@@ -520,8 +531,8 @@ public class Response {
     }
 
     /**
-     * Get total count of records available for the list query
-     * 
+     * Get total count of records available for the list query.
+     *
      * @return total count of records or count of records for a non-list response
      */
     public int getRecordsTotalCount() {
@@ -536,8 +547,9 @@ public class Response {
     }
 
     /**
-     * Get limit(ation) setting of the current list query This is the count of requested rows
-     * 
+     * Get limit(ation) setting of the current list query This is the count of
+     * requested rows
+     *
      * @return limit setting or count requested rows
      */
     public int getRecordsLimitation() {
@@ -553,7 +565,7 @@ public class Response {
 
     /**
      * Check if this list query has a next page
-     * 
+     *
      * @return boolean result
      */
     public boolean hasNextPage() {
@@ -566,7 +578,7 @@ public class Response {
 
     /**
      * Check if this list query has a previous page
-     * 
+     *
      * @return boolean result
      */
     public boolean hasPreviousPage() {
@@ -579,7 +591,7 @@ public class Response {
 
     /**
      * Reset index in record list back to zero
-     * 
+     *
      * @return Current Response Instance for method chaining
      */
     public Response rewindRecordList() {
@@ -589,17 +601,17 @@ public class Response {
 
     /**
      * Check if column exists in response
-     * 
+     *
      * @param key column name
      * @return boolean result
      */
-    private boolean hasColumn(String key) {
+    private boolean hasColumn(final String key) {
         return (this.columnkeys.indexOf(key) != -1);
     }
 
     /**
      * Check if the record list contains a record for the current record index in use
-     * 
+     *
      * @return boolean result
      */
     private boolean hasCurrentRecord() {
@@ -609,7 +621,7 @@ public class Response {
 
     /**
      * Check if the record list contains a next record for the current record index in use
-     * 
+     *
      * @return boolean result
      */
     private boolean hasNextRecord() {
@@ -618,8 +630,9 @@ public class Response {
     }
 
     /**
-     * Check if the record list contains a previous record for the current record index in use
-     * 
+     * Check if the record list contains a previous record for the current record
+     * index in use
+     *
      * @return boolean result
      */
     private boolean hasPreviousRecord() {
