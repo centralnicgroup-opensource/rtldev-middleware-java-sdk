@@ -1,3 +1,12 @@
+## [4.0.13](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.12...v4.0.13) (2023-11-09)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-javadoc-plugin ([ddf8804](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/ddf8804bf8055ef32d3b75092c832f50e75b46f5))
+* **deps:** bump org.apache.maven.plugins:maven-surefire-plugin ([63268a9](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/63268a979e523a4e49a2779d418a311feb3d6737))
+* **Response.java:** Refactored the code to return sorted plain command results. ([0152f78](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/0152f78efb85556873df9ec754a69d6a466aafa0))
+
 ## [4.0.12](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.11...v4.0.12) (2023-10-27)
 
 
