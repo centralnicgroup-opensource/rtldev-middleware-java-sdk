@@ -16,7 +16,7 @@ jobs:
     
   dependabot:
     name: Auto-merge Dependabot PR
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
     needs: tests
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
@@ -31,4 +31,4 @@ jobs:
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.RTLDEV_MW_CI_TOKEN}}
