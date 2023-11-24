@@ -57,7 +57,8 @@ jobs:
           ENCRYPTED_C9F9AEDF26B7_IV: ${{ secrets.ENCRYPTED_C9F9AEDF26B7_IV }}
           GPG_KEY_NAME: ${{ secrets.GPG_KEY_NAME }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          RTLDEV_MW_NOTIFICATION_URI: ${{ secrets.RTLDEV_MW_CI_NOTIFICATION_URI }}
+          TEAMS_NOTIFICATION_URI: ${{ secrets.RTLDEV_MW_CI_NOTIFICATION_URI }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           openssl aes-256-cbc -K $ENCRYPTED_C9F9AEDF26B7_KEY -iv $ENCRYPTED_C9F9AEDF26B7_IV -in codesigning.asc.enc -out codesigning.asc -d
           gpg --import --batch codesigning.asc
