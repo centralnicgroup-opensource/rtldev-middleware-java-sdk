@@ -5,61 +5,8 @@ on:
       - master
 
 jobs:
-  build:
-    name: Build
-    uses: ./.github/workflows/test.yml
-    permissions:
-      contents: read
-      packages: write
-
   release:
-    name: Release
-    runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
-    needs: build
-    permissions:
-      contents: write
-      issues: write
-      deployments: write    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: actions/setup-java@v4
-        with:
-          java-version: ${{ vars.RTLDEV_MW_CI_JAVA_VERSION }}
-          distribution: ${{ vars.RTLDEV_MW_CI_JAVA_DISTRO }}
-      - name: Setup NodeJS ${{ vars.RTLDEV_MW_CI_NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ vars.RTLDEV_MW_CI_NODE_VERSION }}
-          check-latest: true
-          cache: "npm"
-      - name: Download Artifacts
-        uses: actions/download-artifact@v4
-        id: download
-        with:
-          name: coverage
-      - run: |
-          rm -rf target
-          unzip -qq -o target.zip
-          rm target.zip
-      - name: Install dependencies
-        run: npm ci
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.RTLDEV_MW_CI_TOKEN }}
-          MAVEN_OPTS: ${{ vars.MAVEN_OPTS }}
-          OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
-          OSSRH_JIRA_PASSWORD: ${{ secrets.OSSRH_JIRA_PASSWORD }}
-          ENCRYPTED_C9F9AEDF26B7_KEY: ${{ secrets.ENCRYPTED_C9F9AEDF26B7_KEY }}
-          ENCRYPTED_C9F9AEDF26B7_IV: ${{ secrets.ENCRYPTED_C9F9AEDF26B7_IV }}
-          GPG_KEY_NAME: ${{ secrets.GPG_KEY_NAME }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          TEAMS_NOTIFICATION_URI: ${{ secrets.RTLDEV_MW_CI_NOTIFICATION_URI }}
-          COMMIT_SHA: ${{ github.sha }}
-        run: |
-          openssl aes-256-cbc -K $ENCRYPTED_C9F9AEDF26B7_KEY -iv $ENCRYPTED_C9F9AEDF26B7_IV -in codesigning.asc.enc -out codesigning.asc -d
-          gpg --import --batch codesigning.asc
-          npx semantic-release
+    uses: centralnicgroup-opensource/rtldev-middleware-shareable-workflows/.github/workflows/release.yml
+    secrets: inherit
+    with:
+      repository: ${{ github.repository }}

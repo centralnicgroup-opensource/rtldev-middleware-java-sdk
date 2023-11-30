@@ -1,57 +1,13 @@
-name: Test
-
+name: Dependabot auto-merge & tests
 on:
-  workflow_call:
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
-  lint:
-    name: 🧪 Linting
-    runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Super Linter Code Base
-        uses: github/super-linter/slim@v5
-        env:
-          FILTER_REGEX_INCLUDE: "((/src/main/.*.java)|updateVersion.sh)"
-          DEFAULT_BRANCH: master
-          VALIDATE_JAVA: true
-          VALIDATE_BASH: true
-          VALIDATE_ALL_CODEBASE: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  test_matrix:
-    name: 🧪 Testing
-    runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
-    needs: lint   
-    permissions:
-      contents: read
-    strategy:
-      matrix:
-        java-version: ${{ fromJson(vars.RTLDEV_MW_CI_JAVA_MATRIX) }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Java JDK @^${{ matrix.java-version }}
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ matrix.java-version }}
-          distribution: ${{ vars.RTLDEV_MW_CI_JAVA_DISTRO }}
-      - name: Validate & Coverage Report
-        run: |
-          mvn -B clean site package -Pdev
-          zip -r /home/runner/target.zip ./target
-      - uses: actions/upload-artifact@v4
-        id: upload
-        with:
-          name: coverage
-          path: ~/target.zip
-          retention-days: 1
+  tests:
+    uses: centralnicgroup-opensource/rtldev-middleware-shareable-workflows/.github/workflows/auto-merge-dependabot-pr.yml
+    secrets: inherit
+    with:
+      repository: ${{ github.repository }}
