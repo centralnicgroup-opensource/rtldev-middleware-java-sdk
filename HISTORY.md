@@ -1,3 +1,10 @@
+## [4.0.16](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.15...v4.0.16) (2023-12-14)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-surefire-plugin ([3916b9d](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/3916b9dc9388c21de0975bd7ad0e9d1f24e76cdb))
+
 ## [4.0.15](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.14...v4.0.15) (2023-12-4)
 
 
