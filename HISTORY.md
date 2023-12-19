@@ -1,3 +1,10 @@
+## [4.0.17](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.16...v4.0.17) (2023-12-19)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-compiler-plugin ([b0f194c](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/b0f194c3341383670b464c43968a787d02a85481))
+
 ## [4.0.16](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.15...v4.0.16) (2023-12-14)
 
 
