@@ -47,7 +47,7 @@ jobs:
           distribution: ${{ vars.RTLDEV_MW_CI_JAVA_DISTRO }}
       - name: Validate & Coverage Report
         run: |
-          mvn -B clean site package
+          mvn -B clean site package -Pdev
           zip -r /home/runner/target.zip ./target
       - uses: actions/upload-artifact@v3
         id: upload
