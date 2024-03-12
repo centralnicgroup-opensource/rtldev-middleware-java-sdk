@@ -1,3 +1,10 @@
+## [4.0.19](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.18...v4.0.19) (2024-03-12)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-gpg-plugin ([0cd1850](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/0cd185006aaeb87d902bd6464a8485c83ea94c77))
+
 ## [4.0.18](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.17...v4.0.18) (2024-1-19)
 
 
