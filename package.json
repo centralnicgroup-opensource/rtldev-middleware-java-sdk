@@ -40,7 +40,6 @@
     "xml2js": "^0.5.0",
     "got": "^11.8.5",
     "http-cache-semantics": "^4.1.1",
-    "chokidar": "^3.5.3",
     "glob-parent": "^5.1.2"
   },
   "devDependencies": {
