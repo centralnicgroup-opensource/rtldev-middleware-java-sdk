@@ -35,6 +35,7 @@
                 ]
             }
         ],
+        "semantic-release-teams-notify-plugin",
         "@semantic-release/github"
     ]
 }
