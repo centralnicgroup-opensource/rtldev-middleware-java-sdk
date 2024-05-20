@@ -4,12 +4,27 @@
     "image": "mcr.microsoft.com/devcontainers/java",
     "customizations": {
         "vscode": {
-            "settings": {
-                "terminal.integrated.shell.linux": "/bin/bash"
+            "zsh": {
+                "path": "zsh"
             }
         },
         "extensions": [
             "vscjava.vscode-java-pack"
         ]
-    }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "postCreateCommand": "zsh ./.devcontainer/post-create.sh",
+    "runArgs": [
+        "--name",
+        "rtldev-middleware-java-sdk"
+    ],
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE},target=/WSL_USER,type=bind,consistency=cached"
+    ],
+    "remoteUser": "vscode"
 }
