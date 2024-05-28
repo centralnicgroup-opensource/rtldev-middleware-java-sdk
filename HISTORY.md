@@ -1,3 +1,10 @@
+## [4.0.24](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.23...v4.0.24) (2024-05-28)
+
+
+### Bug Fixes
+
+* **deps:** bump org.sonatype.plugins:nexus-staging-maven-plugin ([9ab3b3a](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/9ab3b3a65872bd23f9e2118e42ae47e92358c9f8))
+
 ## [4.0.23](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.22...v4.0.23) (2024-04-29)
 
 
