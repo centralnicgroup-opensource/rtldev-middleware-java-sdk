@@ -10,7 +10,7 @@ npm install -g commitizen
 echo '{"path": "cz-conventional-changelog"}' >> ~/.czrc
 
 export ZSH_CUSTOM=/home/vscode/.oh-my-zsh/custom
-export CONFIGURATION_PATH=/workspaces/rtldev-middleware-java-sdk/.devcontainer/configurations
+export CONFIGURATION_PATH=${OLDPWD}/.devcontainer/configurations
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k \
     && chown -R vscode:vscode $ZSH_CUSTOM/themes/powerlevel10k
 
