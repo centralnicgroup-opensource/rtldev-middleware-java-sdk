@@ -2,15 +2,18 @@
 {
     "name": "Java",
     "image": "mcr.microsoft.com/devcontainers/java",
+    "workspaceFolder": "/usr/share/rtldev-middleware-java-sdk",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/usr/share/rtldev-middleware-java-sdk,type=bind",
     "customizations": {
         "vscode": {
             "zsh": {
                 "path": "zsh"
-            }
-        },
-        "extensions": [
-            "vscjava.vscode-java-pack"
-        ]
+            },
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "eamodio.gitlens"
+            ]
+        }
     },
     "features": {
         "ghcr.io/devcontainers/features/node:1": {
