@@ -1,3 +1,10 @@
+## [4.0.25](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.24...v4.0.25) (2024-05-31)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-enforcer-plugin ([56aba10](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/56aba10c9b6b80100223b367253ce32a205aa42e))
+
 ## [4.0.24](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.23...v4.0.24) (2024-05-28)
 
 
