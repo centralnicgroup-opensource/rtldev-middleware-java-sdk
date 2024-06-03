@@ -1,3 +1,10 @@
+## [4.0.26](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.25...v4.0.26) (2024-06-03)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-javadoc-plugin ([a039f45](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/a039f45cc09f4d97279cd9d12ac930cfc5e2d485))
+
 ## [4.0.25](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.24...v4.0.25) (2024-05-31)
 
 
