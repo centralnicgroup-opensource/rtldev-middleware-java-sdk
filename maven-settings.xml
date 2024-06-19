@@ -5,8 +5,8 @@
   <servers>
     <server>
       <id>ossrh</id>
-      <username>u1DFIM8q</username>
-      <password>6mquStSvHjk/6jI3gAWXXuSJhUiJ2uO020RYvs9h9gC0</password>
+      <username>${env.OSSRH_JIRA_USERNAME}</username>
+      <password>${env.OSSRH_JIRA_PASSWORD}</password>
     </server>
   </servers>
   <profiles>
