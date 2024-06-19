@@ -1,3 +1,10 @@
+## [4.0.28](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.27...v4.0.28) (2024-06-19)
+
+
+### Bug Fixes
+
+* **maven-settings.xml:** bumped server id to ossrh (do not upgrad) ([bc6e54e](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/bc6e54e66ab7fbd20a3cc65e08b183d17f123318))
+
 ## [4.0.27](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.26...v4.0.27) (2024-06-19)
 
 
