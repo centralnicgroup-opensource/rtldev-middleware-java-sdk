@@ -1,11 +1,11 @@
 {
   "name": "java-sdk",
-  "description": "JAVA SDK for the insanely fast HEXONET API",
+  "description": "JAVA SDK for the insanely fast HEXONET and CNR API",
   "version": "0.0.0-development",
   "private": true,
   "author": {
     "name": "Kai Schwarz",
-    "email": "kschwarz@hexonet.net"
+    "email": "kai.schwarz@centralnic.com"
   },
   "license": "MIT",
   "engines": {
@@ -17,7 +17,11 @@
   "maintainers": [
     {
       "name": "Kai Schwarz",
-      "email": "kschwarz@hexonet.net"
+      "email": "kai.schwarz@centralnic.com"
+    },
+    {
+      "name": "Asif Nawaz",
+      "email": "asif.nawaz@centralnic.com"
     }
   ],
   "keywords": [
