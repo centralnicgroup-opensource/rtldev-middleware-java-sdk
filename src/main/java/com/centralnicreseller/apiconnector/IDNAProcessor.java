@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.IDNA.Info;
 
-class IDNAProcessor {
+public final class IDNAProcessor {
 
     // Private constructor to prevent instantiation
     private IDNAProcessor() {
