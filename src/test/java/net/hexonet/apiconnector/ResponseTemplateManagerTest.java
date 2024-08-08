@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.Map;
 import org.junit.Test;
 
+import net.hexonet.apiconnector.Response;
+import net.hexonet.apiconnector.ResponseTemplateManager;
+
 /**
  * Unit test for class ResponseTemplateManager
  */

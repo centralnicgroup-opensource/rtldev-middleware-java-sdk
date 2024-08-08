@@ -2,8 +2,8 @@ package net.hexonet.apiconnector;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * ResponseTranslator is used to translate HEXONET API responses.

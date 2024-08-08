@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import org.junit.Test;
 
+import net.hexonet.apiconnector.Column;
+
 /**
  * Unit test for class Column
  */
