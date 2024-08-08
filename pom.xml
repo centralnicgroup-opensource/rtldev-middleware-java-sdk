@@ -9,12 +9,12 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
-    <groupId>net.hexonet.apiconnector</groupId>
+    <groupId>io.github.centralnicgroup-opensource</groupId>
     <artifactId>java-sdk</artifactId>
     <version>4.0.33</version>
     <packaging>jar</packaging>
     <name>java-sdk</name>
-    <description>A connector library for the insanely fast HEXONET backend API.</description>
+    <description>A connector library for the insanely fast backend API for Centralnic Reseller and Hexonet.</description>
     <url>https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk</url>
     <licenses>
         <license>
@@ -26,8 +26,8 @@
         <developer>
             <name>Kai Schwarz</name>
             <email>kschwarz@hexonet.net</email>
-            <organization>HEXONET GmbH</organization>
-            <organizationUrl>https://www.hexonet.net</organizationUrl>
+            <organization>Team Internet Group Plc</organization>
+            <organizationUrl>https://www.teaminternet.com</organizationUrl>
         </developer>
     </developers>
     <scm>
@@ -171,6 +171,15 @@
                         <artifactId>maven-site-plugin</artifactId>
                         <version>3.12.1</version>
                     </plugin>
+                    <plugin>
+                      <groupId>org.sonatype.central</groupId>
+                      <artifactId>central-publishing-maven-plugin</artifactId>
+                      <version>0.5.0</version>
+                      <extensions>true</extensions>
+                      <configuration>
+                          <publishingServerId>central</publishingServerId>
+                      </configuration>
+                    </plugin>                    
                 </plugins>
             </build>
         </profile>
