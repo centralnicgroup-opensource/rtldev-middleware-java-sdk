@@ -171,16 +171,6 @@
                         <artifactId>maven-site-plugin</artifactId>
                         <version>3.12.1</version>
                     </plugin>
-                    <!-- Remove Maven Publish Plugin -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <version>2.8.2</version> <!-- Ensure version is compatible -->
-                        <configuration>
-                            <repositoryId>central</repositoryId>
-                            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
