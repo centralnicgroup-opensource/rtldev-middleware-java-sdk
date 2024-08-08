@@ -364,7 +364,7 @@ public class Response {
                 return Integer.parseInt(f);
             }
         }
-        if (this.records.size() > 0) {
+        if (!this.records.isEmpty()) {
             return 0;
         }
         return -1;
@@ -396,13 +396,13 @@ public class Response {
      * @return hash including list meta data and array of rows in hash notation
      */
     public Map<String, Object> getListHash() {
-        ArrayList<Map<String, String>> lh = new ArrayList<Map<String, String>>();
+        ArrayList<Map<String, String>> lh = new ArrayList<>();
         ArrayList<Record> recs = this.getRecords();
         for (Record rec : recs) {
             lh.add(rec.getData());
         }
-        HashMap<String, Object> hm = new HashMap<String, Object>();
-        HashMap<String, Object> me = new HashMap<String, Object>();
+        HashMap<String, Object> hm = new HashMap<>();
+        HashMap<String, Object> me = new HashMap<>();
         me.put("columns", this.getColumnKeys());
         me.put("pg", this.getPagination());
         hm.put("LIST", lh);
@@ -457,7 +457,7 @@ public class Response {
      * @return paginator data
      */
     public Map<String, Object> getPagination() {
-        Map<String, Object> mp = new HashMap<String, Object>();
+        Map<String, Object> mp = new HashMap<>();
         mp.put("COUNT", this.getRecordsCount());
         mp.put("CURRENTPAGE", this.getCurrentPageNumber());
         mp.put("FIRST", this.getFirstRecordIndex());
@@ -610,8 +610,7 @@ public class Response {
     }
 
     /**
-     * Check if the record list contains a record for the current record index in
-     * use
+     * Check if the record list contains a record for the current record index in use
      *
      * @return boolean result
      */
@@ -621,8 +620,7 @@ public class Response {
     }
 
     /**
-     * Check if the record list contains a next record for the current record index
-     * in use
+     * Check if the record list contains a next record for the current record index in use
      *
      * @return boolean result
      */

@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * ResponseTemplateManager covers functionality to manage response templates.
+ * ResponseTemplateManager covers functionality to manage response
+ * TEMPLATES_DATA.
  *
  * @author Kai Schwarz
  * @version %I%, %G%
@@ -13,23 +14,23 @@ import java.util.Map;
  */
 public final class ResponseTemplateManager {
     /** Backend system entity */
-    private static final Map<String, String> templates;
+    private static final Map<String, String> TEMPLATES_DATA;
 
     // Static initialization block
     static {
-        templates = new HashMap<>();
-        templates.put("404", generateTemplate("421", "Page not found"));
-        templates.put("500", generateTemplate("500", "Internal server error"));
-        templates.put("empty", generateTemplate("423",
+        TEMPLATES_DATA = new HashMap<>();
+        TEMPLATES_DATA.put("404", generateTemplate("421", "Page not found"));
+        TEMPLATES_DATA.put("500", generateTemplate("500", "Internal server error"));
+        TEMPLATES_DATA.put("empty", generateTemplate("423",
                 "Empty API response. Probably unreachable API end point {CONNECTION_URL}"));
-        templates.put("error", generateTemplate("421",
+        TEMPLATES_DATA.put("error", generateTemplate("421",
                 "Command failed due to server error. Client should try again"));
-        templates.put("expired", generateTemplate("530", "SESSION NOT FOUND"));
-        templates.put("httperror",
+        TEMPLATES_DATA.put("expired", generateTemplate("530", "SESSION NOT FOUND"));
+        TEMPLATES_DATA.put("httperror",
                 generateTemplate("421", "Command failed due to HTTP communication error"));
-        templates.put("invalid", generateTemplate("423", "Invalid API response. Contact Support"));
-        templates.put("unauthorized", generateTemplate("500", "Unauthorized"));
-        templates.put("notfound", generateTemplate("500", "Response Template not found"));
+        TEMPLATES_DATA.put("invalid", generateTemplate("423", "Invalid API response. Contact Support"));
+        TEMPLATES_DATA.put("unauthorized", generateTemplate("500", "Unauthorized"));
+        TEMPLATES_DATA.put("notfound", generateTemplate("500", "Response Template not found"));
     }
 
     // Private constructor to prevent instantiation
@@ -61,7 +62,7 @@ public final class ResponseTemplateManager {
      * @return ResponseTemplateManager class for method chaining.
      */
     public static Class<ResponseTemplateManager> addTemplate(String id, String plain) {
-        templates.put(id, plain);
+        TEMPLATES_DATA.put(id, plain);
         return ResponseTemplateManager.class;
     }
 
@@ -91,13 +92,13 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Return all available response templates.
+     * Return all available response TEMPLATES_DATA.
      *
      * @return All available response template instances.
      */
     public static Map<String, Response> getTemplates() {
         Map<String, Response> tpls = new HashMap<>();
-        Iterator<Map.Entry<String, String>> it = templates.entrySet().iterator();
+        Iterator<Map.Entry<String, String>> it = TEMPLATES_DATA.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, String> pair = it.next();
             tpls.put(pair.getKey(), new Response(pair.getValue()));
@@ -112,7 +113,7 @@ public final class ResponseTemplateManager {
      * @return Boolean result.
      */
     public static boolean hasTemplate(String id) {
-        return templates.get(id) != null;
+        return TEMPLATES_DATA.get(id) != null;
     }
 
     /**
@@ -141,8 +142,22 @@ public final class ResponseTemplateManager {
         return isTemplateMatchHash(ResponseParser.parse(plain), id);
     }
 
-    // Getter for the templates map (if needed)
+    /**
+     * Retrieves a copy of the current API response templates map.
+     * <p>
+     * This method returns a new {@link HashMap} containing the entries from the
+     * {@code TEMPLATES_DATA} map. The returned map is a shallow copy, meaning
+     * modifications to the returned map will not affect the original
+     * {@code TEMPLATES_DATA}
+     * map.
+     * </p>
+     *
+     * @return A new {@link Map} containing the API response templates. The map's
+     *         keys are template identifiers, and the values are the corresponding
+     *         response template strings.
+     */
     public static Map<String, String> getTemplatesMap() {
-        return new HashMap<>(templates);
+        return new HashMap<>(TEMPLATES_DATA);
     }
+
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Column {
     /** column size */
-    public int length;
+    private final int length;
     /** column name */
     private String key;
     /** column data container */
@@ -24,7 +24,7 @@ public class Column {
      * @param data column data as list
      */
     public Column(String key, ArrayList<String> data) {
-        this.data = new ArrayList<String>(data);
+        this.data = new ArrayList<>(data);
         this.key = key;
         this.length = this.data.size();
     }

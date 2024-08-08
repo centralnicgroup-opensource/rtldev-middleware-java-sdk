@@ -23,15 +23,15 @@ public final class ResponseParser {
     /**
      * Method to stringify a parsed api response
      *
-     * @param p_hash parsed api response
+     * @param parsedHash parsed api response
      * @return stringified/raw api response
      */
-    public static String serialize(Map<?, ?> p_hash) {
+    public static String serialize(Map<?, ?> parsedHash) {
         StringBuilder plain = new StringBuilder("[RESPONSE]");
-        for (Map.Entry<?, ?> entry2 : p_hash.entrySet()) {
+        for (Map.Entry<?, ?> entry2 : parsedHash.entrySet()) {
             String key = (String) entry2.getKey();
             if (key.equals("PROPERTY")) {
-                Map<?, ?> properties = (HashMap<?, ?>) p_hash.get(key);
+                Map<?, ?> properties = (HashMap<?, ?>) parsedHash.get(key);
                 for (Map.Entry<?, ?> entry : properties.entrySet()) {
                     String subkey = (String) entry.getKey();
                     ArrayList<?> values = (ArrayList<?>) entry.getValue();
@@ -40,7 +40,7 @@ public final class ResponseParser {
                     }
                 }
             } else {
-                String tmp = (String) p_hash.get(key);
+                String tmp = (String) parsedHash.get(key);
                 if (tmp != null) {
                     plain.append("\r\n").append(key).append("=").append(tmp);
                 }
