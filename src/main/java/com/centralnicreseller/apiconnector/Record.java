@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class Record {
     /** row data container */
-    private Map<String, String> data;
+    private final Map<String, String> data;
 
     /**
      * Class constructor
@@ -20,7 +20,7 @@ public class Record {
      * @param data row data as associative array
      */
     public Record(Map<String, String> data) {
-        this.data = new HashMap<String, String>(data);
+        this.data = new HashMap<>(data);
     }
 
     /**
@@ -48,6 +48,7 @@ public class Record {
     /**
      * Check if column data exists
      *
+     * @param key column name
      * @return boolean check result
      */
     private boolean hasData(String key) {
