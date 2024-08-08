@@ -15,6 +15,11 @@ import java.util.regex.Pattern;
  * @since 2.0
  */
 public final class ResponseParser {
+    // Private constructor to prevent instantiation
+    private ResponseParser() {
+            throw new UnsupportedOperationException("Utility class");
+    }
+
     /**
      * Method to stringify a parsed api response
      *
@@ -31,13 +36,13 @@ public final class ResponseParser {
                     String subkey = (String) entry.getKey();
                     ArrayList<?> values = (ArrayList<?>) entry.getValue();
                     for (int i = 0; i < values.size(); i++) {
-                        plain.append("\r\nPROPERTY[" + subkey + "][" + i + "]=" + values.get(i));
+                        plain.append("\r\nPROPERTY[").append(subkey).append("][").append(i).append("]=").append(values.get(i));
                     }
                 }
             } else {
                 String tmp = (String) p_hash.get(key);
                 if (tmp != null) {
-                    plain.append("\r\n" + key + "=" + tmp);
+                    plain.append("\r\n").append(key).append("=").append(tmp);
                 }
             }
         }
@@ -52,13 +57,13 @@ public final class ResponseParser {
      * @return parsed api response
      */
     public static Map<String, Object> parse(String r) {
-        Map<String, Object> hash = new HashMap<String, Object>();
+        Map<String, Object> hash = new HashMap<>();
         String[] tmp = r.split("\\R", 0);
         Pattern p1 = Pattern.compile("^([^\\=]*[^\\t\\= ])[\\t ]*=[\\t ]*(.*)$",
                 Pattern.CASE_INSENSITIVE);
         Pattern p2 = Pattern.compile("^property\\[([^\\]]*)\\]\\[([0-9]+)\\]", Pattern.CASE_INSENSITIVE);
         int idx = -1;
-        Map<String, ArrayList<String>> properties = new HashMap<String, ArrayList<String>>();
+        Map<String, ArrayList<String>> properties = new HashMap<>();
         while (++idx < tmp.length) {
             String row = tmp[idx];
             Matcher m = p1.matcher(row);
@@ -70,7 +75,7 @@ public final class ResponseParser {
                     int idx2 = Integer.parseInt(mm.group(2));
                     ArrayList<String> list = properties.get(key);
                     if (list == null) {
-                        list = new ArrayList<String>();
+                        list = new ArrayList<>();
                     }
                     list.add(idx2, m.group(2).replaceFirst("[\\t ]*$", ""));
                     properties.put(key, list);

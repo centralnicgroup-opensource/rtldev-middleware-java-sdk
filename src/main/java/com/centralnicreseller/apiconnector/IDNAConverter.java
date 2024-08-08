@@ -8,7 +8,6 @@ import java.util.List;
  * and Unicode representations using the IDNA standard.
  */
 public class IDNAConverter {
- 
     /**
      * The Unicode representation of the domain name.
      */
