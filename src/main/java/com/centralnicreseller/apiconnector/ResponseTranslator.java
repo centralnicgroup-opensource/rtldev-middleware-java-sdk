@@ -58,21 +58,21 @@ public final class ResponseTranslator {
         if (ResponseTemplateManager.hasTemplate(newRaw)) {
             // don't use getTemplate as it leads to endless loop as of again
             // creating a response instance
-            newRaw = ResponseTemplateManager.templates.get(newRaw);
+            newRaw = ResponseTemplateManager.getTemplatesMap().get(newRaw);
         }
 
         // Missing CODE or DESCRIPTION in API Response
         regex = newRaw.toLowerCase();
         if (!regex.contains("description\s=")
                 || (!regex.contains("code\s=") && ResponseTemplateManager.hasTemplate("invalid"))) {
-            newRaw = ResponseTemplateManager.templates.get("invalid");
+            newRaw = ResponseTemplateManager.getTemplatesMap().get("invalid");
         }
 
         // Explicit call for a static template
         if (ResponseTemplateManager.hasTemplate(newRaw)) {
             // don't use getTemplate as it leads to endless loop as of again
             // creating a response instance
-            newRaw = ResponseTemplateManager.templates.get(newRaw);
+            newRaw = ResponseTemplateManager.getTemplatesMap().get(newRaw);
         }
 
         // Generic API response description rewrite

@@ -55,7 +55,7 @@ public final class ResponseTemplateManager {
 
     /**
      * Add a response template to the template container.
-     * *
+     *
      * @param id    Template ID.
      * @param plain API plain response.
      * @return ResponseTemplateManager class for method chaining.
@@ -67,7 +67,7 @@ public final class ResponseTemplateManager {
 
     /**
      * Add a response template to the template container.
-     * *
+     *
      * @param id    Template ID.
      * @param code  Data provided for generating a new template to use.
      * @param descr Data provided for generating a new template to use.
@@ -79,7 +79,7 @@ public final class ResponseTemplateManager {
 
     /**
      * Get a response template instance from the template container.
-     * *
+     *
      * @param id Template ID.
      * @return Template instance.
      */
@@ -92,7 +92,7 @@ public final class ResponseTemplateManager {
 
     /**
      * Return all available response templates.
-     * *
+     *
      * @return All available response template instances.
      */
     public static Map<String, Response> getTemplates() {
@@ -107,7 +107,7 @@ public final class ResponseTemplateManager {
 
     /**
      * Check if a given template exists in the template container.
-     * *
+     *
      * @param id Template ID.
      * @return Boolean result.
      */
@@ -118,7 +118,7 @@ public final class ResponseTemplateManager {
     /**
      * Check if a given API response hash matches a given template by code and
      * description.
-     * *
+     *
      * @param tpl2 API response hash.
      * @param id   Template ID.
      * @return Boolean result.
@@ -132,7 +132,7 @@ public final class ResponseTemplateManager {
     /**
      * Check if a given API plain response matches a given template by code and
      * description.
-     * *
+     *
      * @param plain API plain response.
      * @param id    Template ID.
      * @return Boolean result.
