@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * Record covers Row Data in a better accessible way
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
@@ -16,7 +16,7 @@ public class Record {
 
     /**
      * Class constructor
-     * 
+     *
      * @param data row data as associative array
      */
     public Record(Map<String, String> data) {
@@ -25,7 +25,7 @@ public class Record {
 
     /**
      * Get full row data
-     * 
+     *
      * @return full row data
      */
     public Map<String, String> getData() {
@@ -34,7 +34,7 @@ public class Record {
 
     /**
      * Get data for given golumn name
-     * 
+     *
      * @param key column name
      * @return data for given column name
      */
@@ -47,7 +47,7 @@ public class Record {
 
     /**
      * Check if column data exists
-     * 
+     *
      * @return boolean check result
      */
     private boolean hasData(String key) {

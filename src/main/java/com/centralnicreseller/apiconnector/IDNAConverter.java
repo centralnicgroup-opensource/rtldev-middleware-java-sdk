@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class provides methods to convert domain names between their ASCII (Punycode) 
+ * This class provides methods to convert domain names between their ASCII (Punycode)
  * and Unicode representations using the IDNA standard.
  */
 public class IDNAConverter {
-    
+ 
     /**
      * The Unicode representation of the domain name.
      */
@@ -68,7 +68,7 @@ public class IDNAConverter {
     }
 
     /**
-     * Converts a single domain name to its Unicode and ASCII representations, 
+     * Converts a single domain name to its Unicode and ASCII representations,
      * specifying whether to use transitional processing.
      *
      * @param domainName The domain name to convert.
@@ -109,7 +109,7 @@ public class IDNAConverter {
     }
 
     /**
-     * Converts a list of domain names to their Unicode and ASCII representations, 
+     * Converts a list of domain names to their Unicode and ASCII representations,
      * specifying whether to use transitional processing.
      *
      * @param domainNames The list of domain names to convert.

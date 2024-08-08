@@ -5,7 +5,7 @@ import java.net.URLEncoder;
 
 /**
  * SocketConfig is the base class to configure the socket for API communication
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
@@ -30,7 +30,7 @@ public class SocketConfig {
 
     /**
      * Method to use to encode data to be ready for POST request
-     * 
+     *
      * @return the ready to use, encoded POST request payload
      */
     public String getPOSTData() {
@@ -62,7 +62,7 @@ public class SocketConfig {
 
     /**
      * Setter method for login
-     * 
+     *
      * @param value user name
      * @return current SocketConfig instance to reuse for method chaining
      */
@@ -74,7 +74,7 @@ public class SocketConfig {
 
     /**
      * Setter method for one time password (otp)
-     * 
+     *
      * @param value otp
      * @return current SocketConfig instance to reuse for method chaining
      */
@@ -86,7 +86,7 @@ public class SocketConfig {
 
     /**
      * Setter method for user password
-     * 
+     *
      * @param value password
      * @return current SocketConfig instance to reuse for method chaining
      */
@@ -98,7 +98,7 @@ public class SocketConfig {
 
     /**
      * Setter method for subuser account name
-     * 
+     *
      * @param value subuser account name
      * @return current SocketConfig instance to reuse for method chaining
      */
@@ -109,7 +109,7 @@ public class SocketConfig {
 
     /**
      * Method to use to get the underlying backend api session id
-     * 
+     *
      * @return the backend api session id (empty string if not set)
      */
     public String getSession() {
@@ -118,7 +118,7 @@ public class SocketConfig {
 
     /**
      * Setter method for backend api session id
-     * 
+     *
      * @param value session id
      * @return current SocketConfig instance to reuse for method chaining
      */

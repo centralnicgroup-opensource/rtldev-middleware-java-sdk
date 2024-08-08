@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * ResponseParser covers all functionality to parse and serialize API response
  * data
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public final class ResponseParser {
     /**
      * Method to stringify a parsed api response
-     * 
+     *
      * @param p_hash parsed api response
      * @return stringified/raw api response
      */
@@ -47,7 +47,7 @@ public final class ResponseParser {
 
     /**
      * Method to parse the given raw api response
-     * 
+     *
      * @param r raw api response
      * @return parsed api response
      */

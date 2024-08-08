@@ -2,7 +2,7 @@ package com.centralnicreseller.apiconnector; // of course use your namespace ins
 
 /**
  * Custom Logger class example for debug outputs
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 3.2
@@ -10,7 +10,7 @@ package com.centralnicreseller.apiconnector; // of course use your namespace ins
 public class CustomLogger {
     /**
      * log incoming data
-     * 
+     *
      * @param post  request data
      * @param r     API response object instance
      * @param error http error message or null

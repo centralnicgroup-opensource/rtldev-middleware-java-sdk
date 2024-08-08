@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Column covers Column Data in a better accessible way
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
@@ -19,7 +19,7 @@ public class Column {
 
     /**
      * Class constructor.
-     * 
+     *
      * @param key  column name
      * @param data column data as list
      */
@@ -31,7 +31,7 @@ public class Column {
 
     /**
      * Get column name
-     * 
+     *
      * @return column name
      */
     public String getKey() {
@@ -49,7 +49,7 @@ public class Column {
 
     /**
      * Get data for given column index
-     * 
+     *
      * @param idx column data index
      * @return data for given column index
      */
@@ -62,7 +62,7 @@ public class Column {
 
     /**
      * Check if column data index exists
-     * 
+     *
      * @return boolean check result
      */
     private boolean hasDataIndex(int idx) {

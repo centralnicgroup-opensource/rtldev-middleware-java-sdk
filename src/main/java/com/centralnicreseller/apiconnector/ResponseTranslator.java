@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * ResponseTranslator is used to translate HEXONET API responses.
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 4.0
@@ -30,7 +30,7 @@ public final class ResponseTranslator {
 
     /**
      * Translate the given API response, no placeholder vars given.
-     * 
+     *
      * @param raw The API response in plain text.
      * @param cmd The requested API command.
      * @return the translated API response.
@@ -41,7 +41,7 @@ public final class ResponseTranslator {
 
     /**
      * Translate the given API response with placeholder variables.
-     * 
+     *
      * @param raw The API response in plain text.
      * @param cmd The requested API command.
      * @param ph  The placeholder vars container.
