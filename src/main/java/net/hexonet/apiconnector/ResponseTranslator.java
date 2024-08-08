@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * ResponseTranslator is used to translate HEXONET API responses.
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 4.0
@@ -15,16 +15,22 @@ import java.util.regex.Pattern;
 public final class ResponseTranslator {
     /** hidden class var of API description regex mappings for translation */
     private static Map<String, String> descriptionRegexMap;
-    /** initialization */
+
+    // Initialization block
     static {
         descriptionRegexMap = new HashMap<>();
         descriptionRegexMap.put("Authorization failed; Operation forbidden by ACL",
                 "Authorization failed; Used Command `{COMMAND}` not white-listed by your Access Control List");
     };
 
+    // Private constructor to prevent instantiation
+    private ResponseTranslator() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     /**
      * Translate the given API response, no placeholder vars given
-     * 
+     *
      * @param raw The API response in plain text
      * @param cmd The requested API command
      * @return the translated API response
@@ -35,7 +41,7 @@ public final class ResponseTranslator {
 
     /**
      * Translate the given API response, no placeholders vars given
-     * 
+     *
      * @param raw The API response in plain text
      * @param cmd The requested API command
      * @param ph The placeholder vars container
