@@ -4,7 +4,7 @@ package com.centralnicreseller.apiconnector;
  * Default Logger class for debug outputs Overridable by custom integration,
  * check
  * CustomLogger.java.
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 3.2
@@ -12,7 +12,7 @@ package com.centralnicreseller.apiconnector;
 public class Logger {
     /**
      * log incoming data
-     * 
+     *
      * @param post request data
      * @param r    API response object instance
      */
@@ -22,7 +22,7 @@ public class Logger {
 
     /**
      * log incoming data
-     * 
+     *
      * @param post  request data
      * @param r     API response object instance
      * @param error http error message or null

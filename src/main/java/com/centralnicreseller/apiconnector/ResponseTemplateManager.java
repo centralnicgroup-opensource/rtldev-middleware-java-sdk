@@ -5,19 +5,19 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * ResponseTemplateManager covers functionality to manage response tempaltes
+ * ResponseTemplateManager covers functionality to manage response templates.
  * 
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
  */
 public final class ResponseTemplateManager {
-    /** backend system entity */
-    public static Map<String, String> templates;
+    /** Backend system entity */
+    private static final Map<String, String> templates;
 
-    /** initializations */
+    // Static initialization block
     static {
-        templates = new HashMap<String, String>();
+        templates = new HashMap<>();
         templates.put("404", generateTemplate("421", "Page not found"));
         templates.put("500", generateTemplate("500", "Internal server error"));
         templates.put("empty", generateTemplate("423",
@@ -32,12 +32,17 @@ public final class ResponseTemplateManager {
         templates.put("notfound", generateTemplate("500", "Response Template not found"));
     }
 
+    // Private constructor to prevent instantiation
+    private ResponseTemplateManager() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     /**
-     * Generate API response template string for given code and description
+     * Generate API response template string for a given code and description.
      * 
-     * @param code        API response code
-     * @param description API response description
-     * @return generated response template string
+     * @param code        API response code.
+     * @param description API response description.
+     * @return Generated response template string.
      */
     public static String generateTemplate(String code, String description) {
         StringBuilder plain = new StringBuilder("[RESPONSE]\r\nCODE=");
@@ -49,11 +54,11 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Add response template to template container
+     * Add a response template to the template container.
      * 
-     * @param id    template id
-     * @param plain API plain response
-     * @return ResponseTemplateManager class for method chaining
+     * @param id    Template ID.
+     * @param plain API plain response.
+     * @return ResponseTemplateManager class for method chaining.
      */
     public static Class<ResponseTemplateManager> addTemplate(String id, String plain) {
         templates.put(id, plain);
@@ -61,22 +66,22 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Add response template to template container
+     * Add a response template to the template container.
      * 
-     * @param id    template id
-     * @param code  data provided for generating a new template to use
-     * @param descr data provided for generating a new template to use
-     * @return Response Instance
+     * @param id    Template ID.
+     * @param code  Data provided for generating a new template to use.
+     * @param descr Data provided for generating a new template to use.
+     * @return ResponseTemplateManager class for method chaining.
      */
     public static Class<ResponseTemplateManager> addTemplate(String id, String code, String descr) {
         return addTemplate(id, generateTemplate(code, descr));
     }
 
     /**
-     * Get response template instance from template container
+     * Get a response template instance from the template container.
      * 
-     * @param id template id
-     * @return template instance
+     * @param id Template ID.
+     * @return Template instance.
      */
     public static Response getTemplate(String id) {
         if (hasTemplate(id)) {
@@ -86,12 +91,12 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Return all available response templates
+     * Return all available response templates.
      * 
-     * @return all available response template instances
+     * @return All available response template instances.
      */
     public static Map<String, Response> getTemplates() {
-        Map<String, Response> tpls = new HashMap<String, Response>();
+        Map<String, Response> tpls = new HashMap<>();
         Iterator<Map.Entry<String, String>> it = templates.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, String> pair = it.next();
@@ -101,22 +106,22 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Check if given template exists in template container
+     * Check if a given template exists in the template container.
      * 
-     * @param id template id
-     * @return boolean result
+     * @param id Template ID.
+     * @return Boolean result.
      */
     public static boolean hasTemplate(String id) {
         return templates.get(id) != null;
     }
 
     /**
-     * Check if given API response hash matches a given template by code and
-     * description
+     * Check if a given API response hash matches a given template by code and
+     * description.
      * 
-     * @param tpl2 api response hash
-     * @param id   template id
-     * @return boolean result
+     * @param tpl2 API response hash.
+     * @param id   Template ID.
+     * @return Boolean result.
      */
     public static boolean isTemplateMatchHash(Map<String, Object> tpl2, String id) {
         Map<String, Object> h = getTemplate(id).getHash();
@@ -125,14 +130,19 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Check if given API plain response matches a given template by code and
-     * description
+     * Check if a given API plain response matches a given template by code and
+     * description.
      * 
-     * @param plain API plain response
-     * @param id    template id
-     * @return boolean result
+     * @param plain API plain response.
+     * @param id    Template ID.
+     * @return Boolean result.
      */
     public static boolean isTemplateMatchPlain(String plain, String id) {
         return isTemplateMatchHash(ResponseParser.parse(plain), id);
+    }
+
+    // Getter for the templates map (if needed)
+    public static Map<String, String> getTemplatesMap() {
+        return new HashMap<>(templates);
     }
 }

@@ -13,90 +13,96 @@ import java.util.regex.Pattern;
  * @since 4.0
  */
 public final class ResponseTranslator {
-    /** hidden class var of API description regex mappings for translation */
-    private static Map<String, String> descriptionRegexMap;
-    /** initialization */
+    /** Hidden class variable for API description regex mappings for translation */
+    private static final Map<String, String> descriptionRegexMap;
+
+    // Initialization block
     static {
         descriptionRegexMap = new HashMap<>();
         descriptionRegexMap.put("Authorization failed; Operation forbidden by ACL",
                 "Authorization failed; Used Command `{COMMAND}` not white-listed by your Access Control List");
-    };
+    }
+
+    // Private constructor to prevent instantiation
+    private ResponseTranslator() {
+        throw new UnsupportedOperationException("Utility class");
+    }
 
     /**
-     * Translate the given API response, no placeholder vars given
+     * Translate the given API response, no placeholder vars given.
      * 
-     * @param raw The API response in plain text
-     * @param cmd The requested API command
-     * @return the translated API response
+     * @param raw The API response in plain text.
+     * @param cmd The requested API command.
+     * @return the translated API response.
      */
     public static String translate(String raw, Map<String, String> cmd) {
         return translate(raw, cmd, Map.ofEntries());
     }
 
     /**
-     * Translate the given API response, no placeholders vars given
+     * Translate the given API response with placeholder variables.
      * 
-     * @param raw The API response in plain text
-     * @param cmd The requested API command
-     * @param ph  The placeholder vars container
-     * @return the translated API response
+     * @param raw The API response in plain text.
+     * @param cmd The requested API command.
+     * @param ph  The placeholder vars container.
+     * @return the translated API response.
      */
     public static String translate(String raw, Map<String, String> cmd, Map<String, String> ph) {
         String regex;
         Pattern pattern;
         Matcher matcher;
-        String newraw = (raw.length() == 0) ? "empty" : raw;
-        // Hint: Empty API Response (replace {CONNECTION_URL} later)
+        String newRaw = (raw.length() == 0) ? "empty" : raw;
 
+        // Hint: Empty API Response (replace {CONNECTION_URL} later)
         // Explicit call for a static template
-        if (ResponseTemplateManager.hasTemplate(newraw)) {
+        if (ResponseTemplateManager.hasTemplate(newRaw)) {
             // don't use getTemplate as it leads to endless loop as of again
             // creating a response instance
-            newraw = ResponseTemplateManager.templates.get(newraw);
+            newRaw = ResponseTemplateManager.templates.get(newRaw);
         }
 
         // Missing CODE or DESCRIPTION in API Response
-        regex = newraw.toLowerCase();
+        regex = newRaw.toLowerCase();
         if (!regex.contains("description\s=")
-                || !regex.contains("code\s=") && ResponseTemplateManager.hasTemplate("invalid")) {
-            newraw = ResponseTemplateManager.templates.get("invalid");
+                || (!regex.contains("code\s=") && ResponseTemplateManager.hasTemplate("invalid"))) {
+            newRaw = ResponseTemplateManager.templates.get("invalid");
         }
 
         // Explicit call for a static template
-        if (ResponseTemplateManager.hasTemplate(newraw)) {
+        if (ResponseTemplateManager.hasTemplate(newRaw)) {
             // don't use getTemplate as it leads to endless loop as of again
             // creating a response instance
-            newraw = ResponseTemplateManager.templates.get(newraw);
+            newRaw = ResponseTemplateManager.templates.get(newRaw);
         }
 
-        // generic API response description rewrite
+        // Generic API response description rewrite
         for (Map.Entry<String, String> me : descriptionRegexMap.entrySet()) {
-            // replace command place holder with API command name used
+            // Replace command placeholder with API command name used
             String val = me.getValue();
             if (cmd.containsKey("COMMAND")) {
                 val = val.replace("{COMMAND}", cmd.get("COMMAND"));
             }
-            // switch to better readable response if matching
+            // Switch to better readable response if matching
             regex = "(?i)description\s=" + me.getKey();
             pattern = Pattern.compile(regex);
-            matcher = pattern.matcher(newraw);
+            matcher = pattern.matcher(newRaw);
             if (matcher.find()) {
-                // stop on first match
-                newraw = newraw.replaceAll(regex, val);
+                // Stop on first match
+                newRaw = newRaw.replaceAll(regex, val);
                 break;
             }
         }
 
-        // generic replacing of place holder vars
+        // Generic replacing of placeholder vars
         regex = "\\{[^}]+\\}";
         pattern = Pattern.compile(regex);
-        matcher = pattern.matcher(newraw);
+        matcher = pattern.matcher(newRaw);
         if (matcher.find()) {
             for (Map.Entry<String, String> me : ph.entrySet()) {
-                newraw = newraw.replaceAll("\\{" + me.getKey() + "\\}", me.getValue());
+                newRaw = newRaw.replaceAll("\\{" + me.getKey() + "\\}", me.getValue());
             }
-            newraw = newraw.replaceAll(regex, "");
+            newRaw = newRaw.replaceAll(regex, "");
         }
-        return newraw;
+        return newRaw;
     }
 }

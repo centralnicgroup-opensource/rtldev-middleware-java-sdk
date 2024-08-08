@@ -171,7 +171,7 @@ public final class APIClient {
                 String val = pair.getValue();
                 if (val != null) {
                     val = val.replaceAll("[\r\n]", "");
-                    if (!"".equals(val)) {// null check included
+                    if (!"".equals(val)) { // null check included
                         tmp.append(pair.getKey());
                         tmp.append("=");
                         tmp.append(val);
@@ -643,7 +643,7 @@ public final class APIClient {
                     int a = 0;
                     for (int i = 0; i < param.length; i++) {
                         String entry = param[i].replaceAll("[\r\n]", "");
-                        if (!"".equals(entry)) {// null check included
+                        if (!"".equals(entry)) { // null check included
                             newcmd.put(key + a, entry);
                             a++;
                         }
@@ -681,7 +681,7 @@ public final class APIClient {
             return cmd;
         }
         IDNAConverter result = IDNAConverter.convert(toconvert);
-        List<String> data = result.getPCList();
+        List<String> data = result.getPcList();
         for (int idx = 0; idx < data.size(); idx++) {
             String pc = data.get(idx);
             cmd.replace(idxs.get(idx), pc);
