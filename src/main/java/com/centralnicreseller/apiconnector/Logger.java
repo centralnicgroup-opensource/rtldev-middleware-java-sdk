@@ -1,7 +1,8 @@
 package com.centralnicreseller.apiconnector;
 
 /**
- * Default Logger class for debug outputs Overridable by custom integration, check
+ * Default Logger class for debug outputs Overridable by custom integration,
+ * check
  * CustomLogger.java.
  * 
  * @author Kai Schwarz

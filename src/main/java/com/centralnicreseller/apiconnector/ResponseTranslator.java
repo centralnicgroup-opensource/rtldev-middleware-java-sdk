@@ -38,7 +38,7 @@ public final class ResponseTranslator {
      * 
      * @param raw The API response in plain text
      * @param cmd The requested API command
-     * @param ph The placeholder vars container
+     * @param ph  The placeholder vars container
      * @return the translated API response
      */
     public static String translate(String raw, Map<String, String> cmd, Map<String, String> ph) {

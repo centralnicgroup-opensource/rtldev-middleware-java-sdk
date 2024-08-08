@@ -610,7 +610,8 @@ public class Response {
     }
 
     /**
-     * Check if the record list contains a record for the current record index in use
+     * Check if the record list contains a record for the current record index in
+     * use
      *
      * @return boolean result
      */
@@ -620,7 +621,8 @@ public class Response {
     }
 
     /**
-     * Check if the record list contains a next record for the current record index in use
+     * Check if the record list contains a next record for the current record index
+     * in use
      *
      * @return boolean result
      */

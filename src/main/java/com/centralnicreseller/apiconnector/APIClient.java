@@ -1,10 +1,12 @@
 package com.centralnicreseller.apiconnector;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -12,56 +14,73 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import javax.net.ssl.HttpsURLConnection;
 
 /**
  * APIClient is the entry point class for communicating with the insanely fast
- * HEXONET backend api.
- * It allows two ways of communication:
+ * HEXONET backend api. It allows two ways of communication:
  * <ul>
  * <li>session based communication</li>
  * <li>sessionless communication</li>
  * </ul>
  * A session based communication makes sense in case you use it to build your
- * own frontend on top.
- * It allows also to use 2FA (2 Factor Auth) by providing "otp" in the config
- * parameter of the login
- * method. A sessionless communication makes sense in case you do not need to
- * care about the above
- * and you have just to request some commands.
- * 
+ * own frontend on top. It allows also to use 2FA (2 Factor Auth) by providing
+ * "otp" in the config parameter of the login method. A sessionless
+ * communication makes sense in case you do not need to care about the above and
+ * you have just to request some commands.
+ *
  * Possible commands can be found
  * <a href=
  * "https://github.com/hexonet/hexonet-api-documentation/tree/master/API">here.</a>
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
  */
-public class APIClient {
-    /** high performance proxy setup API endpoint url */
+public final class APIClient {
+
+    /**
+     * high performance proxy setup API endpoint url
+     */
     public static final String CNR_CONNECTION_URL_PROXY = "http://127.0.0.1/api/call.cgi";
-    /** common API endpoint url production environment */
+    /**
+     * common API endpoint url production environment
+     */
     public static final String CNR_CONNECTION_URL_LIVE = "https://api.rrpproxy.net/api/call.cgi";
-    /** common API endpoint url OTE environment */
+    /**
+     * common API endpoint url OTE environment
+     */
     public static final String CNR_CONNECTION_URL_OTE = "https://api-ote.rrpproxy.net/api/call.cgi";
 
-    /** represents default http socket timeout */
-    private static int socketTimeout = 300000;
-    /** represents default api url to communicate with */
+    /**
+     * represents default http socket timeout
+     */
+    private static final int SOCKET_TIMEOUT = 300001;
+    /**
+     * represents default api url to communicate with
+     */
     private String socketURL;
     /**
      * used for sessionbased communication (reuse of socket configuration after
      * login)
      */
     private SocketConfig socketConfig;
-    /** debug mode flag */
+    /**
+     * debug mode flag
+     */
     private boolean debugMode;
-    /** user agent string */
+    /**
+     * user agent string
+     */
     private String ua;
-    /** additional connection settings */
-    private Map<String, String> curlopts;
-    /** logger instance */
+    /**
+     * additional connection settings
+     */
+    private final Map<String, String> curlopts;
+    /**
+     * logger instance
+     */
     private Logger logger;
 
     /**
@@ -79,7 +98,7 @@ public class APIClient {
 
     /**
      * Set a custom logger for debug mdoe
-     * 
+     *
      * @param logger your custom logger class instance
      * @return Current APIClient instance for method chaining
      */
@@ -90,7 +109,7 @@ public class APIClient {
 
     /**
      * Activate the default logger for debug mode
-     * 
+     *
      * @return Current APIClient instance for method chaining
      */
     public APIClient setDefaultLogger() {
@@ -100,7 +119,7 @@ public class APIClient {
 
     /**
      * Enable Debug Output
-     * 
+     *
      * @return Current APIClient instance for method chaining
      */
     public APIClient enableDebugMode() {
@@ -110,7 +129,7 @@ public class APIClient {
 
     /**
      * Disable Debug Output
-     * 
+     *
      * @return Current APIClient instance for method chaining
      */
     public APIClient disableDebugMode() {
@@ -120,7 +139,7 @@ public class APIClient {
 
     /**
      * Method to use to encode data before sending it to the API Server
-     * 
+     *
      * @param cmd The command to request
      * @return the ready to use, encoded request payload
      */
@@ -130,7 +149,7 @@ public class APIClient {
 
     /**
      * Method to use to encode data before sending it to the API server
-     * 
+     *
      * @param cmd     The command to request
      * @param secured if password data shall be secured for output purposes
      * @return the ready to use, encoded and secured request payload
@@ -175,16 +194,16 @@ public class APIClient {
 
     /**
      * Get the API connection url that is currently set
-     * 
+     *
      * @return API connection url currently in use
      */
     public String getURL() {
         return this.socketURL;
     }
-    
+
     /**
      * Set one time password to be used for API communication
-     * 
+     *
      * @param value one time password
      * @return Current APIClient instance for method chaining
      */
@@ -195,7 +214,7 @@ public class APIClient {
 
     /**
      * Set an API session id to be used for API communication
-     * 
+     *
      * @param value API session id
      * @return Current APIClient instance for method chaining
      */
@@ -206,7 +225,7 @@ public class APIClient {
 
     /**
      * Get the API Session that is currently set
-     * 
+     *
      * @return API Session or null
      */
     public String getSession() {
@@ -216,7 +235,7 @@ public class APIClient {
 
     /**
      * Set a custom user agent header (useful for tools that use our SDK)
-     * 
+     *
      * @param str user agent label
      * @param rv  user agent revision
      * @return Current APIClient instance for method chaining
@@ -227,15 +246,16 @@ public class APIClient {
 
     /**
      * Set a custom user agent header (useful for tools that use our SDK)
-     * 
+     *
      * @param str     user agent label
      * @param rv      user agent revision
-     * @param modules further modules to add to user agent string ["module/version"]
+     * @param modules further modules to add to user agent string
+     *                ["module/version"]
      * @return Current APIClient instance for method chaining
      */
     public APIClient setUserAgent(String str, String rv, ArrayList<String> modules) {
         StringBuilder mods = new StringBuilder(" ");
-        if (modules.size() > 0) {
+        if (!modules.isEmpty()) {
             for (int i = 0; i < modules.size(); i++) {
                 mods.append(modules.get(i));
                 mods.append(" ");
@@ -252,7 +272,7 @@ public class APIClient {
 
     /**
      * Get the user agent string
-     * 
+     *
      * @return user agent string
      */
     public String getUserAgent() {
@@ -269,7 +289,7 @@ public class APIClient {
 
     /**
      * Set proxy to use for API communication
-     * 
+     *
      * @param proxy proxy to use
      * @return Current APIClient instance for method chaining
      */
@@ -284,7 +304,7 @@ public class APIClient {
 
     /**
      * Get proxy configuration for API communication
-     * 
+     *
      * @return Proxy URL or null if not configured
      */
     public String getProxy() {
@@ -296,7 +316,7 @@ public class APIClient {
 
     /**
      * Set Referer Header to use for API communication
-     * 
+     *
      * @param referer Referer Header value
      * @return Current APIClient instance for method chaining
      */
@@ -311,7 +331,7 @@ public class APIClient {
 
     /**
      * Get the configured Referer Header Value
-     * 
+     *
      * @return Referer Header Value
      */
     public String getReferer() {
@@ -323,7 +343,7 @@ public class APIClient {
 
     /**
      * Get the current module version
-     * 
+     *
      * @return module version
      */
     public String getVersion() {
@@ -332,7 +352,7 @@ public class APIClient {
 
     /**
      * Set another connection url to be used for API communication
-     * 
+     *
      * @param value API connection url to set
      * @return Current APIClient instance for method chaining
      */
@@ -343,7 +363,7 @@ public class APIClient {
 
     /**
      * Set Credentials to be used for API communication
-     * 
+     *
      * @param uid account name
      * @param pw  account password
      * @return Current APIClient instance for method chaining
@@ -356,7 +376,7 @@ public class APIClient {
 
     /**
      * Set Credentials to be used for API communication
-     * 
+     *
      * @param uid  account name
      * @param role role user id
      * @param pw   role user password
@@ -371,7 +391,7 @@ public class APIClient {
 
     /**
      * Perform API login to start session-based communication
-     * 
+     *
      * @param otp optional one time password
      * @return API Response
      */
@@ -382,7 +402,7 @@ public class APIClient {
 
     /**
      * Perform API login to start session-based communication
-     * 
+     *
      * @return API Response
      */
     public Response login() {
@@ -399,13 +419,13 @@ public class APIClient {
         }
         return rr;
     }
-    
+
     /**
-     * Perform API login to start session-based communication. Use given specific command
-     * parameters.
-     * 
+     * Perform API login to start session-based communication. Use given
+     * specific command parameters.
+     *
      * @param params given specific command parameters
-     * @param otp optional one time password
+     * @param otp    optional one time password
      * @return API Response
      */
     public Response loginExtended(Map<String, String> params, String otp) {
@@ -414,9 +434,9 @@ public class APIClient {
     }
 
     /**
-     * Perform API login to start session-based communication. Use given specific command
-     * parameters.
-     * 
+     * Perform API login to start session-based communication. Use given
+     * specific command parameters.
+     *
      * @param params given specific command parameters
      * @return API Response
      */
@@ -437,7 +457,7 @@ public class APIClient {
 
     /**
      * Perform API logout to close API session in use
-     * 
+     *
      * @return API Response
      */
     public Response logout() {
@@ -452,7 +472,7 @@ public class APIClient {
 
     /**
      * Perform API request using the given command
-     * 
+     *
      * @param cmd API command to request
      * @return API Response
      */
@@ -483,8 +503,8 @@ public class APIClient {
             con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             con.setRequestProperty("User-Agent", this.getUserAgent());
             con.setRequestProperty("Expect", "");
-            con.setConnectTimeout(APIClient.socketTimeout);
-            con.setReadTimeout(APIClient.socketTimeout);
+            con.setConnectTimeout(APIClient.SOCKET_TIMEOUT);
+            con.setReadTimeout(APIClient.SOCKET_TIMEOUT);
             con.setDoOutput(true);
             con.setDoInput(true);
             con.setUseCaches(false);
@@ -502,7 +522,7 @@ public class APIClient {
             }
             in.close();
             con.disconnect();
-        } catch (Exception e) {
+        } catch (IOException | URISyntaxException e) {
             err = e.getMessage();
             response.append("httperror");
         }
@@ -514,9 +534,9 @@ public class APIClient {
     }
 
     /**
-     * Request the next page of list entries for the current list query Useful for
-     * tables
-     * 
+     * Request the next page of list entries for the current list query Useful
+     * for tables
+     *
      * @param rr API Response of current page
      * @return API Response or null in case there are no further list entries
      */
@@ -545,7 +565,7 @@ public class APIClient {
 
     /**
      * Request all pages/entries for the given query command
-     * 
+     *
      * @param cmd API list command to use
      * @return List of API Responses
      */
@@ -564,7 +584,7 @@ public class APIClient {
 
     /**
      * Activate High Performance Connection Setup (see README.md)
-     * 
+     *
      * @return Current APIClient instance for method chaining
      */
     public APIClient useHighPerformanceConnectionSetup() {
@@ -574,7 +594,7 @@ public class APIClient {
 
     /**
      * Activate Default Connection Setup
-     * 
+     *
      * @return Current APIClient instance for method chaining
      */
     public APIClient useDefaultConnectionSetup() {
@@ -584,7 +604,7 @@ public class APIClient {
 
     /**
      * Set OT&amp;E System for API communication
-     * 
+     *
      * @return Current APIClient instance for method chaining
      */
     public APIClient useOTESystem() {
@@ -595,7 +615,7 @@ public class APIClient {
 
     /**
      * Set LIVE System for API communication (this is the default setting)
-     * 
+     *
      * @return Current APIClient instance for method chaining
      */
     public APIClient useLIVESystem() {
@@ -606,7 +626,7 @@ public class APIClient {
 
     /**
      * Flatten API command's nested arrays for easier handling
-     * 
+     *
      * @param cmd API Command
      * @return flattened API Command
      */

@@ -1,15 +1,16 @@
 package com.centralnicreseller.apiconnector;
+
 import java.util.regex.Pattern;
 
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.IDNA.Info;
 
-public class IDNAProcessor {
+class IDNAProcessor {
     private static final IDNA idnaTransitional = IDNA.getUTS46Instance(IDNA.DEFAULT);
     private static final IDNA idnaNonTransitionalToASCII = IDNA.getUTS46Instance(IDNA.NONTRANSITIONAL_TO_ASCII);
     private static final IDNA idnaNonTransitionalToUnicode = IDNA.getUTS46Instance(IDNA.NONTRANSITIONAL_TO_UNICODE);
     private static final Pattern NON_TRANSITIONAL_TLDS = Pattern.compile(
-        "\\.(?:art|be|ca|de|swiss|fr|pm|re|tf|wf|yt)\\.?$" // TODO: com and net not supported as well?
+            "\\.(?:art|be|ca|de|swiss|fr|pm|re|tf|wf|yt)\\.?$" // TODO: com and net not supported as well?
     );
 
     public static boolean isTransitionalProcessing(String domainName) {

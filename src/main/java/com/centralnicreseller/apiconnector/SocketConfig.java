@@ -25,7 +25,8 @@ public class SocketConfig {
     /**
      * Class constructor.
      */
-    public SocketConfig() {}
+    public SocketConfig() {
+    }
 
     /**
      * Method to use to encode data to be ready for POST request

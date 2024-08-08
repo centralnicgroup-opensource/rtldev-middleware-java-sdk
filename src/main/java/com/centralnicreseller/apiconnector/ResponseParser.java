@@ -7,7 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * ResponseParser covers all functionality to parse and serialize API response data
+ * ResponseParser covers all functionality to parse and serialize API response
+ * data
  * 
  * @author Kai Schwarz
  * @version %I%, %G%
@@ -55,8 +56,7 @@ public final class ResponseParser {
         String[] tmp = r.split("\\R", 0);
         Pattern p1 = Pattern.compile("^([^\\=]*[^\\t\\= ])[\\t ]*=[\\t ]*(.*)$",
                 Pattern.CASE_INSENSITIVE);
-        Pattern p2 =
-                Pattern.compile("^property\\[([^\\]]*)\\]\\[([0-9]+)\\]", Pattern.CASE_INSENSITIVE);
+        Pattern p2 = Pattern.compile("^property\\[([^\\]]*)\\]\\[([0-9]+)\\]", Pattern.CASE_INSENSITIVE);
         int idx = -1;
         Map<String, ArrayList<String>> properties = new HashMap<String, ArrayList<String>>();
         while (++idx < tmp.length) {

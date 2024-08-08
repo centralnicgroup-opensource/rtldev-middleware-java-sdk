@@ -111,7 +111,8 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Check if given API response hash matches a given template by code and description
+     * Check if given API response hash matches a given template by code and
+     * description
      * 
      * @param tpl2 api response hash
      * @param id   template id
@@ -124,7 +125,8 @@ public final class ResponseTemplateManager {
     }
 
     /**
-     * Check if given API plain response matches a given template by code and description
+     * Check if given API plain response matches a given template by code and
+     * description
      * 
      * @param plain API plain response
      * @param id    template id
