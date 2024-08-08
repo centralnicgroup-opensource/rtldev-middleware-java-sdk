@@ -8,18 +8,15 @@ import java.util.regex.Pattern;
 /**
  * ResponseTranslator is used to translate HEXONET API responses.
  *
- * @author Kai Schwarz
- * @version %I%, %G%
- * @since 4.0
  */
 public final class ResponseTranslator {
     /** Hidden class variable for API description regex mappings for translation */
-    private static final Map<String, String> descriptionRegexMap;
+    private static final Map<String, String> DESCRIPTION_REGEX_MAP;
 
     // Initialization block
     static {
-        descriptionRegexMap = new HashMap<>();
-        descriptionRegexMap.put("Authorization failed; Operation forbidden by ACL",
+        DESCRIPTION_REGEX_MAP = new HashMap<>();
+        DESCRIPTION_REGEX_MAP.put("Authorization failed; Operation forbidden by ACL",
                 "Authorization failed; Used Command `{COMMAND}` not white-listed by your Access Control List");
     }
 
@@ -76,7 +73,7 @@ public final class ResponseTranslator {
         }
 
         // Generic API response description rewrite
-        for (Map.Entry<String, String> me : descriptionRegexMap.entrySet()) {
+        for (Map.Entry<String, String> me : DESCRIPTION_REGEX_MAP.entrySet()) {
             // Replace command placeholder with API command name used
             String val = me.getValue();
             if (cmd.containsKey("COMMAND")) {
