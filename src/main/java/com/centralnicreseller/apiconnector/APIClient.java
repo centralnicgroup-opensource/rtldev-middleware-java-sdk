@@ -655,7 +655,7 @@ public final class APIClient {
         }
         return newcmd;
     }
-    
+
     private Map<String, String> autoIDNConvert(Map<String, String> cmd) {
         // Define the regex patterns with case insensitivity
         String keyPattern = "^(?i)(DOMAIN|NAMESERVER|NS|DNSZONE)([0-9]*)$";
@@ -672,8 +672,8 @@ public final class APIClient {
             String val = entry.getValue();
 
             // Check if the key matches the keyPattern or it's "OBJECTID" with a valid OBJECTCLASS
-            if ((key.matches(keyPattern) ||
-                ("OBJECTID".equalsIgnoreCase(key) && cmd.containsKey("OBJECTCLASS") && cmd.get("OBJECTCLASS").matches(objClassPattern)))
+            if ((key.matches(keyPattern)
+                || ("OBJECTID".equalsIgnoreCase(key) && cmd.containsKey("OBJECTCLASS") && cmd.get("OBJECTCLASS").matches(objClassPattern)))
                 && !val.matches(asciiPattern)) {
 
                 // Add to conversion list and track the key
