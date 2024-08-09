@@ -15,7 +15,8 @@
                 "replacements": [
                     {
                         "files": [
-                            "src/main/java/net/hexonet/apiconnector/APIClient.java"
+                            "src/main/java/net/hexonet/apiconnector/APIClient.java",
+                            "src/main/java/net/cnr/apiconnector/APIClient.java"
                         ],
                         "from": "\"\\d+\\.\\d+\\.\\d+\"",
                         "to": "\"${nextRelease.version}\"",
@@ -39,6 +40,7 @@
                     "package?(-lock).json",
                     "pom.xml",
                     "src/main/java/net/hexonet/apiconnector/APIClient.java",
+                    "src/main/java/net/cnr/apiconnector/APIClient.java",
                     "target/apidocs",
                     "target/site"
                 ]

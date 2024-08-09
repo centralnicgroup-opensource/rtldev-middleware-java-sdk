@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 
+import net.hexonet.apiconnector.Record;
+
 /**
  * Unit test for class Record
  */

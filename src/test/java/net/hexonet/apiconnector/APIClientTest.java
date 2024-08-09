@@ -10,6 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 
+import net.hexonet.apiconnector.APIClient;
+import net.hexonet.apiconnector.Record;
+import net.hexonet.apiconnector.Response;
+import net.hexonet.apiconnector.ResponseTemplateManager;
+
 /**
  * Unit test for apiconnector client
  */

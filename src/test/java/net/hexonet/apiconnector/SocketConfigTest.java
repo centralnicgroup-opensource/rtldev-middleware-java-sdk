@@ -3,6 +3,8 @@ package net.hexonet.apiconnector;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+import net.hexonet.apiconnector.SocketConfig;
+
 /**
  * Unit test for class SocketConfig
  */

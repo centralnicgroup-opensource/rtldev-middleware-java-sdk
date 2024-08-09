@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 
+import net.hexonet.apiconnector.Response;
+import net.hexonet.apiconnector.ResponseTemplateManager;
+import net.hexonet.apiconnector.ResponseTranslator;
+
 public class ResponseTranslatorTest {
     /**
      * Test place holder vars replacement mechanism
