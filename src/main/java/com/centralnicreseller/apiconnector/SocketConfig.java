@@ -54,6 +54,12 @@ public class SocketConfig {
                 data.append(URLEncoder.encode(this.pw, "UTF-8"));
                 data.append("&");
             }
+            if (this.session.length() > 0) {
+                data.append(URLEncoder.encode("s_session", "UTF-8"));
+                data.append("=");
+                data.append(URLEncoder.encode(this.session, "UTF-8"));
+                data.append("&");
+            }
             return data.toString();
         } catch (UnsupportedEncodingException e) {
             return "";

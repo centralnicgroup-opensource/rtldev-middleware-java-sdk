@@ -655,37 +655,45 @@ public final class APIClient {
         }
         return newcmd;
     }
-
+    
     private Map<String, String> autoIDNConvert(Map<String, String> cmd) {
-        ArrayList<String> toconvert = new ArrayList<String>();
-        ArrayList<String> keys = new ArrayList<String>();
+        // Define the regex patterns with case insensitivity
+        String keyPattern = "^(?i)(DOMAIN|NAMESERVER|NS|DNSZONE)([0-9]*)$";
+        String objClassPattern = "^(?i)(DOMAIN(APPLICATION|BLOCKING)?|NAMESERVER|NS|DNSZONE)$";
+        String asciiPattern = "^[A-Za-z0-9.\\-]+$"; // Matches alphanumeric, dot, and hyphen
+
+        // Lists to track values to convert and their corresponding keys
+        ArrayList<String> toConvert = new ArrayList<>();
+        ArrayList<String> idxs = new ArrayList<>();
+
+        // Loop through the command map entries
         for (Map.Entry<String, String> entry : cmd.entrySet()) {
             String key = entry.getKey();
-            if (key.matches("^(DOMAIN|NAMESERVER|DNSZONE)([0-9]*)$")) {
-                keys.add(key);
-            }
-        }
-        if (keys.isEmpty()) {
-            return cmd;
-        }
-        ArrayList<String> idxs = new ArrayList<String>();
-        for (int i = 0; i < keys.size(); i++) {
-            String key = keys.get(i);
-            String val = cmd.get(key);
-            if (!val.matches("^[A-Za-z0-9. -]+$")) {
+            String val = entry.getValue();
+
+            // Check if the key matches the keyPattern or it's "OBJECTID" with a valid OBJECTCLASS
+            if ((key.matches(keyPattern) ||
+                ("OBJECTID".equalsIgnoreCase(key) && cmd.containsKey("OBJECTCLASS") && cmd.get("OBJECTCLASS").matches(objClassPattern)))
+                && !val.matches(asciiPattern)) {
+
+                // Add to conversion list and track the key
+                toConvert.add(val);
                 idxs.add(key);
-                toconvert.add(val);
             }
         }
-        if (toconvert.isEmpty()) {
-            return cmd;
+
+        // Perform conversion if there are values to convert
+        if (!toConvert.isEmpty()) {
+            IDNAConverter result = IDNAConverter.convert(toConvert); // Call the conversion method
+            List<String> data = result.getPcList(); // Get the punycode list from conversion
+
+            // Replace original values in cmd with their converted counterparts
+            for (int idx = 0; idx < data.size(); idx++) {
+                String convertedValue = data.get(idx);
+                cmd.put(idxs.get(idx), convertedValue);
+            }
         }
-        IDNAConverter result = IDNAConverter.convert(toconvert);
-        List<String> data = result.getPcList();
-        for (int idx = 0; idx < data.size(); idx++) {
-            String pc = data.get(idx);
-            cmd.replace(idxs.get(idx), pc);
-        }
-        return cmd;
+
+        return cmd; // Return the modified command map
     }
 }
