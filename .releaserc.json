@@ -15,7 +15,7 @@
                 "replacements": [
                     {
                         "files": [
-                            "src/main/java/net/hexonet/apiconnector/APIClient.java"
+                            "src/main/java/com/centralnicreseller/apiconnector/APIClient.java"
                         ],
                         "from": "\"\\d+\\.\\d+\\.\\d+\"",
                         "to": "\"${nextRelease.version}\"",
@@ -38,7 +38,7 @@
                     "HISTORY.md",
                     "package?(-lock).json",
                     "pom.xml",
-                    "src/main/java/net/hexonet/apiconnector/APIClient.java",
+                    "src/main/java/com/centralnicreseller/apiconnector/APIClient.java",
                     "target/apidocs",
                     "target/site"
                 ]
