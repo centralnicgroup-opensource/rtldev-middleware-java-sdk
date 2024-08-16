@@ -1,17 +1,17 @@
 <!-- This file provides passwords and key details to the Maven plugins that sign our artifacts
-     and deploy them to the OSSRH repository. The secret information is passed in with
-     Travis CI secure environment variables. -->
-     <settings>
+     and deploy them to the Central Repository. The secret information is passed in with
+     secure environment variables. -->
+<settings>
   <servers>
     <server>
-      <id>ossrh</id>
-      <username>${env.OSSRH_JIRA_USERNAME}</username>
-      <password>${env.OSSRH_JIRA_PASSWORD}</password>
+      <id>central</id>
+      <username>${env.MAVEN_CENTRAL_USERNAME}</username>
+      <password>${env.MAVEN_CENTRAL_PASSWORD}</password>
     </server>
   </servers>
   <profiles>
     <profile>
-      <id>ossrh</id>
+      <id>central</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>

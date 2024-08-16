@@ -36,3 +36,4 @@ settings.xml
 .settings
 .sts4-cache
 node_modules
+src/main/java/com/centralnicreseller/apiconnector/App.java
