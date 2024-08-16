@@ -1,7 +1,8 @@
-package net.hexonet.apiconnector;
+package com.centralnicreseller.apiconnector;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import java.util.ArrayList;
 import org.junit.Test;
 
 /**
@@ -13,7 +14,7 @@ public class ColumnTest {
      */
     @Test
     public void getKey() {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         list.add("mydomain1.com");
         list.add("mydomain2.com");
         list.add("mydomain3.com");

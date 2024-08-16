@@ -1,10 +1,11 @@
-package net.hexonet.apiconnector;
+package com.centralnicreseller.apiconnector;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -26,7 +27,7 @@ public class ResponseTemplateManagerTest {
      */
     @Test
     public void getTemplates() {
-        ArrayList<String> defaultones = new ArrayList<String>(Arrays.asList("404", "500", "empty",
+        ArrayList<String> defaultones = new ArrayList<>(Arrays.asList("404", "500", "empty",
                 "error", "expired", "httperror", "invalid", "unauthorized"));
         Map<String, Response> tpls = ResponseTemplateManager.getTemplates();
         for (String key : defaultones) {

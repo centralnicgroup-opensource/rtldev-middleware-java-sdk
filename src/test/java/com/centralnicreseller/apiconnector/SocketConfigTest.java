@@ -1,4 +1,4 @@
-package net.hexonet.apiconnector;
+package com.centralnicreseller.apiconnector;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;

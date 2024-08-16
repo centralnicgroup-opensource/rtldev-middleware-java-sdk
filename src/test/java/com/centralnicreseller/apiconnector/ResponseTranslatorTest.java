@@ -1,12 +1,13 @@
-package net.hexonet.apiconnector;
+package com.centralnicreseller.apiconnector;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.HashMap;
-import java.util.Map;
 import org.junit.Test;
 
 public class ResponseTranslatorTest {
@@ -15,7 +16,7 @@ public class ResponseTranslatorTest {
      */
     @Test
     public void placeHolderReplacements() {
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, String> cmd = new HashMap<>();
         cmd.put("COMMAND", "StatusAccount");
 
         // ensure no vars are returned in response, just in case no place holder replacements are
@@ -41,8 +42,8 @@ public class ResponseTranslatorTest {
      */
     @Test
     public void isTemplateMatchHash() {
-        Map<String, String> cmd = new HashMap<String, String>();
-        cmd.put("COMMAND", "StatusAccount");
+        // Map<String, String> cmd = new HashMap<>();
+        // cmd.put("COMMAND", "StatusAccount");
         Response tpl = new Response("");
         assertTrue(ResponseTemplateManager.isTemplateMatchHash(tpl.getHash(), "empty"));
     }
@@ -52,8 +53,8 @@ public class ResponseTranslatorTest {
      */
     @Test
     public void isTemplateMatchPlain() {
-        Map<String, String> cmd = new HashMap<String, String>();
-        cmd.put("COMMAND", "StatusAccount");
+        // Map<String, String> cmd = new HashMap<>();
+        // cmd.put("COMMAND", "StatusAccount");
         Response tpl = new Response("");
         assertTrue(ResponseTemplateManager.isTemplateMatchPlain(tpl.getPlain(), "empty"));
     }
@@ -63,8 +64,8 @@ public class ResponseTranslatorTest {
      */
     @Test
     public void constructorVars() {
-        Map<String, String> cmd = new HashMap<String, String>();
-        cmd.put("COMMAND", "StatusAccount");
+        // Map<String, String> cmd = new HashMap<>();
+        // cmd.put("COMMAND", "StatusAccount");
         Response tpl = new Response("");
         assertEquals(423, tpl.getCode());
         assertEquals("Empty API response. Probably unreachable API end point",
@@ -76,7 +77,7 @@ public class ResponseTranslatorTest {
      */
     @Test
     public void invalidResponse() {
-        Map<String, String> cmd = new HashMap<String, String>();
+        Map<String, String> cmd = new HashMap<>();
         cmd.put("COMMAND", "StatusAccount");
         String raw = ResponseTranslator
                 .translate("[RESPONSE]\r\ncode=200\r\nqueuetime=0\r\nEOF\r\n", cmd);
@@ -91,8 +92,8 @@ public class ResponseTranslatorTest {
      */
     @Test
     public void getHash() {
-        Map<String, String> cmd = new HashMap<String, String>();
-        cmd.put("COMMAND", "StatusAccount");
+        // Map<String, String> cmd = new HashMap<>();
+        // cmd.put("COMMAND", "StatusAccount");
         Response tpl = new Response("");
         Map<String, Object> h = tpl.getHash();
         assertEquals("423", (String) h.get("CODE"));
