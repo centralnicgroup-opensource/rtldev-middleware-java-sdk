@@ -1,11 +1,11 @@
 {
   "name": "java-sdk",
-  "description": "JAVA SDK for the insanely fast HEXONET API",
+  "description": "JAVA SDK for the insanely fast CentralNic Reseller (fka RRPProxy) API",
   "version": "0.0.0-development",
   "private": true,
   "author": {
     "name": "Kai Schwarz",
-    "email": "kschwarz@hexonet.net"
+    "email": "kai.schwarz@centralnic.com"
   },
   "license": "MIT",
   "engines": {
@@ -17,16 +17,23 @@
   "maintainers": [
     {
       "name": "Kai Schwarz",
-      "email": "kschwarz@hexonet.net"
+      "email": "kai.schwarz@centralnic.com"
+    },
+    {
+      "name": "Asif Nawaz",
+      "email": "asif.nawaz@centralnic.com"
     }
   ],
+  "scripts": {
+    "test-demo": "mvn test-compile exec:java -Dexec.mainClass=\"com.centralnicreseller.apiconnector.App\" -Dexec.classpathScope=test"
+  },
   "keywords": [
-    "hexonet",
+    "centralnicreseller",
     "domain",
     "api",
     "connector",
-    "isp",
-    "ispapi",
+    "cnr",
+    "cnic",
     "ssl",
     "cert",
     "dns",
