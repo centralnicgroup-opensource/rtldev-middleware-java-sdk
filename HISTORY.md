@@ -1,3 +1,10 @@
+## [4.0.37](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.36...v4.0.37) (2024-08-20)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-install-plugin ([bce3b7e](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/bce3b7e624dde015f4564d10488d5475e887aefc))
+
 ## [4.0.36](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.35...v4.0.36) (2024-08-19)
 
 
