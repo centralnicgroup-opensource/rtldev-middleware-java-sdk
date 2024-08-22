@@ -1,3 +1,10 @@
+## [4.0.38](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.37...v4.0.38) (2024-08-22)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-project-info-reports-plugin ([0387aa4](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/0387aa48c800aeaad77e6ad3674eea99dbf0c971))
+
 ## [4.0.37](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.36...v4.0.37) (2024-08-20)
 
 
