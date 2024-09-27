@@ -1,4 +1,4 @@
-package net.hexonet.apiconnector;
+package com.centralnicreseller.apiconnector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.Map;
  * @version %I%, %G%
  * @since 2.0
  */
-public class Response {
+public final class Response {
 
     /** backend system plain response data */
     private String raw;
@@ -76,14 +76,13 @@ public class Response {
         if (cmd.containsKey("PASSWORD")) {
             cmd.replace("PASSWORD", "***");
         }
-
         this.raw = ResponseTranslator.translate(raw, cmd, ph);
         this.hash = ResponseParser.parse(this.raw);
-        this.command = new HashMap<String, String>(cmd);
-        this.columnkeys = new ArrayList<String>();
-        this.columns = new ArrayList<Column>();
+        this.command = new HashMap<>(cmd);
+        this.columnkeys = new ArrayList<>();
+        this.columns = new ArrayList<>();
         this.recordIndex = 0;
-        this.records = new ArrayList<Record>();
+        this.records = new ArrayList<>();
 
         Object property = this.hash.get("PROPERTY");
         if (property != null) {
@@ -101,7 +100,7 @@ public class Response {
                 }
             }
             for (int i = 0; i < count; i++) {
-                Map<String, String> d = new HashMap<String, String>();
+                Map<String, String> d = new HashMap<>();
                 for (String key : this.columnkeys) {
                     Column col = this.getColumn(key);
                     if (col != null) {
@@ -218,11 +217,16 @@ public class Response {
      * @return boolean result
      */
     public boolean isPending() {
-        String pending = (String) this.hash.get("PENDING");
-        if (pending != null) {
-            return pending.equals("1");
+        Map<String, String> cmd = this.getCommand();
+        // Check if the COMMAND is AddDomain (case-insensitive)
+        if (!"AddDomain".equalsIgnoreCase(cmd.get("COMMAND"))) {
+            return false;
         }
-        return false;
+
+        // Retrieve the STATUS column and check if its data equals REQUESTED
+        // (case-insensitive)
+        Column status = this.getColumn("STATUS");
+        return status != null && "REQUESTED".equalsIgnoreCase(status.getDataByIndex(0));
     }
 
     /**
@@ -364,7 +368,7 @@ public class Response {
                 return Integer.parseInt(f);
             }
         }
-        if (this.records.size() > 0) {
+        if (!this.records.isEmpty()) {
             return 0;
         }
         return -1;
@@ -396,13 +400,13 @@ public class Response {
      * @return hash including list meta data and array of rows in hash notation
      */
     public Map<String, Object> getListHash() {
-        ArrayList<Map<String, String>> lh = new ArrayList<Map<String, String>>();
+        ArrayList<Map<String, String>> lh = new ArrayList<>();
         ArrayList<Record> recs = this.getRecords();
         for (Record rec : recs) {
             lh.add(rec.getData());
         }
-        HashMap<String, Object> hm = new HashMap<String, Object>();
-        HashMap<String, Object> me = new HashMap<String, Object>();
+        HashMap<String, Object> hm = new HashMap<>();
+        HashMap<String, Object> me = new HashMap<>();
         me.put("columns", this.getColumnKeys());
         me.put("pg", this.getPagination());
         hm.put("LIST", lh);
@@ -457,7 +461,7 @@ public class Response {
      * @return paginator data
      */
     public Map<String, Object> getPagination() {
-        Map<String, Object> mp = new HashMap<String, Object>();
+        Map<String, Object> mp = new HashMap<>();
         mp.put("COUNT", this.getRecordsCount());
         mp.put("CURRENTPAGE", this.getCurrentPageNumber());
         mp.put("FIRST", this.getFirstRecordIndex());
@@ -610,7 +614,8 @@ public class Response {
     }
 
     /**
-     * Check if the record list contains a record for the current record index in use
+     * Check if the record list contains a record for the current record index in
+     * use
      *
      * @return boolean result
      */
@@ -620,7 +625,8 @@ public class Response {
     }
 
     /**
-     * Check if the record list contains a next record for the current record index in use
+     * Check if the record list contains a next record for the current record index
+     * in use
      *
      * @return boolean result
      */

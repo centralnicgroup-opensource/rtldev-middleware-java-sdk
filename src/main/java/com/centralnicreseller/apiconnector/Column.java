@@ -1,37 +1,37 @@
-package net.hexonet.apiconnector;
+package com.centralnicreseller.apiconnector;
 
 import java.util.ArrayList;
 
 /**
  * Column covers Column Data in a better accessible way
- * 
+ *
  * @author Kai Schwarz
  * @version %I%, %G%
  * @since 2.0
  */
 public class Column {
     /** column size */
-    public int length;
+    private final int length;
     /** column name */
-    private String key;
+    private final String key;
     /** column data container */
-    private ArrayList<String> data;
+    private final ArrayList<String> data;
 
     /**
      * Class constructor.
-     * 
+     *
      * @param key  column name
      * @param data column data as list
      */
     public Column(String key, ArrayList<String> data) {
-        this.data = new ArrayList<String>(data);
+        this.data = new ArrayList<>(data);
         this.key = key;
         this.length = this.data.size();
     }
 
     /**
      * Get column name
-     * 
+     *
      * @return column name
      */
     public String getKey() {
@@ -49,7 +49,7 @@ public class Column {
 
     /**
      * Get data for given column index
-     * 
+     *
      * @param idx column data index
      * @return data for given column index
      */
@@ -62,7 +62,8 @@ public class Column {
 
     /**
      * Check if column data index exists
-     * 
+     *
+     * @param idx column data index
      * @return boolean check result
      */
     private boolean hasDataIndex(int idx) {
