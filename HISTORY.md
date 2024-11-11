@@ -1,3 +1,16 @@
+# [5.0.0](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.42...v5.0.0) (2024-11-11)
+
+
+### Features
+
+* **centralnic reseller java sdk:** Introducing CentralNic Reseller Java SDK API Connector ([03aa68f](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/03aa68f28db9c855cb8ce4aa04c439826f9693be))
+
+
+### BREAKING CHANGES
+
+* **centralnic reseller java sdk:** This release deprecates the Hexonet Java SDK and introduces the CentralNic Reseller Java SDK.
+- Note: To continue using the Hexonet SDK, please install version 4.0.26 or earlier.
+
 ## [4.0.42](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.41...v4.0.42) (2024-11-04)
 
 
