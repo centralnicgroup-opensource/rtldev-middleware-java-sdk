@@ -27,7 +27,7 @@
         [
             "@terrestris/maven-semantic-release",
             {
-                "mavenTarget": "deploy",
+                "mavenTarget": "deploy -Pdev",
                 "settingsPath": "maven-settings.xml"
             }
         ]
