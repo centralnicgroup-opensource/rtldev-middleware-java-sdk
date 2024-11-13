@@ -1,3 +1,26 @@
+# [5.0.0](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.42...v5.0.0) (2024-11-13)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-compiler-plugin ([19436db](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/19436dbfdf30ad645dcba1ba446ce421110e76ca))
+* **deps:** bump org.apache.maven.plugins:maven-gpg-plugin ([48a9969](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/48a99691d55900b65070ea46afd2b54c73f47eb1))
+* **deps:** bump org.apache.maven.plugins:maven-install-plugin ([e998111](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/e998111cafaeea2db9b45f084a48bb60ccf98465))
+* **deps:** bump org.apache.maven.plugins:maven-project-info-reports-plugin ([98d993c](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/98d993cdb2ec87f070bd4e59772da7237792b6c2))
+* **deps:** bump org.apache.maven.plugins:maven-site-plugin ([5fcf26a](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/5fcf26ad6a5e25dc0d61c55421358dcc0a32ee10))
+* **deps:** bump org.apache.maven.plugins:maven-surefire-plugin ([dcf27b6](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/dcf27b66475eea85873f71268eed64437259b09e))
+
+
+### Features
+
+* **centralnic reseller java sdk:** Introducing CentralNic Reseller Java SDK API Connector ([03aa68f](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/03aa68f28db9c855cb8ce4aa04c439826f9693be))
+
+
+### BREAKING CHANGES
+
+* **centralnic reseller java sdk:** This release deprecates the Hexonet Java SDK and introduces the CentralNic Reseller Java SDK.
+- Note: To continue using the Hexonet SDK, please install version 4.0.26 or earlier.
+
 ## [4.0.42](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v4.0.41...v4.0.42) (2024-11-04)
 
 
