@@ -25,10 +25,13 @@
             }
         ],
         [
-            "@terrestris/maven-semantic-release",
+            "@centralnicgroup-opensource/maven-semantic-release",
             {
-                "mavenTarget": "deploy -Pdev",
-                "settingsPath": "maven-settings.xml"
+                "mavenTarget": "deploy",
+                "settingsPath": "maven-settings.xml",
+                "options": [
+                    "-Pdev"
+                ]
             }
         ],
         [
