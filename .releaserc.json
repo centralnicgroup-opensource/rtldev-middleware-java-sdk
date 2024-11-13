@@ -27,24 +27,9 @@
         [
             "@terrestris/maven-semantic-release",
             {
-                "mavenTarget": "deploy -Pdev",
+                "mavenTarget": "deploy",
                 "settingsPath": "maven-settings.xml"
             }
-        ],
-        [
-            "@semantic-release/git",
-            {
-                "assets": [
-                    "HISTORY.md",
-                    "package?(-lock).json",
-                    "pom.xml",
-                    "src/main/java/com/centralnicreseller/apiconnector/APIClient.java",
-                    "target/apidocs",
-                    "target/site"
-                ]
-            }
-        ],
-        "semantic-release-teams-notify-plugin",
-        "@semantic-release/github"
+        ]
     ]
 }
