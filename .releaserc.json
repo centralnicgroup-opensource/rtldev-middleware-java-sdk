@@ -1,4 +1,5 @@
 {
+    "branches": ["master", "RSRMID-2020-java-sdk-for-cnr2"],
     "ci": false,
     "plugins": [
         "@semantic-release/commit-analyzer",
