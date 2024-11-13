@@ -25,13 +25,11 @@
             }
         ],
         [
-            "@centralnicgroup-opensource/maven-semantic-release",
+            "maven-semantic-release",
             {
                 "mavenTarget": "deploy",
                 "settingsPath": "maven-settings.xml",
-                "options": [
-                    "-Pdev"
-                ]
+                "opts": "-Pdev"
             }
         ],
         [
