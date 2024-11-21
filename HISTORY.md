@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.2...v5.0.3) (2024-11-21)
+
+
+### Bug Fixes
+
+* **deps:** bump cross-spawn from 7.0.3 to 7.0.5 ([16f69a2](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/16f69a267ffbbb03fd61859cb6c305d15b8fc0a7))
+
 ## [5.0.2](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.1...v5.0.2) (2024-11-14)
 
 
