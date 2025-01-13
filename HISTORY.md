@@ -1,3 +1,10 @@
+## [5.0.5](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.4...v5.0.5) (2025-01-13)
+
+
+### Bug Fixes
+
+* **deps:** bump org.sonatype.central:central-publishing-maven-plugin ([3c222b9](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/3c222b9034ddea1c2df34917221afc2b61d08e28))
+
 ## [5.0.4](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.3...v5.0.4) (2024-12-09)
 
 
