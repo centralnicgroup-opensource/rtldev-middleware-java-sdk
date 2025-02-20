@@ -1,3 +1,10 @@
+## [5.0.6](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.5...v5.0.6) (2025-02-20)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-clean-plugin ([54a540d](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/54a540d28ac7466929942fcafb12644ff96562ce))
+
 ## [5.0.5](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.4...v5.0.5) (2025-01-13)
 
 
