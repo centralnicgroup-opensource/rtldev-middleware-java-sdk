@@ -1,3 +1,10 @@
+## [5.0.7](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.6...v5.0.7) (2025-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-compiler-plugin ([2936730](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/29367306e9348231591bfd59ac2badcd3f71dc04))
+
 ## [5.0.6](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.5...v5.0.6) (2025-02-20)
 
 
