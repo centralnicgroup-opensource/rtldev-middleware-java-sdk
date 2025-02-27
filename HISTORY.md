@@ -1,3 +1,10 @@
+## [5.0.8](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.7...v5.0.8) (2025-02-27)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-project-info-reports-plugin ([74ff232](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/74ff232cde5cfc26f3d1c56e5aa6c4e07ccb14fd))
+
 ## [5.0.7](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.6...v5.0.7) (2025-02-24)
 
 
