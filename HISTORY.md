@@ -1,3 +1,10 @@
+## [5.0.9](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.8...v5.0.9) (2025-02-28)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-install-plugin ([da828f3](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/da828f3f4e0d160e4634944bc8b5bacdbe764a30))
+
 ## [5.0.8](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.7...v5.0.8) (2025-02-27)
 
 
