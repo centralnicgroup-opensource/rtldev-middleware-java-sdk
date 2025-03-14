@@ -1,3 +1,10 @@
+## [5.0.10](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.9...v5.0.10) (2025-03-14)
+
+
+### Bug Fixes
+
+* **deps:** bump com.ibm.icu:icu4j from 76.1 to 77.1 ([1b4ee21](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/1b4ee211e0587c38247d6ed72f5ea60f4a5ced34))
+
 ## [5.0.9](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.8...v5.0.9) (2025-02-28)
 
 
