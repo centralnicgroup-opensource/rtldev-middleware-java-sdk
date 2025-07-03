@@ -397,7 +397,7 @@ public final class APIClient {
      * @return module version
      */
     public String getVersion() {
-        return "5.0.13";
+        return "5.0.14";
     }
 
     /**

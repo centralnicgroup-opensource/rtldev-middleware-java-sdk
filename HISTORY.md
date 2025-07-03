@@ -1,3 +1,11 @@
+## [5.0.14](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.13...v5.0.14) (2025-07-03)
+
+
+### Bug Fixes
+
+* **deps:** bump org.apache.maven.plugins:maven-enforcer-plugin ([11df827](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/11df8273eb8736d9a1b5fe90e8ed7cb00a35bad8))
+* **deps:** bump org.apache.maven.plugins:maven-gpg-plugin ([ad58f12](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/ad58f12801c54acae0d0f22f189c14875443ce97))
+
 ## [5.0.13](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.12...v5.0.13) (2025-06-18)
 
 
