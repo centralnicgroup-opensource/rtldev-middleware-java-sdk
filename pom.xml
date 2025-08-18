@@ -11,7 +11,7 @@
     </properties>
     <groupId>io.github.centralnicgroup-opensource</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>5.0.15</version>
+    <version>5.0.16</version>
     <packaging>jar</packaging>
     <name>java-sdk</name>
     <description>A connector library for the insanely fast backend API for Centralnic Reseller.</description>
