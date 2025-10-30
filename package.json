@@ -9,8 +9,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=20.6.1",
-    "npm": ">=10.9.0"
+    "node": "^24.10.0"
   },
   "homepage": "https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk",
   "repository": "github:centralnicgroup-opensource/rtldev-middleware-java-sdk",
