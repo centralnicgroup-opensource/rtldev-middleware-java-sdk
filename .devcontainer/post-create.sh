@@ -4,7 +4,8 @@
 ln -sf /WSL_USER/.zsh_history ~/.zsh_history
 
 # Install commitizen globally
-npm install -g commitizen
+npm i -g pnpm
+pnpm i -g commitizen
 
 # Add configuration to .czrc for commitizen
 echo '{"path": "cz-conventional-changelog"}' >> ~/.czrc

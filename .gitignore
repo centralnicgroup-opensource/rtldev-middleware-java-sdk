@@ -36,4 +36,6 @@ settings.xml
 .settings
 .sts4-cache
 node_modules
+.pnpm-store
+package-lock.json
 src/main/java/com/centralnicreseller/apiconnector/App.java
