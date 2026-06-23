@@ -1,3 +1,24 @@
+## [5.0.17](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.16...v5.0.17) (2026-06-23)
+
+
+### Bug Fixes
+
+* **deps:** bump com.ibm.icu:icu4j from 77.1 to 78.1 ([3a108d4](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/3a108d4539e7ac420ed80997fd7fc39af274a853))
+* **deps:** bump com.ibm.icu:icu4j from 78.1 to 78.2 ([be16382](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/be1638206c848e5c0d6cadf67189d8a1fad2b492))
+* **deps:** bump com.ibm.icu:icu4j from 78.2 to 78.3 ([f6547b4](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/f6547b4f5d595b30dd0093130577a949862fd50f))
+* **deps:** bump org.apache.maven.plugins:maven-compiler-plugin ([79accda](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/79accda6cf94ddd236444927c6fdccdd360ef5af))
+* **deps:** bump org.apache.maven.plugins:maven-enforcer-plugin ([39cd4c7](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/39cd4c75b628745595152413d83e409f5cbe304d))
+* **deps:** bump org.apache.maven.plugins:maven-jar-plugin ([01dfc19](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/01dfc19b543900bd0a1473f75c27f1e3343d1bdd))
+* **deps:** bump org.apache.maven.plugins:maven-javadoc-plugin ([7e9c7ae](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/7e9c7aeeb27f336280e3cd9a091985cefb66a8c8))
+* **deps:** bump org.apache.maven.plugins:maven-release-plugin ([11cc4ef](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/11cc4ef40565b7d5b9fafa24f7c469d1bfbe427e))
+* **deps:** bump org.apache.maven.plugins:maven-release-plugin ([6044845](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/6044845b2c30808f160b7c5a7841c874279d0cec))
+* **deps:** bump org.apache.maven.plugins:maven-resources-plugin ([1147aa4](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/1147aa48fa824c16389f7909e90ca527f1dcfeca))
+* **deps:** bump org.apache.maven.plugins:maven-source-plugin ([e594cda](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/e594cdaf760eab513131663b190f1dc986ef0634))
+* **deps:** bump org.apache.maven.plugins:maven-surefire-plugin ([697afa3](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/697afa3ce0bae5b80a4b54bf69dcfd8ebaa5615b))
+* **deps:** bump org.sonatype.central:central-publishing-maven-plugin ([c123e52](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/c123e52ae06b06d0af5ead46fa04fe8100ff8685))
+* **deps:** bump org.sonatype.central:central-publishing-maven-plugin ([3b8de92](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/3b8de92326c5d2c841c4bb33fda4613455aa0056))
+* **SocketConfig:** Fix null handling in SocketConfig setters to prevent NullPointerExceptions and replace HttpsURLConnection with HttpURLConnection to resolve NPE in CI test ([8ccae5e](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/8ccae5ee7b1e26a721b5b18d35114ceae15d3f1a))
+
 ## [5.0.16](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.15...v5.0.16) (2025-08-18)
 
 
