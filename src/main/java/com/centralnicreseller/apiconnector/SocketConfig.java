@@ -80,7 +80,7 @@ public class SocketConfig {
      * @return current SocketConfig instance to reuse for method chaining
      */
     public SocketConfig setLogin(String value) {
-        this.login = value;
+        this.login = value != null ? value : "";
         return this;
     }
 
@@ -103,7 +103,7 @@ public class SocketConfig {
      */
     public SocketConfig setPassword(String value) {
         this.session = "";
-        this.pw = value;
+        this.pw = value != null ? value : "";
         return this;
     }
 
@@ -123,7 +123,7 @@ public class SocketConfig {
      * @return current SocketConfig instance to reuse for method chaining
      */
     public SocketConfig setSession(String value) {
-        this.session = value;
+        this.session = value != null ? value : "";
         this.pw = "";
         this.persistent = "";
         return this;
