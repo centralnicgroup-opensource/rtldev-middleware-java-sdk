@@ -38,4 +38,5 @@ settings.xml
 node_modules
 .pnpm-store
 package-lock.json
+.env
 src/main/java/com/centralnicreseller/apiconnector/App.java

@@ -1,10 +1,17 @@
 package com.centralnicreseller.apiconnector;
 
-import java.io.UnsupportedEncodingException;
+import java.io.OutputStream;
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.URLEncoder;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpServer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -13,12 +20,66 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-import com.centralnicreseller.apiconnector.Record;
-
 /**
  * Unit test for apiconnector client
  */
 public class APIClientTest {
+    private static final String TEST_USER = "testuser";
+    private static final String TEST_PASSWORD = "testpassword";
+    private static final String SUCCESS_RESPONSE = "[RESPONSE]\r\ncode = 200\r\ndescription = Command completed successfully\r\nqueuetime = 0\r\nruntime = 0.001\r\nEOF\r\n";
+    private static final String ERROR_RESPONSE = "[RESPONSE]\r\ncode = 500\r\ndescription = Authentication failed\r\nEOF\r\n";
+    private static final String LOGIN_RESPONSE = "[RESPONSE]\r\nproperty[sessionid][0] = 12345678\r\ncode = 200\r\ndescription = Command completed successfully\r\nEOF\r\n";
+
+    private static APIClient clientUsing(TestServer server) {
+        return new APIClient()
+                .setCredentials(TEST_USER, TEST_PASSWORD)
+                .setURL(server.getURL());
+    }
+
+    private static String listResponse(int first, int last, int total, int limit) {
+        return "[RESPONSE]\r\nproperty[total][0] = " + total
+                + "\r\nproperty[first][0] = " + first
+                + "\r\nproperty[domain][0] = cnic-ssl-test" + first + ".com"
+                + "\r\nproperty[domain][1] = cnic-ssl-test" + last + ".com"
+                + "\r\nproperty[count][0] = 2"
+                + "\r\nproperty[last][0] = " + last
+                + "\r\nproperty[limit][0] = " + limit
+                + "\r\ndescription = Command completed successfully"
+                + "\r\ncode = 200\r\nqueuetime = 0\r\nruntime = 0.007\r\nEOF\r\n";
+    }
+
+    private static final class TestServer implements AutoCloseable {
+        private final HttpServer server;
+        private final String[] responses;
+        private int requestCount;
+
+        private TestServer(String... responses) throws IOException {
+            this.responses = responses;
+            this.server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+            this.server.createContext("/api/call.cgi", this::handleRequest);
+            this.server.start();
+        }
+
+        private String getURL() {
+            return "http://127.0.0.1:" + this.server.getAddress().getPort() + "/api/call.cgi";
+        }
+
+        private void handleRequest(HttpExchange exchange) throws IOException {
+            exchange.getRequestBody().readAllBytes();
+            String response = this.responses[Math.min(this.requestCount++, this.responses.length - 1)];
+            byte[] body = response.getBytes(StandardCharsets.UTF_8);
+            exchange.sendResponseHeaders(200, body.length);
+            try (OutputStream output = exchange.getResponseBody()) {
+                output.write(body);
+            }
+        }
+
+        @Override
+        public void close() {
+            this.server.stop(0);
+        }
+    }
+
     /**
      * Test getPOSTData method #1
      */
@@ -55,13 +116,13 @@ public class APIClientTest {
     @Test
     public void getPOSTDataSecured() throws UnsupportedEncodingException {
         APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"));
+        cl.setCredentials(TEST_USER, TEST_PASSWORD);
         Map<String, String> cmd = new HashMap<>();
         cmd.put("COMMAND", "CheckAuthentication");
-        cmd.put("SUBUSER", System.getenv("CNR_TEST_USER"));
-        cmd.put("PASSWORD", System.getenv("CNR_TEST_PASSWORD"));
+        cmd.put("SUBUSER", TEST_USER);
+        cmd.put("PASSWORD", TEST_PASSWORD);
         String enc = cl.getPOSTData(cmd, true);
-        String encodedUser = URLEncoder.encode(System.getenv("CNR_TEST_USER"), "UTF-8");
+        String encodedUser = URLEncoder.encode(TEST_USER, "UTF-8");
         String str = "s_login=" + encodedUser + "&s_pw=***&s_command=SUBUSER%3D" + encodedUser
                 + "%0APASSWORD%3D%2A%2A%2A%0ACOMMAND%3DCheckAuthentication";
         assertEquals(str, enc);
@@ -263,17 +324,17 @@ public class APIClientTest {
      * Test login method #1
      */
     @Test
-    public void login1() {
-        APIClient cl = new APIClient();
-        cl.useOTESystem().setCredentials(System.getenv("CNR_TEST_USER"),
-                System.getenv("CNR_TEST_PASSWORD"));
-        Response r = cl.login();
+    public void login1() throws IOException {
+        try (TestServer server = new TestServer(LOGIN_RESPONSE)) {
+            APIClient cl = clientUsing(server);
+            Response r = cl.login();
 
-        assertTrue(r.isSuccess());
-        Record rec = r.getRecord(0);
-        assertNotNull(rec);
-        String sessid = rec.getDataByKey("SESSIONID");
-        assertNotNull(sessid);
+            assertTrue(r.isSuccess());
+            Record rec = r.getRecord(0);
+            assertNotNull(rec);
+            String sessid = rec.getDataByKey("SESSIONID");
+            assertEquals("12345678", sessid);
+        }
     }
 
     // /**
@@ -294,12 +355,12 @@ public class APIClientTest {
      * Test login method #3
      */
     @Test
-    public void login3() {
-        APIClient cl = new APIClient();
-        cl.useOTESystem().setCredentials(System.getenv("CNR_TEST_USER"),
-                "WRONGPASSWORD");
-        Response r = cl.login();
-        assertTrue(r.isError());
+    public void login3() throws IOException {
+        try (TestServer server = new TestServer(ERROR_RESPONSE)) {
+            APIClient cl = clientUsing(server).setCredentials(TEST_USER, "WRONGPASSWORD");
+            Response r = cl.login();
+            assertTrue(r.isError());
+        }
     }
 
     // // login4 - http timeout
@@ -310,31 +371,34 @@ public class APIClientTest {
      */
 
     @Test
-    public void logout1() {
-        APIClient cl = new APIClient();
-        cl.useOTESystem().setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"));
-        Response r = cl.login();
-        assertTrue(r.isSuccess());
-        cl.enableDebugMode();
-        r = cl.logout();
-        assertTrue(r.isSuccess());
+    public void logout1() throws IOException {
+        try (TestServer server = new TestServer(LOGIN_RESPONSE, SUCCESS_RESPONSE)) {
+            APIClient cl = clientUsing(server);
+            Response r = cl.login();
+            assertTrue(r.isSuccess());
+            cl.enableDebugMode();
+            r = cl.logout();
+            assertTrue(r.isSuccess());
+        }
     }
 
     /**
      * Test logout method #2
      */
     @Test
-    public void logout2() {
-        Map<String, Object> sessionobj = new HashMap<>();
-        APIClient cl = new APIClient();
-        cl.useOTESystem().setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"));
-        Response r = cl.login();
-        assertTrue(r.isSuccess());
-        cl.saveSession(sessionobj);
-        APIClient cl2 = new APIClient();
-        cl2.reuseSession(sessionobj);
-        Response r2 = cl2.logout();
-        assertTrue(r2.isError());
+    public void logout2() throws IOException {
+        try (TestServer loginServer = new TestServer(LOGIN_RESPONSE);
+                TestServer logoutServer = new TestServer(ERROR_RESPONSE)) {
+            Map<String, Object> sessionobj = new HashMap<>();
+            APIClient cl = clientUsing(loginServer);
+            Response r = cl.login();
+            assertTrue(r.isSuccess());
+            cl.saveSession(sessionobj);
+            APIClient cl2 = clientUsing(logoutServer);
+            cl2.reuseSession(sessionobj);
+            Response r2 = cl2.logout();
+            assertTrue(r2.isError());
+        }
     }
 
     /**
@@ -343,8 +407,8 @@ public class APIClientTest {
     @Test
     public void request1() {
         APIClient cl = new APIClient();
-        cl.enableDebugMode().useOTESystem().setURL(cl.getURL().replace("api", "wrongcoreapi"))
-                .setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"));
+        cl.enableDebugMode().setURL("http://127.0.0.1:1/api/call.cgi")
+                .setCredentials(TEST_USER, TEST_PASSWORD);
 
         Map<String, Object> cmd = new HashMap<>();
         cmd.put("COMMAND", "GetUserIndex");
@@ -361,8 +425,8 @@ public class APIClientTest {
     @Test
     public void request2() {
         APIClient cl = new APIClient();
-        cl.useOTESystem().setURL(cl.getURL().replace("api", "wrongcoreapi"))
-                .setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"));
+        cl.setURL("http://127.0.0.1:1/api/call.cgi")
+                .setCredentials(TEST_USER, TEST_PASSWORD);
         Map<String, Object> cmd = new HashMap<>();
         cmd.put("COMMAND", "GetUserIndex");
         Response r = cl.request(cmd);
@@ -376,91 +440,89 @@ public class APIClientTest {
      * Test request method #3 (flattenCommand and autoIDNConvert)
      */
     @Test
-    public void request3() {
-        APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem();
-        String[] domains = { "example.com", "example.net", "dömäin.example" };
-        Map<String, Object> cmd = new HashMap<>();
-        cmd.put("COMMAND", "CheckDomains");
-        cmd.put("DOMAIN", domains);
-        Response r = cl.request(cmd);
+    public void request3() throws IOException {
+        try (TestServer server = new TestServer(SUCCESS_RESPONSE)) {
+            APIClient cl = clientUsing(server);
+            String[] domains = { "example.com", "example.net", "dömäin.example" };
+            Map<String, Object> cmd = new HashMap<>();
+            cmd.put("COMMAND", "CheckDomains");
+            cmd.put("DOMAIN", domains);
+            Response r = cl.request(cmd);
 
-        assertTrue(r.isSuccess());
-        assertEquals(200, r.getCode());
-        assertEquals("Command completed successfully", r.getDescription());
+            assertTrue(r.isSuccess());
+            assertEquals(200, r.getCode());
+            assertEquals("Command completed successfully", r.getDescription());
 
-        Map<String, String> newcmd = r.getCommand();
-        assertTrue(newcmd.containsKey("DOMAIN0"));
-        assertTrue(newcmd.containsKey("DOMAIN1"));
-        assertTrue(newcmd.containsKey("DOMAIN2"));
-        assertFalse(newcmd.containsKey("DOMAIN"));
-        assertEquals("example.com", newcmd.get("DOMAIN0"));
-        assertEquals("example.net", newcmd.get("DOMAIN1"));
-        assertEquals("dömäin.example", newcmd.get("DOMAIN2"));
+            Map<String, String> newcmd = r.getCommand();
+            assertTrue(newcmd.containsKey("DOMAIN0"));
+            assertTrue(newcmd.containsKey("DOMAIN1"));
+            assertTrue(newcmd.containsKey("DOMAIN2"));
+            assertFalse(newcmd.containsKey("DOMAIN"));
+            assertEquals("example.com", newcmd.get("DOMAIN0"));
+            assertEquals("example.net", newcmd.get("DOMAIN1"));
+            assertEquals("dömäin.example", newcmd.get("DOMAIN2"));
+        }
     }
 
     /**
      * Test request method #4 (autoIDNConvert)
      */
     @Test
-    public void request4() {
-        APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem()
-                .enableDebugMode();
-        Map<String, Object> cmd = new HashMap<>();
-        cmd.put("COMMAND", "StatusDNSZone");
-        cmd.put("DNSZONE", "hallööö.com");
-        Response r = cl.request(cmd);
-        assertTrue(r.isSuccess());
-        assertEquals(200, r.getCode());
-        assertEquals("Command completed successfully", r.getDescription());
-        Map<String, String> newcmd = r.getCommand();
-        assertTrue(newcmd.containsKey("DNSZONE"));
-        assertEquals("xn--hall-8qaaa.com", newcmd.get("DNSZONE"));
+    public void request4() throws IOException {
+        try (TestServer server = new TestServer(SUCCESS_RESPONSE)) {
+            APIClient cl = clientUsing(server).enableDebugMode();
+            Map<String, Object> cmd = new HashMap<>();
+            cmd.put("COMMAND", "StatusDNSZone");
+            cmd.put("DNSZONE", "hallööö.com");
+            Response r = cl.request(cmd);
+            assertTrue(r.isSuccess());
+            assertEquals(200, r.getCode());
+            assertEquals("Command completed successfully", r.getDescription());
+            Map<String, String> newcmd = r.getCommand();
+            assertTrue(newcmd.containsKey("DNSZONE"));
+            assertEquals("xn--hall-8qaaa.com", newcmd.get("DNSZONE"));
+        }
     }
 
     /**
      * Test requestNextResponsePage method #1
      */
     @Test
-    public void requestNextResponsePage1() {
-        // Disable debug mode if applicable
-        APIClient cl = new APIClient();
+    public void requestNextResponsePage1() throws IOException {
+        try (TestServer server = new TestServer(listResponse(0, 1, 4, 2),
+                listResponse(2, 3, 4, 2))) {
+            // Disable debug mode if applicable
+            APIClient cl = clientUsing(server);
 
-        cl.disableDebugMode(); // Assuming there's such a method in APIClient
+            cl.disableDebugMode(); // Assuming there's such a method in APIClient
 
-        // Prepare request parameters
-        Map<String, Object> cmd = new HashMap<>();
-        cmd.put("COMMAND", "QueryDomainList");
-        cmd.put("LIMIT", "2");
+            // Prepare request parameters
+            Map<String, Object> cmd = new HashMap<>();
+            cmd.put("COMMAND", "QueryDomainList");
+            cmd.put("LIMIT", "2");
 
-        // Set credentials and system
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem();
+            // Request the initial response
+            Response r = cl.request(cmd);
+            assertNotNull(r);
+            assertTrue(r.isSuccess());
 
-        // Request the initial response
-        Response r = cl.request(cmd);
-        assertNotNull(r);
-        assertTrue(r.isSuccess());
+            // Request the next response page
+            Response nr = cl.requestNextResponsePage(r);
+            assertNotNull(nr);
+            assertTrue(nr.isSuccess());
 
-        // Request the next response page
-        Response nr = cl.requestNextResponsePage(r);
-        assertNotNull(nr);
-        assertTrue(nr.isSuccess());
+            // Assertions for initial response
+            assertEquals(2, r.getRecordsLimitation());
+            assertEquals(2, r.getRecordsCount());
+            assertEquals(0, r.getFirstRecordIndex());
+            assertEquals(1, r.getLastRecordIndex());
 
-        // Assertions for initial response
-        assertEquals(2, r.getRecordsLimitation());
-        assertEquals(2, r.getRecordsCount());
-        assertEquals(0, r.getFirstRecordIndex());
-        assertEquals(1, r.getLastRecordIndex());
-
-        // Assertions for next response page
-        assertEquals(2, nr.getRecordsLimitation());
-        assertEquals(2, nr.getRecordsCount());
-        assertEquals(2, nr.getFirstRecordIndex());
-        assertEquals(3, nr.getLastRecordIndex());
+            // Assertions for next response page
+            assertEquals(2, nr.getRecordsLimitation());
+            assertEquals(2, nr.getRecordsCount());
+            assertEquals(2, nr.getFirstRecordIndex());
+            assertEquals(3, nr.getLastRecordIndex());
+        }
     }
 
     /**
@@ -477,12 +539,12 @@ public class APIClientTest {
         cmd.put("FIRST", "0");
         cmd.put("LAST", "1");
 
-        // Set credentials and system
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem();
-
-        // Create a response object
-        Response r = cl.request(cmd);
+        Map<String, String> responseCommand = new HashMap<>();
+        responseCommand.put("COMMAND", "QueryDomainList");
+        responseCommand.put("LIMIT", "2");
+        responseCommand.put("FIRST", "0");
+        responseCommand.put("LAST", "1");
+        Response r = new Response(listResponse(0, 1, 4, 2), responseCommand);
 
         // Expect an error to be thrown when requesting the next page
         Error thrownError = assertThrows(Error.class, () -> {
@@ -499,43 +561,41 @@ public class APIClientTest {
      * Test requestNextResponsePage method #3
      */
     @Test
-    public void requestNextResponsePage3() {
-        APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"),
-                System.getenv("CNR_TEST_PASSWORD")).useOTESystem()
-                .disableDebugMode();
-        ResponseTemplateManager.addTemplate("listP0",
-                "[RESPONSE]\r\nproperty[total][0] = 4\r\nproperty[first][0] = 0\r\nproperty[domain][0] = cnic-ssl-test1.com\r\nproperty[domain][1] = cnic-ssl-test2.com\r\nproperty[count][0] = 2\r\nproperty[last][0] = 1\r\nproperty[limit][0] = 2\r\ndescription = Command completed successfully\r\ncode = 200\r\nqueuetime = 0\r\nruntime = 0.007\r\nEOF\r\n");
-        Map<String, String> cmd = new HashMap<>();
-        cmd.put("COMMAND", "QueryDomainList");
-        cmd.put("LIMIT", "2");
-        Response r = new Response("listP0", cmd);
-        Response nr = cl.requestNextResponsePage(r);
-        assertTrue(r.isSuccess());
-        assertTrue(nr.isSuccess());
-        assertEquals(2, r.getRecordsLimitation());
-        assertEquals(2, nr.getRecordsLimitation());
-        assertEquals(2, r.getRecordsCount());
-        assertEquals(2, nr.getRecordsCount());
-        assertEquals(0, r.getFirstRecordIndex());
-        assertEquals(1, r.getLastRecordIndex());
+    public void requestNextResponsePage3() throws IOException {
+        try (TestServer server = new TestServer(listResponse(2, 3, 4, 2))) {
+            APIClient cl = clientUsing(server).disableDebugMode();
+            ResponseTemplateManager.addTemplate("listP0",
+                    "[RESPONSE]\r\nproperty[total][0] = 4\r\nproperty[first][0] = 0\r\nproperty[domain][0] = cnic-ssl-test1.com\r\nproperty[domain][1] = cnic-ssl-test2.com\r\nproperty[count][0] = 2\r\nproperty[last][0] = 1\r\nproperty[limit][0] = 2\r\ndescription = Command completed successfully\r\ncode = 200\r\nqueuetime = 0\r\nruntime = 0.007\r\nEOF\r\n");
+            Map<String, String> cmd = new HashMap<>();
+            cmd.put("COMMAND", "QueryDomainList");
+            cmd.put("LIMIT", "2");
+            Response r = new Response("listP0", cmd);
+            Response nr = cl.requestNextResponsePage(r);
+            assertTrue(r.isSuccess());
+            assertTrue(nr.isSuccess());
+            assertEquals(2, r.getRecordsLimitation());
+            assertEquals(2, nr.getRecordsLimitation());
+            assertEquals(2, r.getRecordsCount());
+            assertEquals(2, nr.getRecordsCount());
+            assertEquals(0, r.getFirstRecordIndex());
+            assertEquals(1, r.getLastRecordIndex());
+        }
     }
 
     /**
      * Test requestAllResponsePages method
      */
     @Test
-    public void requestAllResponsePages() {
-        Map<String, String> cmd = new HashMap<>();
-        cmd.put("COMMAND", "QueryDomainList");
-        cmd.put("LIMIT", "10000");
-        cmd.put("FIRST", "0");
-        APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"),
-                System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem();
-        ArrayList<Response> nr = cl.requestAllResponsePages(cmd);
-        assertTrue(!nr.isEmpty());
+    public void requestAllResponsePages() throws IOException {
+        try (TestServer server = new TestServer(listResponse(0, 1, 2, 10000))) {
+            Map<String, String> cmd = new HashMap<>();
+            cmd.put("COMMAND", "QueryDomainList");
+            cmd.put("LIMIT", "10000");
+            cmd.put("FIRST", "0");
+            APIClient cl = clientUsing(server);
+            ArrayList<Response> nr = cl.requestAllResponsePages(cmd);
+            assertTrue(!nr.isEmpty());
+        }
     }
 
     /**
@@ -583,53 +643,51 @@ public class APIClientTest {
      * Test setUserView method
      */
     @Test
-    public void setUserView() {
-        Map<String, Object> cmd = new HashMap<>();
-        cmd.put("COMMAND", "QueryUserList");
-        APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem()
-                .setUserView("julia");
+    public void setUserView() throws IOException {
+        try (TestServer server = new TestServer(SUCCESS_RESPONSE)) {
+            Map<String, Object> cmd = new HashMap<>();
+            cmd.put("COMMAND", "QueryUserList");
+            APIClient cl = clientUsing(server).setUserView("julia");
 
-        Response r = cl.request(cmd);
-        assertTrue(r.isSuccess());
+            Response r = cl.request(cmd);
+            assertTrue(r.isSuccess());
 
-        String pd = cl.getPOSTData(r.getCommand());
-        assertTrue(pd.contains("julia"));
+            String pd = cl.getPOSTData(r.getCommand());
+            assertTrue(pd.contains("julia"));
+        }
     }
 
     /**
      * Test setUserView method for sessions
      */
     @Test
-    public void setUserView2() {
-        APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem()
-                .setUserView("julia");
-        Response r = cl.login();
+    public void setUserView2() throws IOException {
+        try (TestServer server = new TestServer(LOGIN_RESPONSE)) {
+            APIClient cl = clientUsing(server).setUserView("julia");
+            Response r = cl.login();
 
-        String pd = cl.getPOSTData(r.getCommand());
-        assertFalse(pd.contains("julia"));
+            String pd = cl.getPOSTData(r.getCommand());
+            assertFalse(pd.contains("julia"));
+        }
     }
 
     /**
      * Test resetUserView method
      */
     @Test
-    public void resetUserView() {
-        Map<String, Object> cmd = new HashMap<>();
-        cmd.put("COMMAND", "QueryUserList");
+    public void resetUserView() throws IOException {
+        try (TestServer server = new TestServer(SUCCESS_RESPONSE)) {
+            Map<String, Object> cmd = new HashMap<>();
+            cmd.put("COMMAND", "QueryUserList");
 
-        APIClient cl = new APIClient();
-        cl.setCredentials(System.getenv("CNR_TEST_USER"), System.getenv("CNR_TEST_PASSWORD"))
-                .useOTESystem()
-                .setUserView("julia")
-                .resetUserView();
-        Response r = cl.request(cmd);
-        assertTrue(r.isSuccess());
+            APIClient cl = clientUsing(server)
+                    .setUserView("julia")
+                    .resetUserView();
+            Response r = cl.request(cmd);
+            assertTrue(r.isSuccess());
 
-        String pd = cl.getPOSTData(r.getCommand());
-        assertFalse(pd.contains("julia"));
+            String pd = cl.getPOSTData(r.getCommand());
+            assertFalse(pd.contains("julia"));
+        }
     }
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -14,8 +15,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * APIClient is the entry point class for communicating with the insanely fast
@@ -536,7 +535,7 @@ public final class APIClient {
         String err = null;
         try {
             URL myurl = (new URI(cfg.get("CONNECTION_URL"))).toURL();
-            HttpsURLConnection con = (HttpsURLConnection) myurl.openConnection();
+            HttpURLConnection con = (HttpURLConnection) myurl.openConnection();
             con.setRequestMethod("POST");
             if (this.curlopts.containsKey("REFERER")) {
                 con.setRequestProperty("REFERER", this.curlopts.get("REFERER"));

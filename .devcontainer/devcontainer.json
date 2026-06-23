@@ -12,7 +12,8 @@
             "extensions": [
                 "vscjava.vscode-java-pack",
                 "eamodio.gitlens",
-                "GitHub.copilot"
+                "GitHub.copilot",
+                "anthropic.claude-code"
             ]
         }
     },
