@@ -10,7 +10,7 @@
             }
         ],
         [
-            "semantic-release-replace-plugin",
+            "@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/replace",
             {
                 "replacements": [
                     {
@@ -25,7 +25,7 @@
             }
         ],
         [
-            "maven-semantic-release",
+            "@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/maven",
             {
                 "mavenTarget": "deploy",
                 "settingsPath": "maven-settings.xml",
@@ -45,7 +45,7 @@
                 ]
             }
         ],
-        "semantic-release-teams-notify-plugin",
+        "@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/teams-notify",
         "@semantic-release/github"
     ]
 }

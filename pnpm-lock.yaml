@@ -8,24 +8,18 @@ importers:
 
   .:
     devDependencies:
+      '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins':
+        specifier: github:centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins
+        version: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@25.0.5)
       '@semantic-release/git':
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@25.0.5)
-      maven-semantic-release:
-        specifier: git+https://github.com/centralnicgroup-opensource/maven-semantic-release.git
-        version: git+https://github.com/centralnicgroup-opensource/maven-semantic-release.git#09376b04661f338924636f8bc96c062ef5086a85(semantic-release@25.0.5)
       semantic-release:
         specifier: ^25.0.5
         version: 25.0.5
-      semantic-release-replace-plugin:
-        specifier: github:centralnicgroup-opensource/rtldev-middleware-semantic-release-replace-plugin
-        version: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-replace-plugin/tar.gz/1652f970c0591f32768e5fd274c099835539a89c
-      semantic-release-teams-notify-plugin:
-        specifier: github:centralnicgroup-opensource/rtldev-middleware-semantic-release-notify-plugin
-        version: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-notify-plugin/tar.gz/50742ca66679b77a1275c23bc802cba3b72a9ba2
 
 packages:
 
@@ -48,6 +42,11 @@ packages:
   '@babel/helper-validator-identifier@7.29.7':
     resolution: {integrity: sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==}
     engines: {node: '>=6.9.0'}
+
+  '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de':
+    resolution: {gitHosted: true, integrity: sha512-+IngQmQGX0+db9Czfgdx3gNjGmGHrKAI8IlqcY3owQ6O4RdRAAy2lnUXfeoOB4UhNOZTbF8BnAsPKqoB2NAjqQ==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de}
+    version: 0.0.0-development
+    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -709,10 +708,6 @@ packages:
     engines: {node: '>= 18'}
     hasBin: true
 
-  maven-semantic-release@git+https://github.com/centralnicgroup-opensource/maven-semantic-release.git#09376b04661f338924636f8bc96c062ef5086a85:
-    resolution: {commit: 09376b04661f338924636f8bc96c062ef5086a85, repo: https://github.com/centralnicgroup-opensource/maven-semantic-release.git, type: git}
-    version: 3.2.0
-
   meow@13.2.0:
     resolution: {integrity: sha512-pxQJQzB6djGPXh08dacEloMFopsOqGVRKFPYvPOt9XDZ1HasbgDZA74CJGreSU4G3Ak7EFJGoiH2auq+yXISgA==}
     engines: {node: '>=18'}
@@ -1057,16 +1052,6 @@ packages:
   safe-buffer@5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
 
-  semantic-release-replace-plugin@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-replace-plugin/tar.gz/1652f970c0591f32768e5fd274c099835539a89c:
-    resolution: {gitHosted: true, integrity: sha512-zW6oCt1pUSEEqoQ4CNxmbVXy5+nVxGmQGpku66c/9ZhC6kkI8VpnPPjHL9rNHJqNaM0JYRZxu2IDfDp7xcYKSg==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-replace-plugin/tar.gz/1652f970c0591f32768e5fd274c099835539a89c}
-    version: 1.2.7
-    engines: {node: ^24.10.0}
-
-  semantic-release-teams-notify-plugin@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-notify-plugin/tar.gz/50742ca66679b77a1275c23bc802cba3b72a9ba2:
-    resolution: {gitHosted: true, integrity: sha512-2y/MOCvIbeD1vPBYtqfVCUMSWbu2xy2vqW8WJwRM5jGuiB1a9KwZHi9X0exM3sktx/fIsJL7zQo+qyjh0AYPdg==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-notify-plugin/tar.gz/50742ca66679b77a1275c23bc802cba3b72a9ba2}
-    version: 1.0.0
-    engines: {node: '>=21.6.2', npm: '>=10.2.4'}
-
   semantic-release@25.0.5:
     resolution: {integrity: sha512-mn61SUJwtM8ThrWn2WmgLVpwVJeG/hPSupua1psdMoufmwRIPyvRLkRkL0JDXkP67OntlLWUYnBnfVc8EDO3/g==}
     engines: {node: ^22.14.0 || >= 24.10.0}
@@ -1364,6 +1349,14 @@ snapshots:
       picocolors: 1.1.1
 
   '@babel/helper-validator-identifier@7.29.7': {}
+
+  '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de':
+    dependencies:
+      '@semantic-release/error': 4.0.0
+      execa: 5.1.1
+      glob: 9.3.5
+      micromatch: 4.0.8
+      replace-in-file: 8.4.0
 
   '@colors/colors@1.5.0':
     optional: true
@@ -2051,16 +2044,6 @@ snapshots:
 
   marked@15.0.12: {}
 
-  maven-semantic-release@git+https://github.com/centralnicgroup-opensource/maven-semantic-release.git#09376b04661f338924636f8bc96c062ef5086a85(semantic-release@25.0.5):
-    dependencies:
-      '@semantic-release/error': 3.0.0
-      '@semantic-release/git': 10.0.1(semantic-release@25.0.5)
-      execa: 5.1.1
-      glob: 9.3.5
-    transitivePeerDependencies:
-      - semantic-release
-      - supports-color
-
   meow@13.2.0: {}
 
   merge-stream@2.0.0: {}
@@ -2311,21 +2294,6 @@ snapshots:
   resolve-from@5.0.0: {}
 
   safe-buffer@5.1.2: {}
-
-  semantic-release-replace-plugin@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-replace-plugin/tar.gz/1652f970c0591f32768e5fd274c099835539a89c:
-    dependencies:
-      replace-in-file: 8.4.0
-      semantic-release: 25.0.5
-    transitivePeerDependencies:
-      - kerberos
-      - supports-color
-      - typescript
-
-  semantic-release-teams-notify-plugin@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-notify-plugin/tar.gz/50742ca66679b77a1275c23bc802cba3b72a9ba2:
-    dependencies:
-      '@semantic-release/error': 4.0.0
-      aggregate-error: 5.0.0
-      micromatch: 4.0.8
 
   semantic-release@25.0.5:
     dependencies:
