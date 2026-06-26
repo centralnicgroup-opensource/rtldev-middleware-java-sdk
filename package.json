@@ -52,9 +52,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "maven-semantic-release": "git+https://github.com/centralnicgroup-opensource/maven-semantic-release.git",
-    "semantic-release": "^25.0.5",
-    "semantic-release-replace-plugin": "github:centralnicgroup-opensource/rtldev-middleware-semantic-release-replace-plugin",
-    "semantic-release-teams-notify-plugin": "github:centralnicgroup-opensource/rtldev-middleware-semantic-release-notify-plugin"
+    "@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins": "github:centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins",
+    "semantic-release": "^25.0.5"
   }
 }
