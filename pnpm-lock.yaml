@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins':
         specifier: github:centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins
-        version: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de
+        version: '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/c217057748503ae13b84870fcb61a945317e8522'
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@25.0.5)
@@ -42,11 +42,6 @@ packages:
   '@babel/helper-validator-identifier@7.29.7':
     resolution: {integrity: sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==}
     engines: {node: '>=6.9.0'}
-
-  '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de':
-    resolution: {gitHosted: true, integrity: sha512-+IngQmQGX0+db9Czfgdx3gNjGmGHrKAI8IlqcY3owQ6O4RdRAAy2lnUXfeoOB4UhNOZTbF8BnAsPKqoB2NAjqQ==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de}
-    version: 0.0.0-development
-    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -170,6 +165,11 @@ packages:
   '@sindresorhus/merge-streams@4.0.0':
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
+
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/c217057748503ae13b84870fcb61a945317e8522':
+    resolution: {gitHosted: true, integrity: sha512-t0q0VvO+eqY1IST31khE0IuIT2+9hkb4ohqXpO3HJD7aDWAVwBQzD0AdJGObQ4L41CpRj56rl66wB+hZ2B/XmQ==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/c217057748503ae13b84870fcb61a945317e8522}
+    version: 1.0.5
+    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -1350,14 +1350,6 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.29.7': {}
 
-  '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/8e44924ad86903d0a6c81383807caab18072a2de':
-    dependencies:
-      '@semantic-release/error': 4.0.0
-      execa: 5.1.1
-      glob: 9.3.5
-      micromatch: 4.0.8
-      replace-in-file: 8.4.0
-
   '@colors/colors@1.5.0':
     optional: true
 
@@ -1537,6 +1529,14 @@ snapshots:
   '@sindresorhus/is@4.6.0': {}
 
   '@sindresorhus/merge-streams@4.0.0': {}
+
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/c217057748503ae13b84870fcb61a945317e8522':
+    dependencies:
+      '@semantic-release/error': 4.0.0
+      execa: 5.1.1
+      glob: 9.3.5
+      micromatch: 4.0.8
+      replace-in-file: 8.4.0
 
   '@types/normalize-package-data@2.4.4': {}
 
