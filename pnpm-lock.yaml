@@ -167,7 +167,7 @@ packages:
     engines: {node: '>=18'}
 
   '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/b3e1759ce1d20401654d64adc644bd44d14d789d':
-    resolution: {tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/b3e1759ce1d20401654d64adc644bd44d14d789d}
+    resolution: {gitHosted: true, integrity: sha512-PI+gW3ZL5q4N+jx5HJerhGjhXKkfXyuUGxISAsD2XumUlVFGZHqdFZg2Ii2n/LgvHlgYevCm2ptqu7S1OBJ6IQ==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/b3e1759ce1d20401654d64adc644bd44d14d789d}
     version: 1.0.5
     engines: {node: ^22.14.0 || >=24.10.0}
 
