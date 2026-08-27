@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins':
         specifier: github:centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins
-        version: '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/060c950d5b78f077d1919e4c6f37a30edf3995c6(semantic-release@25.0.9(supports-color@7.2.0))'
+        version: '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67(semantic-release@25.0.9(supports-color@7.2.0))'
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@25.0.9(supports-color@7.2.0))
@@ -172,8 +172,8 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/060c950d5b78f077d1919e4c6f37a30edf3995c6':
-    resolution: {gitHosted: true, integrity: sha512-6FWON9CdLHH8Fo3MWMraQWs7RkDPGKNfzEMz/lAFzLH4Ix6QkMDcXekigav82j5rkUeAuBgRDgK6wpw1u+bM/g==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/060c950d5b78f077d1919e4c6f37a30edf3995c6}
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67':
+    resolution: {gitHosted: true, integrity: sha512-GX2t05GBKpHcs71vsUVjkWG+MCt4rciczuL9Yt18NiYdO/+Y/AM7mt/aaM6z0Y5HCyIwgas2m4ow3ifL2KUztg==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67}
     version: 1.0.5
     engines: {node: ^22.14.0 || >=24.10.0}
     peerDependencies:
@@ -262,8 +262,8 @@ packages:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
     engines: {node: 18 || 20 || >=22}
 
-  bare-events@2.9.1:
-    resolution: {integrity: sha512-Z0oHEHAFDZkffN8Qc39zNZjQlMDkPJRyyyZieU1VH7u8c5S+qHZ2S8ixdKIAxEjfHO7FJxXmJWgteOghVanIsg==}
+  bare-events@2.9.2:
+    resolution: {integrity: sha512-AIPKioV7/Y/8KfZ3AAhjPJxLLbY49S64Ym5DakZlUg75qQiTgUq9hEJoEwa4eUezPUlXRy/i5NpsKvo9jgKmoA==}
     peerDependencies:
       bare-abort-controller: '*'
     peerDependenciesMeta:
@@ -282,8 +282,8 @@ packages:
   bare-path@3.1.1:
     resolution: {integrity: sha512-JprUlveX3QjApC1cTpsUOiscADftCGVWkzitbHsRqv84hzYwYHw2mbluddsq5TvI8mH/8Ov1f4BiMAdcB0oYnQ==}
 
-  bare-stream@2.13.3:
-    resolution: {integrity: sha512-Kc+brLqvEqGkjyfiwJmImAOqLZL7OsoLKuavx+hJjgVV3nLTOjloJyPMFxjUPerGGHrNH0fLU06jjykMLWrERQ==}
+  bare-stream@2.13.4:
+    resolution: {integrity: sha512-PcrQ8lVLbiJscNm1Kez+Yp4Gy4AHGcN1lzwjvf5NybWen7VvEgUfyfnXYJ2zNqWnzOfCb1Abq6lH8ti0syQszA==}
     peerDependencies:
       bare-abort-controller: '*'
       bare-buffer: '*'
@@ -741,8 +741,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@4.3.1:
-    resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
+  js-yaml@4.3.2:
+    resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
     hasBin: true
 
   json-parse-better-errors@1.0.2:
@@ -894,8 +894,8 @@ packages:
     resolution: {integrity: sha512-9qny7Z9DsQU8Ou39ERsPU4OZQlSTP47ShQzuKZ6PRXpYLtIFgl/DEBYEXKlvcEa+9tHVcK8CF81Y2V72qaZhWA==}
     engines: {node: '>=18'}
 
-  npm@11.19.0:
-    resolution: {integrity: sha512-SDd/hHg3KqHE5Ht2NHWxNYNtqCQ2pXAPLl6OtQhPyED5PHsRfrOtO199MZTIG2cQoQ1ZRI9t28shrD+2cr3AAw==}
+  npm@11.19.1:
+    resolution: {integrity: sha512-ztsxKxt/kkIaAs+2i0GU6I+DRmUdrNasxTZKJe9TCdSjKxlhah/4r/hl5ygMD6XAg1qZ9c2TNomR4qgOydp10g==}
     engines: {node: ^20.17.0 || >=22.9.0}
     hasBin: true
     bundledDependencies:
@@ -1650,7 +1650,7 @@ snapshots:
       lodash-es: 4.18.1
       nerf-dart: 1.0.0
       normalize-url: 9.0.1
-      npm: 11.19.0
+      npm: 11.19.1
       rc: 1.2.8
       read-pkg: 10.1.0
       registry-auth-token: 5.1.1
@@ -1678,7 +1678,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/060c950d5b78f077d1919e4c6f37a30edf3995c6(semantic-release@25.0.9(supports-color@7.2.0))':
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67(semantic-release@25.0.9(supports-color@7.2.0))':
     dependencies:
       '@semantic-release/error': 4.0.0
       archiver: 8.0.0
@@ -1759,13 +1759,13 @@ snapshots:
 
   balanced-match@4.0.4: {}
 
-  bare-events@2.9.1: {}
+  bare-events@2.9.2: {}
 
   bare-fs@4.8.1:
     dependencies:
-      bare-events: 2.9.1
+      bare-events: 2.9.2
       bare-path: 3.1.1
-      bare-stream: 2.13.3(bare-events@2.9.1)
+      bare-stream: 2.13.4(bare-events@2.9.2)
       bare-url: 2.5.2
       fast-fifo: 1.3.2
     transitivePeerDependencies:
@@ -1774,13 +1774,13 @@ snapshots:
 
   bare-path@3.1.1: {}
 
-  bare-stream@2.13.3(bare-events@2.9.1):
+  bare-stream@2.13.4(bare-events@2.9.2):
     dependencies:
       b4a: 1.8.1
       streamx: 2.28.1
       teex: 1.0.1
     optionalDependencies:
-      bare-events: 2.9.1
+      bare-events: 2.9.2
     transitivePeerDependencies:
       - react-native-b4a
 
@@ -1918,7 +1918,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 4.3.1
+      js-yaml: 4.3.2
       parse-json: 5.2.0
 
   crc-32@1.2.2: {}
@@ -1987,7 +1987,7 @@ snapshots:
 
   events-universal@1.0.1:
     dependencies:
-      bare-events: 2.9.1
+      bare-events: 2.9.2
     transitivePeerDependencies:
       - bare-abort-controller
 
@@ -2225,7 +2225,7 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@4.3.1:
+  js-yaml@4.3.2:
     dependencies:
       argparse: 2.0.1
 
@@ -2367,7 +2367,7 @@ snapshots:
       path-key: 4.0.0
       unicorn-magic: 0.3.0
 
-  npm@11.19.0: {}
+  npm@11.19.1: {}
 
   object-assign@4.1.1: {}
 
