@@ -7,52 +7,52 @@ importers:
     configDependencies: {}
     packageManagerDependencies:
       '@pnpm/exe':
-        specifier: 11.23.0
-        version: 11.23.0
+        specifier: 11.24.0
+        version: 11.24.0
       pnpm:
-        specifier: 11.23.0
-        version: 11.23.0
+        specifier: 11.24.0
+        version: 11.24.0
 
 packages:
 
-  '@pnpm/exe@11.23.0':
-    resolution: {integrity: sha512-jBLtRlIloG7OdqEI4DCIQIIVrGMRlnMQxV+cq2BuBB8dhRVBHrNLHi1X2in1bI8Oa6xusPZtEWYgLwm8VkaNmQ==}
+  '@pnpm/exe@11.24.0':
+    resolution: {integrity: sha512-yCZWlhNOB3GS0I2uZC/CggwGZ+TLVLbOuBcMbVWXKFYJOg/0gnQw8eIN6YZLA+eeSvfHEvS79IDdbwu5CMQR0g==}
     hasBin: true
 
-  '@pnpm/linux-arm64@11.23.0':
-    resolution: {integrity: sha512-IthFHf+6VvyfBJQXVPbYOhwexdrxD99uKJrPCd0i5igUI99c2QP85BnE0tLUZwes9eETBlE8gbCuXIIdhjFY6Q==}
+  '@pnpm/linux-arm64@11.24.0':
+    resolution: {integrity: sha512-wgAF82SnMfWU8/xb0VLszKJYqL+MDHMMGz42s4jW+GIFUGYna/xG5VXUxgcv2FaZhJ2GbyZVUf2f/UJs6nb+zA==}
     cpu: [arm64]
     os: [linux]
 
-  '@pnpm/linux-x64@11.23.0':
-    resolution: {integrity: sha512-DuxEM0gZqo/oq+OgJU09tYCGvoKow8xAntuqWVvH5+OQiiGU0raEJu7Gj/lsKj4Q5aPWG5vpUeN8S8ClbrtNwQ==}
+  '@pnpm/linux-x64@11.24.0':
+    resolution: {integrity: sha512-94e4GRvFB5hEwr9subLHLF2q3+DduKFPh2FE0+F7fgqt1Bs86gDxjJ7bbQCpTX2X4j6cUTA5Hc0HFzMz4xKnaA==}
     cpu: [x64]
     os: [linux]
 
-  '@pnpm/linuxstatic-arm64@11.23.0':
-    resolution: {integrity: sha512-d0lt2+zCtclW1URgeBZKEd8frAlBVvRgPxHq0ED4Zfrprm4wrilBi5enzZ5JtePVN7PSiPmj8wfpHRBzWBox2A==}
+  '@pnpm/linuxstatic-arm64@11.24.0':
+    resolution: {integrity: sha512-1Vwk+M5fzjg364SDZfrtaZfthsy1THS9eSdH7dpBaG0l3HbLusQrh8labRlpMmK8KyQXcI1FvYLzPZVuAGGPng==}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@pnpm/linuxstatic-x64@11.23.0':
-    resolution: {integrity: sha512-MrQVTtzneSy9DSFr3FdOA7u+o2ci/YsAGnRQ7u/IuQTzvJpLv9d4u2orB1MjB9f2/Hqb3FyAdrAYBvPxss1Ldg==}
+  '@pnpm/linuxstatic-x64@11.24.0':
+    resolution: {integrity: sha512-oyPChWYdJpJMDnwtCFNzupD+GEO4G6DDMARuZfBrCUgqRm1h2KDcVCqk9IbfFBfxWdK+bVHJpA9Qp3nlL6/thw==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@pnpm/macos-arm64@11.23.0':
-    resolution: {integrity: sha512-sdMdxDAhtznQjGQxP9msVIiBm7R9J1yHw/oIdKJepLbG6UtLFASkZ/GlJNm+mxifTinsFplntrA4qigiVesfcw==}
+  '@pnpm/macos-arm64@11.24.0':
+    resolution: {integrity: sha512-nBzaOkR4D7HiuJRwlpk1aqaA/Wai11/zuCZjH5ZUe6fq86UWsqME0u3/F5K0j7yN8X2h7iKiApAaVmbfYMIc6A==}
     cpu: [arm64]
     os: [darwin]
 
-  '@pnpm/win-arm64@11.23.0':
-    resolution: {integrity: sha512-d60y5JBlWmGJ2ve7Ob/P9TePSL1uPqW40r5k1i1MZeR28n6GUgIeeGlMAU6mb9ACP3i8BFbu3AnP7q3kpOYmPQ==}
+  '@pnpm/win-arm64@11.24.0':
+    resolution: {integrity: sha512-ECLc0U/5cnXRkBrpO/dW+x1Y+a2CCqS4l171H7+YOQNcSaCAWlezP3YNvuO+5awwGWHIW7KEXbBruu5n50zVuA==}
     cpu: [arm64]
     os: [win32]
 
-  '@pnpm/win-x64@11.23.0':
-    resolution: {integrity: sha512-I4CY5dtaSfH2Ws1Ya8IB3cABqsJ+FS8yJgKG53bq1Ya2WMnB7rTR1LQcgyDoN0baEYD8kjXy1ehHikP11UBziw==}
+  '@pnpm/win-x64@11.24.0':
+    resolution: {integrity: sha512-2wgDrs2SiyBoU6Yw1A8QLLqBABWHwuMMQOU85k7ZMut/W94u/oizrDQiyfJyW9XzYCz4Dn2iw7OHx+3R2x7mEQ==}
     cpu: [x64]
     os: [win32]
 
@@ -116,45 +116,45 @@ packages:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
 
-  pnpm@11.23.0:
-    resolution: {integrity: sha512-8ACC5bKDoZm3Tgedoo0VXACP4jL0TIoG6n3foBTs9xn8Ni95DsxnsoEG3awq+yTEmpoHkVnaVgss59Hpjv0Rrw==}
+  pnpm@11.24.0:
+    resolution: {integrity: sha512-vSfjRel23LC+C3oSKCF7BJqBfiGx81XJDb59xGZxiVqLwebQbCRVRQXqk+oLRfSJon7Bv7yN5qlln8oPFvoAAA==}
     engines: {node: '>=22.13'}
     hasBin: true
 
 snapshots:
 
-  '@pnpm/exe@11.23.0':
+  '@pnpm/exe@11.24.0':
     dependencies:
       '@reflink/reflink': 0.1.19
       detect-libc: 2.1.2
     optionalDependencies:
-      '@pnpm/linux-arm64': 11.23.0
-      '@pnpm/linux-x64': 11.23.0
-      '@pnpm/linuxstatic-arm64': 11.23.0
-      '@pnpm/linuxstatic-x64': 11.23.0
-      '@pnpm/macos-arm64': 11.23.0
-      '@pnpm/win-arm64': 11.23.0
-      '@pnpm/win-x64': 11.23.0
+      '@pnpm/linux-arm64': 11.24.0
+      '@pnpm/linux-x64': 11.24.0
+      '@pnpm/linuxstatic-arm64': 11.24.0
+      '@pnpm/linuxstatic-x64': 11.24.0
+      '@pnpm/macos-arm64': 11.24.0
+      '@pnpm/win-arm64': 11.24.0
+      '@pnpm/win-x64': 11.24.0
 
-  '@pnpm/linux-arm64@11.23.0':
+  '@pnpm/linux-arm64@11.24.0':
     optional: true
 
-  '@pnpm/linux-x64@11.23.0':
+  '@pnpm/linux-x64@11.24.0':
     optional: true
 
-  '@pnpm/linuxstatic-arm64@11.23.0':
+  '@pnpm/linuxstatic-arm64@11.24.0':
     optional: true
 
-  '@pnpm/linuxstatic-x64@11.23.0':
+  '@pnpm/linuxstatic-x64@11.24.0':
     optional: true
 
-  '@pnpm/macos-arm64@11.23.0':
+  '@pnpm/macos-arm64@11.24.0':
     optional: true
 
-  '@pnpm/win-arm64@11.23.0':
+  '@pnpm/win-arm64@11.24.0':
     optional: true
 
-  '@pnpm/win-x64@11.23.0':
+  '@pnpm/win-x64@11.24.0':
     optional: true
 
   '@reflink/reflink-darwin-arm64@0.1.19':
@@ -194,7 +194,7 @@ snapshots:
 
   detect-libc@2.1.2: {}
 
-  pnpm@11.23.0: {}
+  pnpm@11.24.0: {}
 
 ---
 lockfileVersion: '9.0'
@@ -209,7 +209,7 @@ importers:
     devDependencies:
       '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins':
         specifier: github:centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins
-        version: '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67(semantic-release@25.0.9(supports-color@7.2.0))'
+        version: '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd(semantic-release@25.0.9(supports-color@7.2.0))'
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@25.0.9(supports-color@7.2.0))
@@ -371,10 +371,10 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67':
-    resolution: {gitHosted: true, integrity: sha512-GX2t05GBKpHcs71vsUVjkWG+MCt4rciczuL9Yt18NiYdO/+Y/AM7mt/aaM6z0Y5HCyIwgas2m4ow3ifL2KUztg==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67}
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd':
+    resolution: {gitHosted: true, integrity: sha512-LV3V2cyKFxp46cogOy7dUaO5CeeSYHMZ5U5+DyfvvZGklWME6w/PQlxAuFeESk8ifGKZ9rDAIc3HiVHLmkIG4g==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd}
     version: 1.0.5
-    engines: {node: ^22.14.0 || >=24.10.0}
+    engines: {node: ^24.15.0 || ^26.0.0, npm: '>=12.0.0'}
     peerDependencies:
       prettier: '>=3'
       semantic-release: '>=24'
@@ -537,6 +537,10 @@ packages:
   chalk@5.6.2:
     resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
+  chalk@6.0.0:
+    resolution: {integrity: sha512-2uNTXIuTTxk7ciZgAU1BQcgnchcG0xXnrs6jzkQfj9SsRa9M2s5zE8WT96hS6KmG4MzWHSrvH43DF1m4XRkrFg==}
+    engines: {node: '>=22'}
 
   char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
@@ -1284,8 +1288,8 @@ packages:
     resolution: {integrity: sha512-C+VUP+8jis7EsQZIhDYmS5qlNtjv2yP4SNtjXK9AP1ZcTRlnSfuumaTnRfYZnYgUUYVIKqL0fRvmUGDV2fmp6g==}
     engines: {node: '>=4'}
 
-  pretty-ms@9.3.0:
-    resolution: {integrity: sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ==}
+  pretty-ms@9.3.1:
+    resolution: {integrity: sha512-HzMy3Geq23nVALD/M2LliU+F+M+gVNsvkQWWqeBZ8HDiCgzo6YPJ/Omrmtq24EFrIsk0a3EkQGEd7bDOo+IhGA==}
     engines: {node: '>=18'}
 
   process-nextick-args@2.0.1:
@@ -1342,9 +1346,9 @@ packages:
     resolution: {integrity: sha512-P7B4+jq8DeD2nMsAcdfaqHbssgHtZ7Z5+++a5ask90fvmJ8p5je4mOa+wzu+DB4vQ5tdJV/xywY+UnVFeQLV5Q==}
     engines: {node: '>=14'}
 
-  replace-in-file@8.4.0:
-    resolution: {integrity: sha512-D28k8jy2LtUGbCzCnR3znajaTWIjJ/Uee3UdodzcHRxE7zn6NmYW/dcSqyivnsYU3W+MxdX6SbF28NvJ0GRoLA==}
-    engines: {node: '>=18'}
+  replace-in-file@9.0.0:
+    resolution: {integrity: sha512-ACFXyc5ninRlHSVw8ZRht0Fd/BKoje8mpbIDZjbOU/LCaaoZzD9uo3zDQNkULDhcrvhXyL38FCcF1D2SiHM6Vg==}
+    engines: {node: '>=22.12.0'}
     hasBin: true
 
   require-directory@2.1.1:
@@ -1877,14 +1881,14 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/d442c31473a6e5d896cf91f714f558d5a0e2aa67(semantic-release@25.0.9(supports-color@7.2.0))':
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd(semantic-release@25.0.9(supports-color@7.2.0))':
     dependencies:
       '@semantic-release/error': 4.0.0
       archiver: 8.0.0
       execa: 10.0.1
       glob: 13.0.6
       micromatch: 4.0.8
-      replace-in-file: 8.4.0
+      replace-in-file: 9.0.0
     optionalDependencies:
       semantic-release: 25.0.9(supports-color@7.2.0)
     transitivePeerDependencies:
@@ -2022,6 +2026,8 @@ snapshots:
       supports-color: 7.2.0
 
   chalk@5.6.2: {}
+
+  chalk@6.0.0: {}
 
   char-regex@1.0.2: {}
 
@@ -2201,7 +2207,7 @@ snapshots:
       is-plain-obj: 4.1.0
       is-stream: 4.0.1
       npm-run-path: 6.0.0
-      pretty-ms: 9.3.0
+      pretty-ms: 9.3.1
       signal-exit: 4.1.0
       strip-final-newline: 4.0.0
       which-command: 0.1.0
@@ -2241,7 +2247,7 @@ snapshots:
       is-plain-obj: 4.1.0
       is-stream: 4.0.1
       npm-run-path: 6.0.0
-      pretty-ms: 9.3.0
+      pretty-ms: 9.3.1
       signal-exit: 4.1.0
       strip-final-newline: 4.0.0
       yoctocolors: 2.2.0
@@ -2664,7 +2670,7 @@ snapshots:
       find-up: 2.1.0
       load-json-file: 4.0.0
 
-  pretty-ms@9.3.0:
+  pretty-ms@9.3.1:
     dependencies:
       parse-ms: 4.0.0
 
@@ -2737,9 +2743,9 @@ snapshots:
     dependencies:
       '@pnpm/npm-conf': 3.0.3
 
-  replace-in-file@8.4.0:
+  replace-in-file@9.0.0:
     dependencies:
-      chalk: 5.6.2
+      chalk: 6.0.0
       glob: 13.0.6
       yargs: 18.1.0
 
