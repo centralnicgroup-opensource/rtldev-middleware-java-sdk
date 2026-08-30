@@ -209,7 +209,7 @@ importers:
     devDependencies:
       '@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins':
         specifier: github:centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins
-        version: '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd(semantic-release@25.0.9(supports-color@7.2.0))'
+        version: '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4706c2792f06119090f2eea831d2b428645ccc87(semantic-release@25.0.9(supports-color@7.2.0))'
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@25.0.9(supports-color@7.2.0))
@@ -371,8 +371,8 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd':
-    resolution: {gitHosted: true, integrity: sha512-LV3V2cyKFxp46cogOy7dUaO5CeeSYHMZ5U5+DyfvvZGklWME6w/PQlxAuFeESk8ifGKZ9rDAIc3HiVHLmkIG4g==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd}
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4706c2792f06119090f2eea831d2b428645ccc87':
+    resolution: {gitHosted: true, integrity: sha512-UtefC/jGymhSHzYgJ4ys/TZUO1F1QgXZjbQcx2YMc1mwP1sMiwfmfMqL5++zxdvahTdXntYHHj5GNjbfVzBAyw==, tarball: https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4706c2792f06119090f2eea831d2b428645ccc87}
     version: 1.0.5
     engines: {node: ^24.15.0 || ^26.0.0, npm: '>=12.0.0'}
     peerDependencies:
@@ -1881,7 +1881,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4379824e33367efcbe11d22801ff070100bf76fd(semantic-release@25.0.9(supports-color@7.2.0))':
+  '@team-internet/semantic-release-plugins@https://codeload.github.com/centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins/tar.gz/4706c2792f06119090f2eea831d2b428645ccc87(semantic-release@25.0.9(supports-color@7.2.0))':
     dependencies:
       '@semantic-release/error': 4.0.0
       archiver: 8.0.0
