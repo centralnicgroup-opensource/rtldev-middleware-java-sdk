@@ -1,49 +1,116 @@
-// .devcontainer/devcontainer.json
 {
-    "name": "Java",
-    "image": "mcr.microsoft.com/devcontainers/java",
-    "workspaceFolder": "/usr/share/rtldev-middleware-java-sdk",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/usr/share/rtldev-middleware-java-sdk,type=bind",
-    "customizations": {
-        "vscode": {
-            "zsh": {
-                "path": "zsh"
-            },
-            "extensions": [
-                "vscjava.vscode-java-pack",
-                "eamodio.gitlens",
-                "anthropic.claude-code"
-            ]
-        }
+  // Everything shared with the other RTLDEV middleware repositories lives in the
+  // devbase Feature, not here. What stays in this file is what a Feature cannot
+  // set — the name, the workspace paths, the remote user, initializeCommand and
+  // the host mounts — plus what is genuinely specific to *this* repository: the
+  // Java runtime and the Java editor tooling.
+  //
+  // Feature options and troubleshooting:
+  // https://github.com/centralnicgroup-opensource/rtldev-middleware-devcontainer-features
+  "name": "dstack-javasdk",
+  "build": {
+    "context": ".",
+    "dockerfile": "Dockerfile"
+  },
+
+  // localWorkspaceFolderBasename is the repository directory name, so these two
+  // cannot drift apart from it or from each other. Resolves to the same
+  // /usr/share/rtldev-middleware-java-sdk as before.
+  "workspaceMount": "source=${localWorkspaceFolder},target=/usr/share/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/usr/share/${localWorkspaceFolderBasename}",
+  "shutdownAction": "stopContainer",
+
+  // Host-side preflight for the binds at the bottom of this file: Docker creates
+  // a missing bind source itself, as a root-owned *directory*. For ~/.ssh and
+  // ~/.claude that yields a directory nobody in the container can write to; for
+  // ~/.gitconfig and ~/.zsh_history it yields a directory where a file is expected,
+  // on the host too, where the damage outlives the container.
+  // Creating them first is idempotent and cheap. Runs on the host, so it cannot
+  // move into a Feature.
+  "initializeCommand": {
+    "claude-state": "mkdir -p ${localEnv:HOME}/.claude",
+    "ssh-dir": "mkdir -p ${localEnv:HOME}/.ssh",
+    "gitconfig": "touch ${localEnv:HOME}/.gitconfig",
+    "zsh-history": "touch ${localEnv:HOME}/.zsh_history"
+  },
+
+  "features": {
+    // The language this repository is written in stays with the repository.
+    //
+    // 26 is RTLDEV_MW_CI_JAVA_VERSION — the JDK java-sdk-release.yml actually
+    // builds and publishes with — so the container runs what ships, the same rule
+    // php-sdk's 8.3 follows. It is the top of the CI matrix ['17','21','25','26'],
+    // not the floor.
+    //
+    // Which means the container does NOT catch one class of error: pom.xml sets
+    // maven.compiler.source/target to 17 rather than <release>17</release>, and
+    // -source/-target still link against the *running* JDK's class library. So
+    // code calling an API added after 17 compiles clean here and fails the
+    // java-version: 17 leg of java-sdk-test.yml. Moving the pom to <release> is
+    // what would close that, and it is a commit in this repository's own history
+    // rather than part of the devcontainer migration — RSRMID-3069.
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "26",
+      "installMaven": "true"
     },
-    "features": {
-        "ghcr.io/devcontainers/features/node:1": {
-            "version": "latest"
-        },
-        "ghcr.io/devcontainers/features/git:1": {},
-        "ghcr.io/devcontainers/features/java:1": {
-            "version": "none",
-            "installMaven": "true"
-        }
-    },
-    "postCreateCommand": "zsh ./.devcontainer/post-create.sh",
-    "runArgs": [
-        "--name",
-        "rtldev-middleware-java-sdk"
-    ],
-    // The bind below names a *file*, and Docker creates a missing bind source itself,
-    // as a directory — on the host, where it outlives the container. Without this
-    // touch, post-create.sh's symlink would point at a directory and zsh could not
-    // write a line of history. Runs on the host before the container is created, so
-    // it cannot live in post-create.sh. (RSRMID-3052)
-    "initializeCommand": "touch ${localEnv:HOME}/.zsh_history",
-    // Only the history file, never the host home. This used to mount ${localEnv:HOME}
-    // at /WSL_USER to reach that one file, which handed the container read-write reach
-    // over the host's SSH keys, credentials and every other repository on the machine.
-    // post-create.sh symlinks ~/.zsh_history to this path; this repository is not on
-    // the devbase Feature, so that script is what makes history persist here.
-    "mounts": [
-        "source=${localEnv:HOME}/.zsh_history,target=/WSL_USER/.zsh_history,type=bind,consistency=cached"
-    ],
-    "remoteUser": "vscode"
+
+    // The shared behaviour layer: zsh with the team prompt, commitizen, pnpm,
+    // the gh credential helper, persistent shell history, dependency
+    // installation, the on-attach toolchain banner, and the RTK binary the
+    // committed ~/.claude/settings.json hook looks for.
+    //
+    // It declares Node LTS and the GitHub CLI as its own dependencies, so neither
+    // is listed here and their digests move with a devbase release instead of a
+    // per-repository Dependabot PR. The Claude Code CLI was a third until devbase
+    // 2.0.0 dropped it — the VS Code extension runs its own bundled runtime
+    // (RSRMID-3053). Do NOT
+    // re-declare node:2 to change its version: one Feature id with two option
+    // sets counts as two Features under the spec's equality rule, so Node would
+    // install twice into the same nvm path.
+    "ghcr.io/centralnicgroup-opensource/rtldev-middleware-devcontainer-features/devbase:2": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      // Java tooling only. devbase contributes the shared layer — GitHub Actions,
+      // GitHub PRs, Remote Containers, Containers, both Claude extensions,
+      // shellcheck / shell-format / vscode-yaml — plus the zsh terminal profile
+      // and the shellcheck/npm settings that go with them.
+      //
+      // eamodio.gitlens was carried here from the old frame and is dropped with
+      // it: a repository's own list is for the language it is written in, which
+      // is what php-sdk and dnscontrol-dnsconfig both do. A generic editor
+      // extension everyone wants belongs in devbase, where one release gives it
+      // to every repository, not in one frame out of sixteen.
+      "extensions": ["vscjava.vscode-java-pack"]
+    }
+  },
+
+  "remoteUser": "vscode",
+
+  // .ssh and .gitconfig make git work as it does on the host, both readonly: the
+  // container reads that identity, it does not maintain it. devbase writes its
+  // credential and signing config with `git config --local`, never `--global`,
+  // exactly so the host's file stays untouched, so readonly costs nothing here.
+  // /WSL_USER/.zsh_history is the single file devbase's history persistence
+  // reads; .claude carries the Claude Code session
+  // state including the RTK hook. Kept here because a Feature cannot mount.
+  //
+  // The history entry binds that one file and never the host home. Mounting
+  // ${localEnv:HOME} at /WSL_USER to reach a single file inside it handed the
+  // container read-write reach over the host's SSH keys, credentials and every
+  // other repository on the machine — and in the workspace repository it made the
+  // readonly flag on the GitHub tokens decorative, since the same inodes were
+  // writable by that second path. (RSRMID-3052)
+  //
+  // Narrowing it also retired the ${localEnv:HOME}${localEnv:USERPROFILE}
+  // concatenation, which resolved to neither path on a host defining both and left
+  // Docker mounting an empty directory. A single-file bind needs the host file to
+  // exist first instead — see the touch in initializeCommand above.
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,readonly",
+    "source=${localEnv:HOME}/.zsh_history,target=/WSL_USER/.zsh_history,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
+  ]
 }
