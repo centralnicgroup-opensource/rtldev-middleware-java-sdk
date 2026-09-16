@@ -37,20 +37,25 @@
   "features": {
     // The language this repository is written in stays with the repository.
     //
-    // 26 is RTLDEV_MW_CI_JAVA_VERSION — the JDK java-sdk-release.yml actually
+    // 25 is RTLDEV_MW_CI_JAVA_VERSION — the JDK java-sdk-release.yml actually
     // builds and publishes with — so the container runs what ships, the same rule
-    // php-sdk's 8.3 follows. It is the top of the CI matrix ['17','21','25','26'],
-    // not the floor.
+    // php-sdk's 8.3 follows. It is the top of the CI matrix ['17','21','25'], not
+    // the floor.
     //
-    // Which means the container does NOT catch one class of error: pom.xml sets
-    // maven.compiler.source/target to 17 rather than <release>17</release>, and
-    // -source/-target still link against the *running* JDK's class library. So
-    // code calling an API added after 17 compiles clean here and fails the
-    // java-version: 17 leg of java-sdk-test.yml. Moving the pom to <release> is
-    // what would close that, and it is a commit in this repository's own history
-    // rather than part of the devcontainer migration — RSRMID-3069.
+    // It is an LTS on purpose. The release JDK used to ride the six-month train,
+    // which put the container and the published jar on a cycle that reached end of
+    // life every half year: 26 did so on 2026-09-15, with no Temurin 27 published
+    // yet to move to. Neither variable can say "lts" instead — setup-java and this
+    // Feature both accept "latest", neither accepts "lts", and a floating value
+    // would leave eol-policy.sh with no cycle to check.
+    //
+    // Sitting on an LTS while the code targets 17 is safe because pom.xml sets
+    // maven.compiler.release=17 rather than source/target: javac links against the
+    // Java 17 API signatures whichever JDK runs the build, so a call to an API
+    // added after 17 fails here instead of surviving until the java-version: 17
+    // leg of java-sdk-test.yml — RSRMID-3069.
     "ghcr.io/devcontainers/features/java:1": {
-      "version": "26",
+      "version": "25",
       "installMaven": "true"
     },
 
