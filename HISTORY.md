@@ -1,3 +1,10 @@
+## [5.0.18](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.17...v5.0.18) (2026-09-16)
+
+
+### Bug Fixes
+
+* **release:** take the semantic-release plugins from the registry ([27a407e](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/27a407e40abada0c2286379337c614d616c67f5e))
+
 ## [5.0.17](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.16...v5.0.17) (2026-06-23)
 
 
