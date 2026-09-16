@@ -58,9 +58,9 @@
     "glob-parent": "^5.1.2"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins": "github:centralnicgroup-opensource/rtldev-middleware-semantic-release-plugins",
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/git": "^11.0.1",
+    "@team-internet/semantic-release-plugins": "^2.2.4",
     "semantic-release": "^25.0.9"
   }
 }
