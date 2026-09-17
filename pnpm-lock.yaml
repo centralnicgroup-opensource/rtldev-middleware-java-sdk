@@ -214,7 +214,7 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1(semantic-release@25.0.9(supports-color@7.2.0))(supports-color@7.2.0)
       '@team-internet/semantic-release-plugins':
-        specifier: ^2.2.4
+        specifier: ^2.5.1
         version: 2.5.1(@semantic-release/release-notes-generator@14.1.1(semantic-release@25.0.9(supports-color@7.2.0))(supports-color@7.2.0))(conventional-changelog-angular@8.3.1)(semantic-release@25.0.9(supports-color@7.2.0))
       semantic-release:
         specifier: ^25.0.9
