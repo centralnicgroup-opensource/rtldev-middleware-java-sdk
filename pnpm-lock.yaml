@@ -1444,8 +1444,8 @@ packages:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
     engines: {node: '>=20'}
 
-  tar-stream@3.2.1:
-    resolution: {integrity: sha512-nqsEO8zLZJvrOMdEwkA0QdCLFbetHMn95Zqu4fKwX+hkaTWJPZZOrxx/PwtxoK0MMGQmBQNRW3CPs8IFYQz4cQ==}
+  tar-stream@3.2.2:
+    resolution: {integrity: sha512-+8NeqHRjQWH9nYlwo2gamAMImZCVzI4UoEgDpWorBt9OEfppiZn+uSkskzQKPWIZyji/C8fpWO7u69G0DX0tbg==}
 
   teex@1.0.1:
     resolution: {integrity: sha512-eYE6iEI62Ni1H8oIa7KlDU6uQBtqr4Eajni3wX7rpfXD8ysFx8z0+dri+KWEPWpBsxXfxu58x/0jvTVT1ekOSg==}
@@ -1881,7 +1881,7 @@ snapshots:
       normalize-path: 3.0.0
       readable-stream: 4.7.0
       readdir-glob: 3.0.0
-      tar-stream: 3.2.1
+      tar-stream: 3.2.2
       zip-stream: 7.0.5
     transitivePeerDependencies:
       - bare-abort-controller
@@ -2818,7 +2818,7 @@ snapshots:
 
   tagged-tag@1.0.0: {}
 
-  tar-stream@3.2.1:
+  tar-stream@3.2.2:
     dependencies:
       b4a: 1.9.0
       bare-fs: 4.8.2
