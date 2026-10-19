@@ -21,11 +21,6 @@ public final class IDNAProcessor {
     }
 
     /**
-     * IDNA instance for transitional processing.
-     */
-    private static final IDNA IDNA_TRANSITIONAL = IDNA.getUTS46Instance(IDNA.DEFAULT);
-
-    /**
      * IDNA instance for non-transitional processing to ASCII.
      */
     private static final IDNA IDNA_NON_TRANSITIONAL_TO_ASCII = IDNA.getUTS46Instance(IDNA.NONTRANSITIONAL_TO_ASCII);
@@ -36,22 +31,47 @@ public final class IDNAProcessor {
     private static final IDNA IDNA_NON_TRANSITIONAL_TO_UNICODE = IDNA.getUTS46Instance(IDNA.NONTRANSITIONAL_TO_UNICODE);
 
     /**
-     * Pattern matching non-transitional TLDs.
+     * Applies the UTS #46 transitional mapping of the deviation characters:
+     * ß becomes "ss", ς (U+03C2) becomes σ (U+03C3), and ZWNJ (U+200C) and
+     * ZWJ (U+200D) are removed. ICU4J 76 and later no longer distinguish
+     * {@code IDNA.DEFAULT} from non-transitional processing, so the mapping is
+     * done here and the non-transitional instances do the encoding. The
+     * results are then stable across ICU versions.
+     *
+     * @param domainName The domain name to map.
+     * @return The domain name with the deviation characters mapped.
+     */
+    private static String applyTransitionalMapping(String domainName) {
+        return domainName
+            .replace("\u00DF", "ss")
+            .replace('\u03C2', '\u03C3')
+            .replace("\u200C", "")
+            .replace("\u200D", "");
+    }
+
+    /**
+     * Pattern matching the TLDs that require non-transitional processing, so
+     * that deviation characters such as ß are kept. The match is anchored to
+     * the end of the domain name (an optional trailing dot is allowed) and is
+     * case-insensitive.
      */
     private static final Pattern NON_TRANSITIONAL_TLDS = Pattern.compile(
-        "\\.(?:art|be|ca|de|swiss|fr|pm|re|tf|wf|yt)\\.?$"
-        // Note: .com and .net are not supported as non-transitional TLDs.
+        "\\.(?:art|be|ca|de|swiss|fr|pm|re|tf|wf|yt)\\.?$",
+        Pattern.CASE_INSENSITIVE
+        // Note: .com and .net are not non-transitional TLDs.
     );
 
     /**
      * Determines whether the domain name should be processed using
-     * transitional processing based on its TLD.
+     * transitional processing by default, based on its TLD.
      *
      * @param domainName The domain name to check.
-     * @return {@code true} if the domain name should use transitional processing; {@code false} otherwise.
+     * @return {@code false} if the TLD is one of those requiring non-transitional
+     *         processing (art, be, ca, de, swiss, fr, pm, re, tf, wf, yt);
+     *         {@code true} for every other TLD.
      */
     public static boolean isTransitionalProcessing(String domainName) {
-        return NON_TRANSITIONAL_TLDS.matcher(domainName).find();
+        return !NON_TRANSITIONAL_TLDS.matcher(domainName).find();
     }
 
     /**
@@ -78,8 +98,8 @@ public final class IDNAProcessor {
     public static String toASCII(String domainName, boolean useTransitional) {
         Info info = new Info();
         StringBuilder asciiDomain = new StringBuilder();
-        IDNA idnaInstance = useTransitional ? IDNA_TRANSITIONAL : IDNA_NON_TRANSITIONAL_TO_ASCII;
-        idnaInstance.nameToASCII(domainName, asciiDomain, info);
+        String input = useTransitional ? applyTransitionalMapping(domainName) : domainName;
+        IDNA_NON_TRANSITIONAL_TO_ASCII.nameToASCII(input, asciiDomain, info);
         if (asciiDomain.length() > 0 && !info.hasErrors()) {
             return asciiDomain.toString();
         }
@@ -110,8 +130,8 @@ public final class IDNAProcessor {
     public static String toUnicode(String domainName, boolean useTransitional) {
         Info info = new Info();
         StringBuilder unicodeDomain = new StringBuilder();
-        IDNA idnaInstance = useTransitional ? IDNA_TRANSITIONAL : IDNA_NON_TRANSITIONAL_TO_UNICODE;
-        idnaInstance.nameToUnicode(domainName, unicodeDomain, info);
+        String input = useTransitional ? applyTransitionalMapping(domainName) : domainName;
+        IDNA_NON_TRANSITIONAL_TO_UNICODE.nameToUnicode(input, unicodeDomain, info);
         if (unicodeDomain.length() > 0 && !info.hasErrors()) {
             return unicodeDomain.toString();
         }
