@@ -1,3 +1,20 @@
+# [6.0.0](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.18...v6.0.0) (2026-10-19)
+
+
+### Bug Fixes
+
+* **idna:** keep ß for the TLDs that require non-transitional processing ([c88c046](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/commit/c88c0466d09e3d5148d2b76a67c8ddf50eaaf82d))
+
+
+### BREAKING CHANGES
+
+* **idna:** IDNAConverter and IDNAProcessor.toASCII() now return
+xn--fa-hia.de for faß.de (was fass.de) and fass.com for faß.com (was
+xn--fa-hia.com); the same applies to ς, ZWJ and ZWNJ under these TLDs.
+Callers that need the previous result pass useTransitional explicitly.
+
+Refs: RSRMID-3015
+
 ## [5.0.18](https://github.com/centralnicgroup-opensource/rtldev-middleware-java-sdk/compare/v5.0.17...v5.0.18) (2026-09-16)
 
 
